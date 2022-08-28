@@ -1,0 +1,56 @@
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+}
+
+.form-control {
+  width: 100%;
+  outline: none;
+  padding: 0.7rem 0.5rem;
+  border-radius: 6px;
+  border-width: 1.3px;
+}
+
+.form-control::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #958f8f;
+  opacity: 1; /* Firefox */
+}
+
+.form-control::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #958f8f;
+}
+
+.input-error-text {
+  color: red;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+  display: block;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

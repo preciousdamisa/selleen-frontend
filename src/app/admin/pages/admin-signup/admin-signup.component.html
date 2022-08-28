@@ -1,0 +1,107 @@
+<section class="mt-10">
+  <div class="center">
+    <img
+      class="sln-logo-text-sm"
+      src="assets/images/sln-logo-text-dark.svg"
+      alt="Selleen Logo"
+    />
+  </div>
+  <div class="signup-form center mt-3 mx-2">
+    <app-card>
+      <h2 class="text-align-center">Create a Selleen Admin Account</h2>
+      <form
+        [formGroup]="signupForm"
+        (ngSubmit)="onSubmit()"
+        class="signup-form"
+      >
+        <div class="row" formGroupName="name">
+          <div class="col-6">
+            <app-input
+              label="First Name"
+              id="f-name"
+              placeholder="First name"
+              [control]="signupForm.get('name.last')"
+            ></app-input>
+          </div>
+          <div class="col-6 ml-2">
+            <app-input
+              label="Last Name"
+              id="l-name"
+              placeholder="Last name"
+              [control]="signupForm.get('name.first')"
+            ></app-input>
+          </div>
+        </div>
+        <app-input
+          label="Email"
+          id="email"
+          placeholder="mail@abc.com"
+          [control]="signupForm.get('email')"
+        ></app-input>
+        <app-input
+          label="Phone Number"
+          id="phone"
+          placeholder="08000000000"
+          [control]="signupForm.get('phone')"
+        ></app-input>
+        <div formGroupName="address">
+          <app-input
+            label="Full Address"
+            id="f-addr"
+            placeholder="e.g. 10, Immaculate estate..., Lagos, Nigeria."
+            [control]="signupForm.get('address.full')"
+          ></app-input>
+          <app-input
+            label="City"
+            id="city"
+            placeholder="City"
+            [required]="false"
+            [control]="signupForm.get('address.city')"
+          ></app-input>
+          <app-input
+            type="select"
+            label="State"
+            id="state"
+            [selectOptions]="stateSelectOpts"
+            [control]="signupForm.get('address.state')"
+          ></app-input>
+          <app-input
+            type="select"
+            label="Country"
+            id="country"
+            [selectOptions]="countrySelectOpts"
+            [control]="signupForm.get('address.country')"
+          ></app-input>
+        </div>
+        <app-input
+          type="password"
+          label="Password"
+          id="pw"
+          placeholder="Password"
+          [control]="signupForm.get('password')"
+        ></app-input>
+        <app-input
+          type="password"
+          label="Confirm Password"
+          id="confirm-pw"
+          placeholder="Re-enter password"
+          [errorMessage]="
+            signupForm.controls['confirmPassword']['errors'] &&
+            signupForm.controls['confirmPassword']['errors']['mustMatch']
+              ? 'Passwords do not match'
+              : ''
+          "
+          [control]="signupForm.get('confirmPassword')"
+        ></app-input>
+        <app-button
+          classes="mt-2"
+          [fullWidth]="true"
+          [disabled]="signupForm.invalid"
+        >
+          <app-spinner *ngIf="loading"></app-spinner
+          ><span *ngIf="!loading">Sign Up</span>
+        </app-button>
+      </form>
+    </app-card>
+  </div>
+</section>

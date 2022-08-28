@@ -1,0 +1,13 @@
+<button
+  [ngClass]="{ 'w-100': fullWidth }"
+  [class]="'btn ' + classes"
+  [disabled]="disabled"
+  [style.backgroundColor]="colorTheme?.primaryColor"
+  [style.color]="colorTheme?.textWhite"
+  [style.paddingLeft]="paddingX"
+  [style.paddingRight]="paddingX"
+  [style.paddingTop]="paddingY"
+  [style.paddingBottom]="paddingY"
+>
+  <ng-content></ng-content>
+</button>

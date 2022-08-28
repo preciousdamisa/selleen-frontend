@@ -1,0 +1,35 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+
+import { ColorThemeService } from '../../services/color-theme.service';
+import { ColorTheme } from '../../types/color-theme';
+
+@Component({
+  selector: 'app-button',
+  templateUrl: './button.component.html',
+  styleUrls: ['./button.component.scss'],
+})
+export class ButtonComponent implements OnInit {
+  @Input() classes = '';
+  @Input() fullWidth = false;
+  @Input() paddingX = '0.5rem';
+  @Input() paddingY = '0.5rem';
+  @Input() disabled = false;
+
+  subs?: Subscription;
+  colorTheme?: ColorTheme;
+
+  constructor(private colorThemeService: ColorThemeService) {}
+
+  ngOnInit(): void {
+    this.subs = this.colorThemeService.getTheme().subscribe({
+      next: (theme) => {
+        this.colorTheme = theme;
+      },
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subs?.unsubscribe();
+  }
+}

@@ -1,3 +1,15 @@
+.row {
+  display: flex;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+.col-12 {
+  width: 100%;
+}
+
 .d-flex {
   display: flex;
 }
@@ -29,4 +41,14 @@
 
 .d-inline {
   display: inline;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.w-100 {
+  width: 100%;
 }
