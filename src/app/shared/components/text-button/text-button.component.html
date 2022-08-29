@@ -1,0 +1,7 @@
+<a
+  class="btn"
+  (click)="clicked.emit()"
+  [style.color]="color ? color : colorTheme?.primaryColor"
+  [style.fontSize]="size"
+  ><ng-content></ng-content
+></a>

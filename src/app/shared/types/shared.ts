@@ -19,6 +19,11 @@ export interface SimpleResBody {
   message: string;
 }
 
+export interface AuthReqBody {
+  email: string;
+  password: string;
+}
+
 export interface AuthResBody {
   message: string;
   data: {

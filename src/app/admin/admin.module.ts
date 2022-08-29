@@ -9,9 +9,10 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminSignupComponent } from './pages/admin-signup/admin-signup.component';
 import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 
 @NgModule({
-  declarations: [AdminSignupComponent, AdminHomeComponent, AdminDashboardComponent],
+  declarations: [AdminSignupComponent, AdminHomeComponent, AdminDashboardComponent, AdminLoginComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

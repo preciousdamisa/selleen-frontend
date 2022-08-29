@@ -6,6 +6,10 @@ import { CardComponent } from './components/card/card.component';
 import { InputComponent } from './components/input/input.component';
 import { ButtonComponent } from './components/button/button.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { TextButtonComponent } from './components/text-button/text-button.component';
+import { TextComponent } from './components/text/text.component';
+import { RouterModule } from '@angular/router';
+import { LinkComponent } from './components/link/link.component';
 
 @NgModule({
   declarations: [
@@ -13,8 +17,19 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     InputComponent,
     ButtonComponent,
     SpinnerComponent,
+    TextButtonComponent,
+    TextComponent,
+    LinkComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule],
-  exports: [CardComponent, InputComponent, ButtonComponent, SpinnerComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  exports: [
+    CardComponent,
+    InputComponent,
+    ButtonComponent,
+    TextButtonComponent,
+    TextComponent,
+    LinkComponent,
+    SpinnerComponent,
+  ],
 })
 export class SharedModule {}

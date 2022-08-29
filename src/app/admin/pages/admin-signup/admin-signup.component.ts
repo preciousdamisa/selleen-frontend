@@ -42,7 +42,7 @@ export class AdminSignupComponent implements OnInit, OnDestroy {
           first: new FormControl('', Validators.required),
           last: new FormControl('', Validators.required),
         }),
-        email: new FormControl('', [Validators.required]),
+        email: new FormControl('', [Validators.required, Validators.email]),
         phone: new FormControl('', [
           Validators.required,
           Validators.minLength(11),
@@ -60,14 +60,21 @@ export class AdminSignupComponent implements OnInit, OnDestroy {
           Validators.minLength(6),
         ]),
         confirmPassword: new FormControl('', [Validators.required]),
+        agreedToTerms: new FormControl(true),
       },
       CustomValidators.mustMatch('password', 'confirmPassword')
     );
   }
 
   onSubmit() {
-    if (this.signupForm.invalid) return;
+    if (
+      this.signupForm.invalid &&
+      !this.signupForm.get('agreedToTerms')?.value
+    ) {
+      return;
+    }
     delete this.signupForm.value.confirmPassword;
+    delete this.signupForm.value.agreedToTerms;
 
     this.loading = true;
     this.subs = this.adminAuthService.signup(this.signupForm.value).subscribe({

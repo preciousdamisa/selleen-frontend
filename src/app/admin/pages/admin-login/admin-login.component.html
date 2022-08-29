@@ -1,0 +1,52 @@
+<section class="mt-10">
+  <div class="center">
+    <img
+      class="sln-logo-text-sm"
+      src="assets/images/sln-logo-text-dark.svg"
+      alt="Selleen Logo"
+    />
+  </div>
+  <div class="signup-form center mt-3 mx-2">
+    <app-card>
+      <h2 class="text-align-center">Log in to Your Selleen Admin Account</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <app-input
+          label="Email"
+          id="email"
+          placeholder="mail@abc.com"
+          [control]="loginForm.get('email')"
+        ></app-input>
+        <app-input
+          type="password"
+          label="Password"
+          id="pw"
+          placeholder="Password"
+          [control]="loginForm.get('password')"
+        ></app-input>
+        <div class="d-flex align-items-center justify-content-between">
+          <app-input
+            type="checkbox"
+            id="rem-me"
+            label="Remember Me"
+            [control]="loginForm.get('rememberMe')"
+          ></app-input>
+          <app-text-button color="#000">Forgot Password?</app-text-button>
+        </div>
+        <app-button
+          classes="mt-2"
+          [fullWidth]="true"
+          [disabled]="loginForm.invalid"
+        >
+          <app-spinner *ngIf="loading"></app-spinner
+          ><span *ngIf="!loading">Log In</span>
+        </app-button>
+        <div class="d-flex justify-content-center my-3">
+          <app-text classes="mr-1" size="0.8rem">Not Yet Registered?</app-text>
+          <app-link size="0.8rem" color="#000" url="/admin/signup"
+            >Create an Account</app-link
+          >
+        </div>
+      </form>
+    </app-card>
+  </div>
+</section>

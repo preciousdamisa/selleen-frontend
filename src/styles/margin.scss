@@ -44,6 +44,10 @@
 }
 
 /* LEFT MARGIN */
+.ml-0 {
+  margin-left: 0;
+}
+
 .ml-1 {
   margin-left: 0.5rem;
 }
@@ -85,6 +89,10 @@
 }
 
 /* TOP MARGIN */
+.mt-0 {
+  margin-top: 0;
+}
+
 .mt-1 {
   margin-top: 0.5rem;
 }
@@ -126,6 +134,10 @@
 }
 
 /* RIGHT MARGIN */
+.mr-0 {
+  margin-right: 0;
+}
+
 .mr-1 {
   margin-right: 0.5rem;
 }
@@ -167,6 +179,10 @@
 }
 
 /* BOTTOM MARGIN */
+.mb-0 {
+  margin-bottom: 0;
+}
+
 .mb-1 {
   margin-bottom: 0.5rem;
 }
@@ -208,6 +224,11 @@
 }
 
 /* MARGIN VERTICAL */
+.my-0 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .my-1 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -259,6 +280,11 @@
 }
 
 /* MARGIN HORIZONTAL */
+.mx-0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .mx-1 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;

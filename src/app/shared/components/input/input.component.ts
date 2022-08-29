@@ -26,6 +26,8 @@ export class InputComponent implements OnInit, OnDestroy {
   @Input() required = true;
   @Input() errorMessage = '';
   @Input() selectOptions: SelectOption[] = [];
+  @Input() checkboxSize = '0.75rem';
+  @Input() checkboxLabelSize = '0.75rem';
 
   subs?: Subscription;
   colorTheme?: ColorTheme;

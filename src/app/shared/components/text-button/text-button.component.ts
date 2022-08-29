@@ -1,21 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ColorThemeService } from '../../services/color-theme.service';
 import { ColorTheme } from '../../types/color-theme';
 
 @Component({
-  selector: 'app-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss'],
+  selector: 'app-text-button',
+  templateUrl: './text-button.component.html',
+  styleUrls: ['./text-button.component.scss'],
 })
-export class ButtonComponent implements OnInit {
-  @Input() classes = '';
-  @Input() fullWidth = false;
-  @Input() paddingX = '0.5rem';
-  @Input() paddingY = '0.5rem';
-  @Input() borderRadius = '3px';
-  @Input() disabled = false;
+export class TextButtonComponent implements OnInit, OnDestroy {
+  @Input() color?: string;
+  @Input() size = '0.75rem';
+
+  @Output() clicked = new EventEmitter();
 
   subs?: Subscription;
   colorTheme?: ColorTheme;

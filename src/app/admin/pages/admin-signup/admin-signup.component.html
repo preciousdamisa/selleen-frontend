@@ -96,11 +96,36 @@
         <app-button
           classes="mt-2"
           [fullWidth]="true"
-          [disabled]="signupForm.invalid"
+          [disabled]="
+            signupForm.invalid && !signupForm.get('agreedToTerms')?.value
+          "
         >
           <app-spinner *ngIf="loading"></app-spinner
           ><span *ngIf="!loading">Sign Up</span>
         </app-button>
+        <div class="d-flex align-items-end my-2">
+          <label class="d-flex align-items-center fs-2 cursor"
+            ><input
+              class="d-inline-block ml-0 my-0 mr-1"
+              type="checkbox"
+              formControlName="agreedToTerms"
+            />
+            <app-text
+              >I acknowledge that I have read and do hereby accept the terms and
+              conditions in the Selleen's
+              <app-link color="#000">Terms of Service</app-link> and
+              <app-link color="#000">Privacy Policy</app-link>.
+            </app-text>
+          </label>
+        </div>
+        <div class="d-flex justify-content-center my-5">
+          <app-text classes="mr-1" size="0.8rem"
+            >Already have an account?</app-text
+          >
+          <app-link size="0.8rem" color="#000" url="/admin/login"
+            >Login</app-link
+          >
+        </div>
       </form>
     </app-card>
   </div>

@@ -8,7 +8,7 @@ import {
   AdminSignupReqBody,
   GetAdminResBody,
 } from 'src/app/shared/types/admin/admin';
-import { AuthResBody } from 'src/app/shared/types/shared';
+import { AuthReqBody, AuthResBody } from 'src/app/shared/types/shared';
 import { environment } from 'src/environments/environment';
 import { Admin } from '../models/admin.model';
 
@@ -25,6 +25,15 @@ export class AdminAuthService {
   signup(data: AdminSignupReqBody) {
     return this.http
       .post<AuthResBody>(`${this.baseUrl}admins/auth/signup`, data)
+      .pipe(
+        take(1),
+        exhaustMap((res) => this.handleGetAdmin(res))
+      );
+  }
+
+  login(data: AuthReqBody) {
+    return this.http
+      .post<AuthResBody>(`${this.baseUrl}admins/auth/login`, data)
       .pipe(
         take(1),
         exhaustMap((res) => this.handleGetAdmin(res))
