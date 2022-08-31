@@ -12,6 +12,28 @@ export class Admin {
     private tokenExpirationDate: Date
   ) {}
 
+  static fromJson(userData: {
+    _id: string;
+    name: Name;
+    email: string;
+    phone: string;
+    address: Address;
+    permissions: string[];
+    _token: string;
+    tokenExpirationDate: string;
+  }) {
+    return new Admin(
+      userData._id,
+      userData.name,
+      userData.email,
+      userData.phone,
+      userData.address,
+      userData.permissions,
+      userData._token,
+      new Date(userData.tokenExpirationDate)
+    );
+  }
+
   get token() {
     if (!this.tokenExpirationDate || new Date() > this.tokenExpirationDate) {
       return null;

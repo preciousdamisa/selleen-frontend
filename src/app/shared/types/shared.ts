@@ -29,6 +29,6 @@ export interface AuthResBody {
   data: {
     _id: string;
     token: string;
-    expiresIn: string;
+    tokenExpirationDate: number;
   };
 }

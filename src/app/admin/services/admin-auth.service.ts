@@ -20,6 +20,8 @@ export class AdminAuthService {
 
   admin$ = new BehaviorSubject<Admin | null>(null);
 
+  private timerRef: any;
+
   constructor(private http: HttpClient, private router: Router) {}
 
   signup(data: AdminSignupReqBody) {
@@ -49,9 +51,7 @@ export class AdminAuthService {
       })
       .pipe(
         tap((res) => {
-          const expDate = new Date(
-            new Date().getTime() + +authRes.data.expiresIn * 1000
-          );
+          const expDate = new Date(authRes.data.tokenExpirationDate * 1000);
 
           const admin = new Admin(
             res.data._id,
@@ -64,9 +64,45 @@ export class AdminAuthService {
             expDate
           );
 
+          localStorage.setItem('adminData', JSON.stringify(admin));
+
           this.admin$.next(admin);
           this.router.navigate(['/admin']);
+
+          this.autoLogout(expDate);
         })
       );
+  }
+
+  autoLogin() {
+    const adminData = localStorage.getItem('adminData');
+    if (!adminData) return;
+
+    const parsedAdmin = JSON.parse(adminData);
+
+    const admin = Admin.fromJson(parsedAdmin);
+    if (!admin.token) return;
+
+    this.admin$.next(admin);
+
+    this.autoLogout(new Date(parsedAdmin.tokenExpirationDate));
+  }
+
+  autoLogout(tokenExpDate: Date) {
+    const remainingTime = tokenExpDate.getTime() - new Date().getTime();
+
+    this.timerRef = setTimeout(() => {
+      this.logout();
+    }, remainingTime);
+  }
+
+  logout() {
+    this.router.navigate(['/admin/login']);
+
+    localStorage.removeItem('adminData');
+    if (this.timerRef) {
+      clearTimeout(this.timerRef);
+      this.timerRef = null;
+    }
   }
 }
