@@ -5,6 +5,7 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
 import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
 import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 import { AdminSignupComponent } from './pages/admin-signup/admin-signup.component';
+import { AdminAuthGuard } from './services/admin-auth.guard';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
       {
         path: '',
         component: AdminHomeComponent,
+        canActivate: [AdminAuthGuard],
         pathMatch: 'full',
         children: [{ path: '', component: AdminDashboardComponent }],
       },
