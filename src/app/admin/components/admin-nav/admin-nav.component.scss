@@ -29,6 +29,8 @@
     box-shadow: 0 0 5px 5px rgb(0 0 0 / 3%);
     padding: 0;
     padding: 1rem 0;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   #logo {

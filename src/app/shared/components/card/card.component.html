@@ -1,3 +1,10 @@
-<div class="shadow p-1" [style.borderRadius]="borderRadius">
+<div
+  class="shadow"
+  [style.borderRadius]="borderRadius"
+  [style.paddingLeft]="paddingX"
+  [style.paddingRight]="paddingX"
+  [style.paddingTop]="paddingY"
+  [style.paddingBottom]="paddingY"
+>
   <ng-content></ng-content>
 </div>

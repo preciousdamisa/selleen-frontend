@@ -1,0 +1,17 @@
+#all-stats-container {
+  display: block;
+}
+
+#single-stat-container {
+  display: none;
+}
+
+@media (min-width: 40rem) {
+  #single-stat-container {
+    display: block;
+  }
+
+  #all-stats-container {
+    display: none;
+  }
+}

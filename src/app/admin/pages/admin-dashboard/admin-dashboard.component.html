@@ -1,0 +1,52 @@
+<app-admin-page-wrapper>
+  <app-admin-dashboard-header
+    [title]="admin?.name?.first + ' ' + admin?.name?.last"
+    subtitle="Welcome back 👋"
+  ></app-admin-dashboard-header>
+  <div id="all-stats-container" class="mt-5">
+    <app-card
+      ><app-statistic
+        name="Total Buyers"
+        [text]="buyerCount"
+        iconName="bi-people"
+      ></app-statistic>
+      <div class="my-2">
+        <app-statistic
+          name="Total Sellers"
+          [text]="sellerCount"
+          iconName="bi-shop-window"
+        ></app-statistic>
+      </div>
+      <app-statistic
+        name="Total Products"
+        text="0"
+        iconName="bi-diagram-2"
+      ></app-statistic>
+    </app-card>
+  </div>
+  <div id="single-stat-container">
+    <div class="mt-5 d-flex justify-content-between">
+      <app-card paddingX="4rem" paddingY="2rem"
+        ><app-statistic
+          name="Total Buyers"
+          [text]="buyerCount"
+          iconName="bi-people"
+        ></app-statistic>
+      </app-card>
+      <app-card paddingX="4rem" paddingY="2rem">
+        <app-statistic
+          name="Total Sellers"
+          [text]="sellerCount"
+          iconName="bi-shop-window"
+        ></app-statistic>
+      </app-card>
+      <app-card paddingX="4rem" paddingY="2rem"
+        ><app-statistic
+          name="Total Products"
+          text="0"
+          iconName="bi-diagram-2"
+        ></app-statistic>
+      </app-card>
+    </div>
+  </div>
+</app-admin-page-wrapper>

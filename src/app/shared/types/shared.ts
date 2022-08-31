@@ -32,3 +32,10 @@ export interface AuthResBody {
     tokenExpirationDate: number;
   };
 }
+
+export interface GetEntityCountResBody {
+  message: string;
+  data: {
+    count: number;
+  };
+}

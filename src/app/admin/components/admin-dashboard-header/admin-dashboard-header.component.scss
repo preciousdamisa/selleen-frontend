@@ -1,0 +1,20 @@
+#role-badge {
+  background-color: #00cb73;
+  color: #fff;
+  border-radius: 4px;
+  padding: 0.1rem 0.5rem;
+}
+
+#role-text {
+  display: none;
+}
+
+@media (min-width: 40rem) {
+  #role-badge {
+    display: none;
+  }
+
+  #role-text {
+    display: block;
+  }
+}
