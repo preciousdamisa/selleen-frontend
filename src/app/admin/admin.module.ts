@@ -10,9 +10,16 @@ import { AdminSignupComponent } from './pages/admin-signup/admin-signup.componen
 import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
+import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
 
 @NgModule({
-  declarations: [AdminSignupComponent, AdminHomeComponent, AdminDashboardComponent, AdminLoginComponent],
+  declarations: [
+    AdminSignupComponent,
+    AdminHomeComponent,
+    AdminDashboardComponent,
+    AdminLoginComponent,
+    AdminNavComponent,
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,
