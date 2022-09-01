@@ -21,10 +21,14 @@ export class AdminAuthInterceptorService implements HttpInterceptor {
     return this.authService.admin$.pipe(
       take(1),
       exhaustMap((admin) => {
-        const modReq = req.clone({
-          headers: new HttpHeaders().set('x-auth-token', admin?.token!),
-        });
-        return next.handle(modReq);
+        if (admin?.token) {
+          const modReq = req.clone({
+            headers: new HttpHeaders().set('x-auth-token', admin.token),
+          });
+          return next.handle(modReq);
+        } else {
+          return next.handle(req);
+        }
       })
     );
   }
