@@ -39,3 +39,8 @@ export interface GetEntityCountResBody {
     count: number;
   };
 }
+
+export interface Coords {
+  lng: number;
+  lat: number;
+}

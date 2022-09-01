@@ -26,7 +26,7 @@ export class AdminAuthService {
 
   signup(data: AdminSignupReqBody) {
     return this.http
-      .post<AuthResBody>(`${this.baseUrl}admins/auth/signup`, data)
+      .post<AuthResBody>(`${this.baseUrl}admins/signup`, data)
       .pipe(
         take(1),
         exhaustMap((res) => this.handleGetAdmin(res))
@@ -35,7 +35,7 @@ export class AdminAuthService {
 
   login(data: AuthReqBody) {
     return this.http
-      .post<AuthResBody>(`${this.baseUrl}admins/auth/login`, data)
+      .post<AuthResBody>(`${this.baseUrl}admins/login`, data)
       .pipe(
         take(1),
         exhaustMap((res) => this.handleGetAdmin(res))

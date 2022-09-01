@@ -1,0 +1,147 @@
+<section class="mt-10">
+  <app-logo></app-logo>
+  <div class="signup-form center mt-3 mx-2">
+    <app-card>
+      <h2 class="text-align-center">
+        Let's get you started with your Selleen Account
+      </h2>
+      <form
+        [formGroup]="signupForm"
+        (ngSubmit)="onSubmit()"
+        class="signup-form"
+      >
+        <div class="row" formGroupName="name">
+          <div class="col-6">
+            <app-input
+              label="First Name"
+              id="f-name"
+              placeholder="First name"
+              [control]="signupForm.get('name.last')"
+            ></app-input>
+          </div>
+          <div class="col-6 ml-2">
+            <app-input
+              label="Last Name"
+              id="l-name"
+              placeholder="Last name"
+              [control]="signupForm.get('name.first')"
+            ></app-input>
+          </div>
+        </div>
+        <app-input
+          label="Personal Email"
+          id="email"
+          placeholder="mail@abc.com"
+          [control]="signupForm.get('email')"
+        ></app-input>
+        <app-input
+          label="Personal Phone Number"
+          id="phone"
+          placeholder="08000000000"
+          [control]="signupForm.get('phone')"
+        ></app-input>
+        <app-input
+          label="Shop Name"
+          id="shop-name"
+          placeholder="e.g. Fidex Wears"
+          [control]="signupForm.get('shopName')"
+        ></app-input>
+        <app-input
+          label="Shop Email"
+          id="shop-email"
+          placeholder="mail@abc.com"
+          [control]="signupForm.get('shopEmail')"
+        ></app-input>
+        <div formGroupName="shopAddress">
+          <app-input
+            label="Shop Full Address"
+            id="f-addr"
+            placeholder="e.g. 10, Immaculate estate..., Lagos, Nigeria."
+            [control]="signupForm.get('shopAddress.full')"
+          ></app-input>
+          <app-input
+            label="What city is your shop in?"
+            id="city"
+            placeholder="City"
+            [required]="false"
+            [control]="signupForm.get('shopAddress.city')"
+          ></app-input>
+          <app-input
+            type="select"
+            label="What state is your shop based?"
+            id="state"
+            [selectOptions]="stateOpts"
+            [control]="signupForm.get('shopAddress.state')"
+          ></app-input>
+          <app-input
+            type="select"
+            label="What country is your shop based?"
+            id="country"
+            [selectOptions]="countryOpts"
+            [control]="signupForm.get('shopAddress.country')"
+          ></app-input>
+        </div>
+        <app-input
+          type="select"
+          label="How did you get to know of Selleen?"
+          id="know-of"
+          [selectOptions]="knowOfOpts"
+          [control]="signupForm.get('knowOf')"
+        ></app-input>
+        <app-input
+          type="password"
+          label="Password"
+          id="pw"
+          placeholder="Password"
+          [control]="signupForm.get('password')"
+        ></app-input>
+        <app-input
+          type="password"
+          label="Repeat Password"
+          id="confirm-pw"
+          placeholder="Re-enter password"
+          [errorMessage]="
+            signupForm.controls['confirmPassword']['errors'] &&
+            signupForm.controls['confirmPassword']['errors']['mustMatch']
+              ? 'Passwords do not match'
+              : ''
+          "
+          [control]="signupForm.get('confirmPassword')"
+        ></app-input>
+        <app-button
+          classes="mt-2"
+          [fullWidth]="true"
+          [disabled]="
+            signupForm.invalid || !signupForm.get('agreedToTerms')?.value
+          "
+        >
+          <app-spinner *ngIf="loading"></app-spinner
+          ><span *ngIf="!loading">Sign Up</span>
+        </app-button>
+        <div class="d-flex align-items-end my-2">
+          <label class="d-flex align-items-center fs-2 cursor"
+            ><input
+              class="d-inline-block ml-0 my-0 mr-1"
+              type="checkbox"
+              formControlName="agreedToTerms"
+            />
+            <app-text
+              >I acknowledge that I have read and do hereby accept the terms and
+              conditions in the Selleen's
+              <app-link color="#000">Terms of Service</app-link> and
+              <app-link color="#000">Privacy Policy</app-link>.
+            </app-text>
+          </label>
+        </div>
+        <div class="d-flex justify-content-center my-5">
+          <app-text classes="mr-1" size="0.8rem"
+            >Already have an account?</app-text
+          >
+          <app-link size="0.8rem" color="#000" url="/seller/login"
+            >Login</app-link
+          >
+        </div>
+      </form>
+    </app-card>
+  </div>
+</section>
