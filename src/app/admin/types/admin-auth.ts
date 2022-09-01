@@ -1,4 +1,4 @@
-import * as sharedTypes from '../shared';
+import * as sharedTypes from '../../shared/types/shared';
 
 export interface AdminSignupReqBody {
   name: sharedTypes.Name;

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+
 import { ColorThemeService } from 'src/app/shared/services/color-theme.service';
 import { ColorTheme } from 'src/app/shared/types/color-theme';
 

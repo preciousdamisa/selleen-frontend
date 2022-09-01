@@ -7,7 +7,7 @@ import { exhaustMap, tap, take } from 'rxjs/operators';
 import {
   AdminSignupReqBody,
   GetAdminResBody,
-} from 'src/app/shared/types/admin/admin';
+} from 'src/app/admin/types/admin-auth';
 import { AuthReqBody, AuthResBody } from 'src/app/shared/types/shared';
 import { environment } from 'src/environments/environment';
 import { Admin } from '../models/admin.model';
