@@ -60,7 +60,7 @@ export class AdminSignupComponent implements OnInit, OnDestroy {
           Validators.minLength(6),
         ]),
         confirmPassword: new FormControl('', [Validators.required]),
-        agreedToTerms: new FormControl(true),
+        agreedToTerms: new FormControl(false),
       },
       CustomValidators.mustMatch('password', 'confirmPassword')
     );
@@ -68,7 +68,7 @@ export class AdminSignupComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (
-      this.signupForm.invalid &&
+      this.signupForm.invalid ||
       !this.signupForm.get('agreedToTerms')?.value
     ) {
       return;

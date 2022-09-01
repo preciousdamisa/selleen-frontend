@@ -91,7 +91,7 @@
           classes="mt-2"
           [fullWidth]="true"
           [disabled]="
-            signupForm.invalid && !signupForm.get('agreedToTerms')?.value
+            signupForm.invalid || !signupForm.get('agreedToTerms')?.value
           "
         >
           <app-spinner *ngIf="loading"></app-spinner
