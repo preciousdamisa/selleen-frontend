@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { SelectOption } from 'src/app/shared/types/shared';
 import CustomValidators from 'src/app/shared/utils/custom-validators';
-import { SellerAuthService } from '../../services/seller-auth.service';
+import { SellerService } from '../../services/seller.service';
 
 @Component({
   selector: 'app-seller-signup',
@@ -38,7 +38,7 @@ export class SellerSignupComponent implements OnInit, OnDestroy {
 
   loading = false;
 
-  constructor(private sellerAuthService: SellerAuthService) {}
+  constructor(private sellerService: SellerService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -89,7 +89,7 @@ export class SellerSignupComponent implements OnInit, OnDestroy {
     delete this.signupForm.value.agreedToTerms;
 
     this.loading = true;
-    this.subs = this.sellerAuthService.signup(this.signupForm.value).subscribe({
+    this.subs = this.sellerService.signup(this.signupForm.value).subscribe({
       next: () => {
         this.loading = false;
       },

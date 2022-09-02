@@ -40,6 +40,17 @@ export interface GetEntityCountResBody {
   };
 }
 
+export interface Image {
+  thumbnail: { url: string; dUrl: string };
+  original: { url: string; dUrl: string };
+  metadata: Metadata;
+}
+
+export interface Metadata {
+  width: number;
+  height: number;
+}
+
 export interface Coords {
   lng: number;
   lat: number;
