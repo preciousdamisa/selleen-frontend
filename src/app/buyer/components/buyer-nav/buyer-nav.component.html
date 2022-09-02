@@ -1,0 +1,68 @@
+<nav id="navbar" class="px-3 py-2" *ngIf="open">
+  <div id="logo"><app-logo size="8rem"></app-logo></div>
+  <ul
+    id="nav-items"
+    class="d-flex justify-content-between list-style-none p-0 m-0"
+  >
+    <li>
+      <a
+        id="nav-link"
+        class="d-flex-col fs-2 align-items-center"
+        routerLink=""
+        routerLinkActive="active"
+        ><i id="nav-link-icon" class="bi-house-door"></i
+        ><span id="nav-link-text">Home</span></a
+      >
+    </li>
+    <li>
+      <a
+        id="nav-link"
+        class="d-flex-col fs-2 align-items-center"
+        routerLinkActive="active"
+        ><i id="nav-link-icon" class="bi-cart4"></i
+        ><span id="nav-link-text">Cart</span></a
+      >
+    </li>
+    <li>
+      <a
+        id="nav-link"
+        class="d-flex-col fs-2 align-items-center"
+        routerLinkActive="active"
+        ><i id="nav-link-icon" class="bi-heart"></i
+        ><span id="nav-link-text">Saved</span></a
+      >
+    </li>
+    <li *ngIf="user?.hasShop">
+      <a
+        id="nav-link"
+        class="d-flex-col fs-2 align-items-center"
+        routerLinkActive="active"
+        ><i
+          id="nav-link-icon"
+          [class]="user?.hasShop ? 'bi-bag' : 'bi-bag-plus'"
+        ></i
+        ><span id="nav-link-text">Shop</span></a
+      >
+    </li>
+    <li>
+      <a
+        id="nav-link"
+        class="d-flex-col fs-2 align-items-center"
+        routerLinkActive="active"
+        ><i id="nav-link-icon" class="bi-person-circle"></i
+        ><span id="nav-link-text">My Account</span></a
+      >
+    </li>
+    <li id="logout-item">
+      <hr />
+      <a
+        id="nav-link"
+        class="d-flex-col fs-2 align-items-center"
+        routerLinkActive="active"
+        (click)="onLogout()"
+        ><i id="nav-link-icon" class="bi-box-arrow-left"></i
+        ><span id="nav-link-text">Logout</span></a
+      >
+    </li>
+  </ul>
+</nav>
