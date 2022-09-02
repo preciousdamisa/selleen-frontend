@@ -2,7 +2,8 @@
   <app-logo></app-logo>
   <div class="signup-form center mt-3 mx-2">
     <app-card>
-      <h2 class="text-align-center">Log in to Your Selleen Admin Account</h2>
+      <h2 class="text-align-center mb-0">Log in to Your Account</h2>
+      <p class="text-align-center mt-0">See what is going on with your business</p>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
         <app-input
           label="Email"
@@ -36,7 +37,7 @@
         </app-button>
         <div class="d-flex justify-content-center my-3">
           <app-text classes="mr-1" size="0.8rem">Not Yet Registered?</app-text>
-          <app-link size="0.8rem" color="#000" url="/admin/signup"
+          <app-link size="0.8rem" color="#000" url="/seller/signup"
             >Create an Account</app-link
           >
         </div>

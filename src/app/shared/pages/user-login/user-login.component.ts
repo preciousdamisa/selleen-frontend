@@ -1,22 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-
-import { AdminAuthService } from '../../services/admin-auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'app-admin-login',
-  templateUrl: './admin-login.component.html',
-  styleUrls: ['./admin-login.component.scss'],
+  selector: 'app-user-login',
+  templateUrl: './user-login.component.html',
+  styleUrls: ['./user-login.component.scss'],
 })
-export class AdminLoginComponent implements OnInit {
+export class UserLoginComponent implements OnInit, OnDestroy {
   subs?: Subscription;
 
   loginForm!: FormGroup;
   loading = false;
 
-  constructor(private adminAuthService: AdminAuthService) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -36,7 +34,7 @@ export class AdminLoginComponent implements OnInit {
     delete this.loginForm.value.rememberMe;
 
     this.loading = true;
-    this.subs = this.adminAuthService.login(this.loginForm.value).subscribe({
+    this.subs = this.userService.login(this.loginForm.value).subscribe({
       next: () => {
         this.loading = false;
       },

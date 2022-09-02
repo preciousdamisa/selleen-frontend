@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { exhaustMap, tap, take } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
-import { AuthResBody } from '../types/shared';
+import { AuthReqBody, AuthResBody } from '../types/shared';
 import { GetUserResBody } from '../types/user';
 
 @Injectable({
@@ -20,6 +20,13 @@ export class UserService {
   private timerRef: any;
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  login(data: AuthReqBody) {
+    return this.http.post<AuthResBody>(`${this.baseUrl}users/login`, data).pipe(
+      take(1),
+      exhaustMap((res) => this.handleGetUser(res))
+    );
+  }
 
   handleGetUser(res: AuthResBody) {
     const authRes = res;
