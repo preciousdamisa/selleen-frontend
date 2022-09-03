@@ -1,13 +1,13 @@
-#role-text {
+#img-container span {
   display: none;
 }
 
 @media (min-width: 40rem) {
-  #role-badge {
+  #approval-badge {
     display: none;
   }
 
-  #role-text {
+  #img-container span {
     display: block;
   }
 }

@@ -1,4 +1,4 @@
-<app-admin-page-wrapper>
+<app-page-wrapper>
   <app-admin-dashboard-header
     [title]="admin?.name?.first + ' ' + admin?.name?.last"
     subtitle="Welcome back 👋"
@@ -6,7 +6,7 @@
   <div id="all-stats-container" class="mt-5">
     <app-card
       ><app-statistic
-        name="Total Buyers"
+        name="Total Sales"
         [text]="buyerCount"
         iconName="bi-people"
       ></app-statistic>
@@ -49,4 +49,4 @@
       </app-card>
     </div>
   </div>
-</app-admin-page-wrapper>
+</app-page-wrapper>

@@ -11,7 +11,6 @@ import { TextComponent } from './components/text/text.component';
 import { RouterModule } from '@angular/router';
 import { LinkComponent } from './components/link/link.component';
 import { LogoComponent } from './components/logo/logo.component';
-import { UserLoginComponent } from './pages/user-login/user-login.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +22,11 @@ import { UserLoginComponent } from './pages/user-login/user-login.component';
     TextComponent,
     LinkComponent,
     LogoComponent,
-    UserLoginComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
+    CommonModule,
+    ReactiveFormsModule,
     CardComponent,
     InputComponent,
     ButtonComponent,

@@ -52,7 +52,7 @@ export class UserService {
           localStorage.setItem('userData', JSON.stringify(user));
 
           this.user$.next(user);
-          this.router.navigate([user.hasShop ? '' : '/seller']);
+          this.router.navigate([user.hasShop ? '/seller' : '']);
 
           this.autoLogout(expDate);
         })

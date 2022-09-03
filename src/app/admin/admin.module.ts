@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AdminRoutingModule } from './admin-routing.module';
+import { AdminSellerSharedModule } from '../shared/admin-seller-shared.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { AdminSignupComponent } from './pages/admin-signup/admin-signup.component';
@@ -12,8 +11,6 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
 import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
 import { AdminDashboardHeaderComponent } from './components/admin-dashboard-header/admin-dashboard-header.component';
-import { AdminPageWrapperComponent } from './components/admin-page-wrapper/admin-page-wrapper.component';
-import { StatisticComponent } from './components/statistic/statistic.component';
 
 import { AdminAuthInterceptorService } from './services/admin-auth-interceptor.service';
 
@@ -25,16 +22,8 @@ import { AdminAuthInterceptorService } from './services/admin-auth-interceptor.s
     AdminLoginComponent,
     AdminNavComponent,
     AdminDashboardHeaderComponent,
-    AdminPageWrapperComponent,
-    StatisticComponent,
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    SharedModule,
-  ],
+  imports: [AdminRoutingModule, AdminSellerSharedModule, SharedModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
