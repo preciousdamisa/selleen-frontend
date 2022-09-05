@@ -3,7 +3,9 @@
   <div class="signup-form center mt-3 mx-2">
     <app-card>
       <h2 class="text-align-center mb-0">Log in to Your Account</h2>
-      <p class="text-align-center mt-0">See what is going on with your business</p>
+      <p class="text-align-center mt-0">
+        See what is going on with your business
+      </p>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
         <app-input
           label="Email"
@@ -32,7 +34,7 @@
           [fullWidth]="true"
           [disabled]="loginForm.invalid"
         >
-          <app-spinner *ngIf="loading"></app-spinner
+          <app-spinner color="#fff" *ngIf="loading"></app-spinner
           ><span *ngIf="!loading">Log In</span>
         </app-button>
         <div class="d-flex justify-content-center my-3">

@@ -1,4 +1,5 @@
 import { CartProduct } from 'src/app/buyer/types/product';
+import { UserShop } from 'src/app/seller/types/shop';
 import { Name, Address } from './shared';
 
 export interface GetUserResBody {
@@ -11,5 +12,6 @@ export interface GetUserResBody {
     address: Address;
     cart: CartProduct[];
     hasShop: boolean;
+    shops: UserShop[];
   };
 }

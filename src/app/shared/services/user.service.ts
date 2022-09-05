@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { exhaustMap, tap, take } from 'rxjs/operators';
 
-import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
 import { AuthReqBody, AuthResBody } from '../types/shared';
 import { GetUserResBody } from '../types/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +16,7 @@ export class UserService {
   private baseUrl = `${environment.apiUrl}`;
 
   user$ = new BehaviorSubject<User | null>(null);
+  currentUser?: User | null;
 
   private timerRef: any;
 
@@ -45,6 +46,7 @@ export class UserService {
             res.data.phone,
             res.data.email,
             res.data.hasShop,
+            res.data.shops,
             authRes.data.token,
             expDate
           );
@@ -53,6 +55,7 @@ export class UserService {
 
           this.user$.next(user);
           this.router.navigate([user.hasShop ? '/seller' : '']);
+          this.currentUser = user;
 
           this.autoLogout(expDate);
         })
@@ -69,6 +72,7 @@ export class UserService {
     if (!user.token) return;
 
     this.user$.next(user);
+    this.currentUser = user;
 
     this.autoLogout(new Date(parsedUser.tokenExpirationDate));
   }
@@ -83,6 +87,8 @@ export class UserService {
 
   logout() {
     this.router.navigate(['']);
+    this.user$.next(null);
+    this.currentUser = null;
 
     localStorage.removeItem('userData');
     if (this.timerRef) {

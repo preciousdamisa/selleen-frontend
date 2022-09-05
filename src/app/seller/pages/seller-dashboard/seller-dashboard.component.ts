@@ -3,6 +3,8 @@ import { Subject, takeUntil } from 'rxjs';
 
 import { User } from 'src/app/shared/models/user.model';
 import { UserService } from 'src/app/shared/services/user.service';
+import { Todo } from 'src/app/shared/types/shared';
+import { SellerDashboardService } from '../../services/seller-dashboard.service';
 
 @Component({
   selector: 'app-seller-dashboard',
@@ -15,11 +17,17 @@ export class SellerDashboardComponent implements OnInit, OnDestroy {
   user?: User | null;
   buyerCount?: string;
   sellerCount?: string;
+  todos: Todo[] = [];
+  fetchingTodos = false;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private dashService: SellerDashboardService
+  ) {}
 
   ngOnInit(): void {
     this.getUser();
+    this.fetchTodos();
   }
 
   getUser() {
@@ -28,6 +36,23 @@ export class SellerDashboardComponent implements OnInit, OnDestroy {
         this.user = user;
       },
     });
+  }
+
+  fetchTodos() {
+    this.fetchingTodos = true;
+    this.dashService
+      .getTodos(this.user?.shops[0].id!)
+      .pipe(takeUntil(this.subs$))
+      .subscribe({
+        next: (res) => {
+          this.todos = res.data.todos;
+          this.fetchingTodos = false;
+          console.log(this.todos);
+        },
+        error: (err) => {
+          this.fetchingTodos = false;
+        },
+      });
   }
 
   ngOnDestroy(): void {

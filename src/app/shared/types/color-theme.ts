@@ -4,4 +4,5 @@ export interface ColorTheme {
   textDark: string;
   textLight: string;
   textWhite: string;
+  colorGrey: string;
 }

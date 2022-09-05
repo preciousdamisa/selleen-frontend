@@ -4,7 +4,7 @@
     subtitle="Welcome back 👋"
   >
   </app-seller-dashboard-header>
-  <div id="all-stats-container" class="mt-5">
+  <section id="all-stats-container" class="mt-5">
     <app-card
       ><app-statistic
         name="Total Sales"
@@ -24,8 +24,8 @@
         iconName="bi-people"
       ></app-statistic>
     </app-card>
-  </div>
-  <div id="single-stat-container">
+  </section>
+  <section id="single-stat-container">
     <div class="mt-5 d-flex justify-content-between">
       <app-card paddingX="4rem" paddingY="2rem"
         ><app-statistic
@@ -49,5 +49,17 @@
         ></app-statistic>
       </app-card>
     </div>
-  </div>
+  </section>
+  <section class="mt-6">
+    <h3 class="fw-5">Task(s) to complete</h3>
+    <div>
+      <app-spinner *ngIf="fetchingTodos"></app-spinner>
+      <ng-container *ngIf="!fetchingTodos && todos.length > 0">
+        <app-todo
+          *ngFor="let todo of todos"
+          [message]="todo.message"
+        ></app-todo>
+      </ng-container>
+    </div>
+  </section>
 </app-page-wrapper>

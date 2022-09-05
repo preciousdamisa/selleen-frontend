@@ -55,3 +55,17 @@ export interface Coords {
   lng: number;
   lat: number;
 }
+
+export interface Todo {
+  message: string;
+}
+
+export interface GetTodosResBody {
+  message: string;
+  data: { todos: Todo[] };
+}
+
+export interface Creator {
+  userId: string;
+  name: Name;
+}

@@ -9,13 +9,13 @@ export class User {
     public phone: string,
     public email: string,
     public hasShop: boolean,
+    public shops: UserShop[],
     private _token: string,
     private tokenExpirationDate: Date,
     public gender?: string,
     public address?: Address,
     public image?: Image,
     public cart?: CartProduct[],
-    public shops?: UserShop[],
     public roles?: Role[]
   ) {}
 
@@ -25,13 +25,13 @@ export class User {
     phone: string;
     email: string;
     hasShop: boolean;
+    shops: UserShop[];
     _token: string;
     tokenExpirationDate: string;
     gender?: string;
     address?: Address;
     image?: Image;
     cart?: CartProduct[];
-    shops?: UserShop[];
     roles?: Role[];
   }) {
     return new User(
@@ -40,13 +40,13 @@ export class User {
       userData.phone,
       userData.email,
       userData.hasShop,
+      userData.shops,
       userData._token,
       new Date(userData.tokenExpirationDate),
       userData?.gender,
       userData?.address,
       userData?.image,
       userData?.cart,
-      userData?.shops,
       userData?.roles
     );
   }

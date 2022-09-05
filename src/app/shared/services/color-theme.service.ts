@@ -13,6 +13,7 @@ export class ColorThemeService {
     textLight: '#958f8f',
     textDark: '#000',
     textWhite: '#fff',
+    colorGrey: '#8d8d8d',
   };
 
   colorTheme = new BehaviorSubject<ColorTheme>(this._defaultTheme);

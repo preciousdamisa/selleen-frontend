@@ -3,18 +3,18 @@
     class="bounce1"
     [style.width]="size"
     [style.height]="size"
-    [style.backgroundColor]="color"
+    [style.backgroundColor]="color ? color : colorTheme?.primaryColor"
   ></div>
   <div
     class="bounce2"
     [style.width]="size"
     [style.height]="size"
-    [style.backgroundColor]="color"
+    [style.backgroundColor]="color ? color : colorTheme?.primaryColor"
   ></div>
   <div
     class="bounce3"
     [style.width]="size"
     [style.height]="size"
-    [style.backgroundColor]="color"
+    [style.backgroundColor]="color ? color : colorTheme?.primaryColor"
   ></div>
 </div>

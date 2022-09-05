@@ -1,0 +1,17 @@
+.todo-item {
+  border: 2px solid;
+  border-radius: 6px;
+}
+
+.todo-item i {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
+@media (min-width: 40rem) {
+  .todo-item {
+    width: 50vw;
+  }
+}

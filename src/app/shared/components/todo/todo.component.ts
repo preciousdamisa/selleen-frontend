@@ -5,13 +5,13 @@ import { ColorThemeService } from '../../services/color-theme.service';
 import { ColorTheme } from '../../types/color-theme';
 
 @Component({
-  selector: 'app-spinner',
-  templateUrl: './spinner.component.html',
-  styleUrls: ['./spinner.component.scss'],
+  selector: 'app-todo',
+  templateUrl: './todo.component.html',
+  styleUrls: ['./todo.component.scss'],
 })
-export class SpinnerComponent implements OnInit, OnDestroy {
-  @Input() color?: string;
-  @Input() size = '0.6rem';
+export class TodoComponent implements OnInit, OnDestroy {
+  @Input() message?: string;
+  @Input() link?: string;
 
   subs?: Subscription;
   colorTheme?: ColorTheme;
