@@ -16,8 +16,20 @@
     [type]="type"
     [placeholder]="placeholder"
     [formControl]="control"
+    [readonly]="disabled"
   />
-
+  <textarea
+    *ngIf="type === 'textarea'"
+    [style.borderColor]="colorTheme?.textDark"
+    class="form-control"
+    [ngClass]="{ 'mb-2': !hasErrors() }"
+    [id]="id"
+    [placeholder]="placeholder"
+    [formControl]="control"
+    [readonly]="disabled"
+    [cols]="cols"
+    [rows]="rows"
+  ></textarea>
   <select
     class="form-control"
     [ngClass]="{ 'mb-2': !hasErrors() }"
@@ -61,6 +73,7 @@
       [style.width]="checkboxSize"
       [style.height]="checkboxSize"
       [formControl]="control"
+      [readonly]="disabled"
     />
     {{ label }}
   </label>

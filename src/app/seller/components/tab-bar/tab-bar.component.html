@@ -1,0 +1,12 @@
+<div
+  id="tab-bar"
+  class="d-flex justify-content-between mt-4"
+  [style.backgroundColor]="colorTheme?.secondaryLightColor"
+>
+  <app-tab
+    *ngFor="let tab of tabs"
+    [text]="tab.name"
+    [active]="currentTabId === tab.id"
+    [tabId]="tab.id"
+  ></app-tab>
+</div>

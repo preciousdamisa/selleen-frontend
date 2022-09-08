@@ -19,6 +19,7 @@ import { ColorTheme } from '../../types/color-theme';
 export class TextButtonComponent implements OnInit, OnDestroy {
   @Input() color?: string;
   @Input() size = '0.75rem';
+  @Input() classes = '';
 
   @Output() clicked = new EventEmitter();
 

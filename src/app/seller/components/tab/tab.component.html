@@ -1,0 +1,9 @@
+<h5
+  class="tab m-0 px-2 py-1 cursor"
+  [ngClass]="active ? 'fw-7' : 'fw-5'"
+  [style.color]="active ? colorTheme?.textWhite : ''"
+  [style.backgroundColor]="active ? colorTheme?.primaryColor : ''"
+  (click)="onSwitchTab()"
+>
+  {{ text }}
+</h5>

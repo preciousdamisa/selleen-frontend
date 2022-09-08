@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./seller-dashboard-header.component.scss'],
 })
 export class SellerDashboardHeaderComponent {
-  @Input() title?: string;
+  @Input() title!: string;
   @Input() subtitle?: string;
 }

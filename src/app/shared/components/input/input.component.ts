@@ -11,6 +11,18 @@ import { SelectOption } from '../../types/shared';
   styleUrls: ['./input.component.scss'],
 })
 export class InputComponent implements OnInit, OnDestroy {
+  // Select
+  @Input() selectOptions: SelectOption[] = [];
+
+  // Text area
+  @Input() cols = '30';
+  @Input() rows = '10';
+
+  // Checkbox
+  @Input() checkboxSize = '0.75rem';
+  @Input() checkboxLabelSize = '0.75rem';
+
+  // General
   @Input() control: any;
   @Input() label = '';
   @Input() id = '';
@@ -24,10 +36,8 @@ export class InputComponent implements OnInit, OnDestroy {
     | 'select' = 'text';
   @Input() placeholder = '';
   @Input() required = true;
+  @Input() disabled = false;
   @Input() errorMessage = '';
-  @Input() selectOptions: SelectOption[] = [];
-  @Input() checkboxSize = '0.75rem';
-  @Input() checkboxLabelSize = '0.75rem';
 
   subs?: Subscription;
   colorTheme?: ColorTheme;

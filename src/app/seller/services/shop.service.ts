@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { exhaustMap, take, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { Shop } from '../models/shop.model';
-import { GetShopByIdResBody } from '../types/shop';
+import { SimpleResBody } from 'src/app/shared/types/shared';
+import { GetShopByIdResBody, UpdateShopReqBody } from '../types/shop';
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +16,31 @@ export class ShopService {
 
   shop$ = new BehaviorSubject<Shop | null>(null);
   currentShop?: Shop;
+  shopUpdated = false;
 
   constructor(private http: HttpClient) {}
 
   getShop(id: string) {
-    return this.http
-      .get<GetShopByIdResBody>(`${this.baseUrl}shops/${id}`)
-      .pipe(tap((res) => this.handleShop(res)));
+    let req: Observable<GetShopByIdResBody>;
+
+    const storageResult = this.lookupStorage();
+
+    if (storageResult && !this.shopUpdated) req = storageResult;
+    else req = this.http.get<GetShopByIdResBody>(`${this.baseUrl}shops/${id}`);
+
+    return req.pipe(tap((res) => this.handleShop(res)));
+  }
+
+  lookupStorage(): Observable<GetShopByIdResBody> | null {
+    const shopData = localStorage.getItem('shopData');
+    if (!shopData) return null;
+
+    const parsedShopData = JSON.parse(shopData);
+
+    return new Observable<GetShopByIdResBody>((subscriber) => {
+      subscriber.next(parsedShopData);
+      subscriber.complete();
+    });
   }
 
   handleShop(res: GetShopByIdResBody) {
@@ -31,7 +50,6 @@ export class ShopService {
       res.data.alias,
       res.data.description,
       res.data.email,
-      res.data.balance,
       res.data.logo,
       res.data.coverImages,
       res.data.creator,
@@ -51,5 +69,18 @@ export class ShopService {
 
     this.shop$.next(shop);
     this.currentShop = shop;
+    this.shopUpdated = false;
+
+    localStorage.setItem('shopData', JSON.stringify(res));
+  }
+
+  updateShop(data: UpdateShopReqBody, shopId: string) {
+    return this.http
+      .patch<SimpleResBody>(`${this.baseUrl}shops/${shopId}`, data)
+      .pipe(
+        take(1),
+        tap(() => (this.shopUpdated = true)),
+        exhaustMap(() => this.getShop(shopId))
+      );
   }
 }

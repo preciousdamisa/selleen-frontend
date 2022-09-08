@@ -32,6 +32,13 @@ export interface GetShopByIdResBody {
   data: Shop;
 }
 
+export interface UpdateShopReqBody {
+  alias: string[];
+  supportLines: string[];
+  address: Address;
+  description: string;
+}
+
 export interface UserShop {
   name: string;
   id: string;

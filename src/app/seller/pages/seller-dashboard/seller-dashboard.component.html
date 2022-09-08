@@ -1,6 +1,6 @@
 <app-page-wrapper>
   <app-seller-dashboard-header
-    [title]="user?.name?.first + ' ' + user?.name?.last"
+    [title]="user?.name?.first + ' ' + user?.name?.last + ','"
     subtitle="Welcome back 👋"
   >
   </app-seller-dashboard-header>
@@ -50,7 +50,7 @@
       </app-card>
     </div>
   </section>
-  <section class="mt-6">
+  <section *ngIf="!fetchingTodos && todos.length > 0" class="mt-6">
     <h3 class="fw-5">Task(s) to complete</h3>
     <div>
       <app-spinner *ngIf="fetchingTodos"></app-spinner>

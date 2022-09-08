@@ -1,1 +1,12 @@
-<p>seller-settings works!</p>
+<app-page-wrapper>
+  <app-seller-dashboard-header title="Settings" subtitle="All Settings">
+  </app-seller-dashboard-header>
+  <app-tab-bar [tabs]="tabs" [currentTabId]="currentTabId"></app-tab-bar>
+  <ng-container *ngIf="currentTabId === 'shop-id'">
+    <app-logo-banner-images></app-logo-banner-images>
+    <div id="container">
+      <app-add-edit-shop-info></app-add-edit-shop-info>
+      <app-add-edit-prod-variation></app-add-edit-prod-variation>
+    </div>
+  </ng-container>
+</app-page-wrapper>

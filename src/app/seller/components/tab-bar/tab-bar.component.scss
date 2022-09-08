@@ -1,0 +1,9 @@
+#tab-bar {
+  border-radius: 6px;
+}
+
+@media (min-width: 40rem) {
+  #tab-bar {
+    justify-content: flex-start;
+  }
+}

@@ -14,7 +14,6 @@ export class Shop {
     public alias: string,
     public description: string,
     public email: string,
-    public balance: number,
     public logo: Image,
     public coverImages: Image[],
     public creator: Creator,

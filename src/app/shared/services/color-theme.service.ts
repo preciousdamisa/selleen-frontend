@@ -10,6 +10,7 @@ export class ColorThemeService {
   private _defaultTheme: ColorTheme = {
     primaryColor: '#36abd9',
     secondaryColor: '#8dd5f2',
+    secondaryLightColor: '#c2e0f2',
     textLight: '#958f8f',
     textDark: '#000',
     textWhite: '#fff',

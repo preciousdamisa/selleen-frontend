@@ -86,7 +86,9 @@ export class UserService {
   }
 
   logout() {
-    this.router.navigate(['']);
+    this.router.navigate([
+      this.currentUser?.hasShop ? '/seller/login' : '/login',
+    ]);
     this.user$.next(null);
     this.currentUser = null;
 

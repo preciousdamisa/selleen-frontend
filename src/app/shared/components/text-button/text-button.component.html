@@ -1,5 +1,5 @@
 <a
-  class="btn"
+  [class]="'btn ' + classes"
   (click)="clicked.emit()"
   [style.color]="color ? color : colorTheme?.primaryColor"
   [style.fontSize]="size"
