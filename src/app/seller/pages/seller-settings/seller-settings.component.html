@@ -4,9 +4,15 @@
   <app-tab-bar [tabs]="tabs" [currentTabId]="currentTabId"></app-tab-bar>
   <ng-container *ngIf="currentTabId === 'shop-id'">
     <app-logo-banner-images></app-logo-banner-images>
-    <div id="container">
+    <div id="container" class="mb-5">
       <app-add-edit-shop-info></app-add-edit-shop-info>
-      <app-add-edit-prod-variation></app-add-edit-prod-variation>
+      <!-- <hr class="my-4" />
+      <app-add-edit-prod-variation></app-add-edit-prod-variation> -->
+    </div>
+  </ng-container>
+  <ng-container *ngIf="currentTabId === 'bank-id'">
+    <div id="container" class="mb-5">
+      <app-add-edit-bank-details></app-add-edit-bank-details>
     </div>
   </ng-container>
 </app-page-wrapper>

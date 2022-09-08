@@ -19,6 +19,7 @@ import { TabBarComponent } from './components/tab-bar/tab-bar.component';
 import { LogoBannerImagesComponent } from './components/settings/logo-banner-images/logo-banner-images.component';
 import { AddEditShopInfoComponent } from './components/settings/add-edit-shop-info/add-edit-shop-info.component';
 import { AddEditProdVariationComponent } from './components/settings/add-edit-prod-variation/add-edit-prod-variation.component';
+import { AddEditBankDetailsComponent } from './components/settings/add-edit-bank-details/add-edit-bank-details.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AddEditProdVariationComponent } from './components/settings/add-edit-pr
     LogoBannerImagesComponent,
     AddEditShopInfoComponent,
     AddEditProdVariationComponent,
+    AddEditBankDetailsComponent,
   ],
   imports: [
     SellerRoutingModule,

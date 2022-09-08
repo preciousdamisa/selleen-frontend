@@ -1,0 +1,49 @@
+<div class="mt-5 mb-10">
+  <p>Currency: <span class="fw-6">NGN</span></p>
+  <p>
+    Bank Name: <span class="fw-6">{{ enteredBankName }}</span>
+  </p>
+  <p>
+    Account Name: <span class="fw-6">{{ enteredAccName }}</span>
+  </p>
+  <p>
+    Account Type: <span class="fw-6">{{ enteredAccType }}</span>
+  </p>
+  <p class="mb-5">
+    Account Number: <span class="fw-6">{{ enteredAccNo }}</span>
+  </p>
+  <h4 class="m-0">Update your Bank Account Details</h4>
+  <p class="fs-2">This is where your money will be sent to.</p>
+  <form [formGroup]="bankDetailsForm" (submit)="onSubmit()">
+    <app-input
+      type="select"
+      label="Bank Name"
+      [required]="false"
+      [selectOptions]="bankOpts"
+      [control]="bankDetailsForm.get('bankName')"
+    ></app-input>
+    <app-input
+      label=""
+      [required]="false"
+      placeholder="Account Name"
+      [control]="bankDetailsForm.get('accountName')"
+    ></app-input>
+    <app-input
+      type="select"
+      label="Account Type"
+      [required]="false"
+      [selectOptions]="accTypeOpts"
+      [control]="bankDetailsForm.get('accountType')"
+    ></app-input>
+    <app-input
+      label="Account Number"
+      [required]="false"
+      placeholder="Account Number"
+      [control]="bankDetailsForm.get('accountNumber')"
+    ></app-input>
+    <app-button paddingX="3rem"
+      ><app-spinner color="#fff" *ngIf="updating"></app-spinner>
+      <span *ngIf="!updating">Update</span></app-button
+    >
+  </form>
+</div>

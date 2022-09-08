@@ -11,12 +11,12 @@ interface Shop {
   email: string;
   balance: number;
   logo: Image;
-  coverImages: Image[];
+  bannerImages: Image[];
   creator: Creator;
   owners: ShopRelation[];
   managers: ShopRelation[];
   supportStaff: ShopRelation[];
-  supportLines: string[];
+  contactLines: string[];
   tags: string[];
   address: Address;
   rating: number;
@@ -25,7 +25,7 @@ interface Shop {
   approved: boolean;
   approval: { comment: string };
   status: 'InReview' | 'Approved' | 'Suspended';
-  paymentDetails: PaymentDetails;
+  paymentDetails: { bankAccountDetails: BankAccountDetails };
 }
 export interface GetShopByIdResBody {
   message: string;
@@ -34,7 +34,7 @@ export interface GetShopByIdResBody {
 
 export interface UpdateShopReqBody {
   alias: string[];
-  supportLines: string[];
+  contactLines: string[];
   address: Address;
   description: string;
 }
@@ -66,10 +66,9 @@ export interface PersonalId {
   };
 }
 
-export interface PaymentDetails {
-  bankAccountDetails: {
-    accountName: string;
-    accountType: string;
-    accountNumber: string;
-  };
+export interface BankAccountDetails {
+  bankName: string;
+  accountName: string;
+  accountType: string;
+  accountNumber: string;
 }

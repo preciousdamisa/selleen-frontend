@@ -1,1 +1,19 @@
-<p>add-edit-prod-variation works!</p>
+<form [formGroup]="prodVariationForm" (submit)="onSubmit()">
+  <h4 class="m-0">Product Variation</h4>
+  <p class="fs-2">Add product variations (Size, Color, Weight, etc.)</p>
+  <div class="d-flex align-items-center justify-content-between">
+    <app-input
+      type="select"
+      label="Product Variation"
+      [required]="false"
+      [selectOptions]="variationOpts"
+      [control]="prodVariationForm.get('type')"
+    ></app-input>
+    <app-input
+      label="Value"
+      [required]="false"
+      [control]="prodVariationForm.get('value')"
+    ></app-input>
+    <app-button [disabled]="prodVariationForm.invalid">Save</app-button>
+  </div>
+</form>

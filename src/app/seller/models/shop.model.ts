@@ -1,6 +1,6 @@
 import { Address, Creator, Image } from 'src/app/shared/types/shared';
 import {
-  PaymentDetails,
+  BankAccountDetails,
   PersonalId,
   ShopRelation,
   ShopStatus,
@@ -15,11 +15,11 @@ export class Shop {
     public description: string,
     public email: string,
     public logo: Image,
-    public coverImages: Image[],
+    public bannerImages: Image[],
     public creator: Creator,
     public owners: ShopRelation[],
     public supportStaff: ShopRelation[],
-    public supportLines: string[],
+    public contactLines: string[],
     public tags: string[],
     public address: Address,
     public rating: number,
@@ -28,6 +28,6 @@ export class Shop {
     public approved: boolean,
     public approval: { comment: string },
     public status: ShopStatus,
-    public paymentDetails: PaymentDetails
+    public paymentDetails: { bankAccountDetails: BankAccountDetails }
   ) {}
 }

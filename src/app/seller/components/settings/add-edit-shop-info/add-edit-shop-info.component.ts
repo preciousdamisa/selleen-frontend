@@ -59,9 +59,7 @@ export class AddEditShopInfoComponent implements OnInit, OnDestroy {
   }
 
   getUser() {
-    this.userService.user$
-      .pipe(takeUntil(this.subs$))
-      .subscribe({ next: (user) => (this.user = user) });
+    this.user = this.userService.currentUser;
   }
 
   getShop() {
@@ -87,7 +85,7 @@ export class AddEditShopInfoComponent implements OnInit, OnDestroy {
         Validators.maxLength(50),
       ]),
       email: new FormControl(this.shop?.email || ''),
-      supportLines: new FormArray([], [Validators.required]),
+      contactLines: new FormArray([], [Validators.required]),
       address: new FormGroup({
         full: new FormControl(
           this.shop?.address.full || '',
@@ -113,43 +111,43 @@ export class AddEditShopInfoComponent implements OnInit, OnDestroy {
     });
 
     this.enteredAlias = this.shop?.alias || '';
-    this.onAddSupportLine(this.shop?.supportLines);
+    this.onAddContactLine(this.shop?.contactLines);
   }
 
-  get supportLines() {
-    return this.shopInfoForm.get('supportLines') as FormArray;
+  get contactLines() {
+    return this.shopInfoForm.get('contactLines') as FormArray;
   }
 
-  onAddSupportLine(lines?: string[]) {
+  onAddContactLine(lines?: string[]) {
+    const validators = [
+      Validators.required,
+      Validators.minLength(11),
+      Validators.maxLength(11),
+      Validators.pattern('^[0-9]*$'),
+    ];
+
     if (lines && lines.length > 0) {
-      this.shop?.supportLines.forEach((line) => {
-        this.supportLines.push(new FormControl(line, Validators.required));
+      this.shop?.contactLines.forEach((line) => {
+        this.contactLines.push(new FormControl(line, validators));
       });
     } else {
-      this.supportLines.push(
-        new FormControl('', [
-          Validators.required,
-          Validators.minLength(11),
-          Validators.maxLength(11),
-          Validators.pattern('^[0-9]*$'),
-        ])
-      );
+      this.contactLines.push(new FormControl('', validators));
     }
   }
 
-  onRemoveSupportLine(index: number) {
-    if (this.supportLines.controls.length < 2) return;
-    this.supportLines.removeAt(index);
+  onRemoveContactLine(index: number) {
+    if (this.contactLines.controls.length < 2) return;
+    this.contactLines.removeAt(index);
   }
 
   onSubmit() {
     this.loading = true;
-    const { alias, supportLines, address, description } =
+    const { alias, contactLines, address, description } =
       this.shopInfoForm.value;
 
     this.shopService
       .updateShop(
-        { alias, supportLines, address, description },
+        { alias, contactLines, address, description },
         this.shop?._id!
       )
       .pipe(takeUntil(this.subs$))
