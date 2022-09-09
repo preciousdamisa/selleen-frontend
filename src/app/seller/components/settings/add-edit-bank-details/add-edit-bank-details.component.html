@@ -41,7 +41,7 @@
       placeholder="Account Number"
       [control]="bankDetailsForm.get('accountNumber')"
     ></app-input>
-    <app-button paddingX="3rem"
+    <app-button [disabled]="bankDetailsForm.invalid" paddingX="3rem"
       ><app-spinner color="#fff" *ngIf="updating"></app-spinner>
       <span *ngIf="!updating">Update</span></app-button
     >

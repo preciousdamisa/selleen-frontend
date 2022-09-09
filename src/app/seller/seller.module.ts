@@ -20,6 +20,8 @@ import { LogoBannerImagesComponent } from './components/settings/logo-banner-ima
 import { AddEditShopInfoComponent } from './components/settings/add-edit-shop-info/add-edit-shop-info.component';
 import { AddEditProdVariationComponent } from './components/settings/add-edit-prod-variation/add-edit-prod-variation.component';
 import { AddEditBankDetailsComponent } from './components/settings/add-edit-bank-details/add-edit-bank-details.component';
+import { AddEditKycComponent } from './components/settings/add-edit-kyc/add-edit-kyc.component';
+import { ChangeSellerPasswordComponent } from './components/settings/change-seller-password/change-seller-password.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { AddEditBankDetailsComponent } from './components/settings/add-edit-bank
     AddEditShopInfoComponent,
     AddEditProdVariationComponent,
     AddEditBankDetailsComponent,
+    AddEditKycComponent,
+    ChangeSellerPasswordComponent,
   ],
   imports: [
     SellerRoutingModule,

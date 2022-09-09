@@ -9,7 +9,7 @@
         class="signup-form"
       >
         <div class="row" formGroupName="name">
-          <div class="col-6">
+          <div class="col-5">
             <app-input
               label="First Name"
               id="f-name"
@@ -17,7 +17,7 @@
               [control]="signupForm.get('name.last')"
             ></app-input>
           </div>
-          <div class="col-6 ml-2">
+          <div class="col-5">
             <app-input
               label="Last Name"
               id="l-name"
@@ -87,16 +87,17 @@
           "
           [control]="signupForm.get('confirmPassword')"
         ></app-input>
-        <app-button
-          classes="mt-2"
-          [fullWidth]="true"
-          [disabled]="
-            signupForm.invalid || !signupForm.get('agreedToTerms')?.value
-          "
-        >
-          <app-spinner color="#fff" *ngIf="loading"></app-spinner
-          ><span *ngIf="!loading">Sign Up</span>
-        </app-button>
+        <div class="row">
+          <app-button
+            classes="mt-2 col-10"
+            [disabled]="
+              signupForm.invalid || !signupForm.get('agreedToTerms')?.value
+            "
+          >
+            <app-spinner color="#fff" *ngIf="loading"></app-spinner
+            ><span *ngIf="!loading">Sign Up</span>
+          </app-button>
+        </div>
         <div class="d-flex align-items-end my-2">
           <label class="d-flex align-items-center fs-2 cursor"
             ><input

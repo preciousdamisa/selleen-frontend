@@ -1,4 +1,4 @@
-<div *ngIf="type !== 'checkbox'" class="form-group">
+<div *ngIf="type !== 'checkbox'" [class]="'form-group ' + classes">
   <label *ngIf="label" [for]="id"
     >{{ label }} <small *ngIf="required" class="text-danger">*</small></label
   >
@@ -41,28 +41,7 @@
       {{ opt.label }}
     </option>
   </select>
-  <div *ngIf="hasErrors()">
-    <span class="input-error-text" *ngIf="control.errors.required"
-      >{{ label }} is required</span
-    >
-    <span class="input-error-text" *ngIf="control.errors.minlength">
-      {{ label }} should be at least
-      {{ control.errors.minlength.requiredLength }} characters long
-    </span>
-    <span class="input-error-text" *ngIf="control.errors.maxlength">
-      {{ label }} can't be more than
-      {{ control.errors.maxlength.requiredLength }} characters
-    </span>
-    <span class="input-error-text" *ngIf="control.errors.pattern"
-      >{{ label }} isn't in the right format</span
-    >
-    <span class="input-error-text" *ngIf="control.errors.email"
-      >Email is invalid</span
-    >
-  </div>
-  <span class="input-error-text" *ngIf="errorMessage">{{ errorMessage }}</span>
 </div>
-
 <div *ngIf="type === 'checkbox'" class="d-flex align-items-end">
   <label
     class="d-flex align-items-center fs-2 cursor"
@@ -78,3 +57,23 @@
     {{ label }}
   </label>
 </div>
+<!-- <div *ngIf="hasErrors()">
+  <span class="input-error-text" *ngIf="control.errors.required"
+    >{{ label }} is required</span
+  >
+  <span class="input-error-text" *ngIf="control.errors.minlength">
+    {{ label }} should be at least
+    {{ control.errors.minlength.requiredLength }} characters long
+  </span>
+  <span class="input-error-text" *ngIf="control.errors.maxlength">
+    {{ label }} can't be more than
+    {{ control.errors.maxlength.requiredLength }} characters
+  </span>
+  <span class="input-error-text" *ngIf="control.errors.pattern"
+    >{{ label }} isn't in the right format</span
+  >
+  <span class="input-error-text" *ngIf="control.errors.email"
+    >Email is invalid</span
+  >
+</div> -->
+<!-- <span class="input-error-text" *ngIf="errorMessage">{{ errorMessage }}</span> -->

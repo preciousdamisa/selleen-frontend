@@ -24,6 +24,7 @@ export class InputComponent implements OnInit, OnDestroy {
 
   // General
   @Input() control: any;
+  @Input() classes = '';
   @Input() label = '';
   @Input() id = '';
   @Input() type:

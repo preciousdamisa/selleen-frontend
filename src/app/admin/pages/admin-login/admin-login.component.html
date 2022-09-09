@@ -26,11 +26,7 @@
           ></app-input>
           <app-text-button color="#000">Forgot Password?</app-text-button>
         </div>
-        <app-button
-          classes="mt-2"
-          [fullWidth]="true"
-          [disabled]="loginForm.invalid"
-        >
+        <app-button classes="mt-2 col-10" [disabled]="loginForm.invalid">
           <app-spinner color="#fff" *ngIf="loading"></app-spinner
           ><span *ngIf="!loading">Log In</span>
         </app-button>

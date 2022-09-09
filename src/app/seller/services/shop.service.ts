@@ -10,6 +10,7 @@ import {
   BankAccountDetails,
   GetShopByIdResBody,
   UpdateShopReqBody,
+  UpdateSMLinksReqBody,
 } from '../types/shop';
 
 @Injectable({
@@ -92,6 +93,16 @@ export class ShopService {
 
     return this.http
       .patch(`${this.baseUrl}shops/${shopId}/payment-details`, paymentDetails)
+      .pipe(
+        take(1),
+        tap(() => (this.shopUpdated = true)),
+        exhaustMap(() => this.getShop(shopId))
+      );
+  }
+
+  updateSMLinks(data: UpdateSMLinksReqBody, shopId: string) {
+    return this.http
+      .patch(`${this.baseUrl}shops/${shopId}/social-media-links`, data)
       .pipe(
         take(1),
         tap(() => (this.shopUpdated = true)),

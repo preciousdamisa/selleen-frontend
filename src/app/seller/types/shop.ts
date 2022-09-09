@@ -72,3 +72,12 @@ export interface BankAccountDetails {
   accountType: string;
   accountNumber: string;
 }
+
+export interface SocialMediaLink {
+  name: 'Facebook' | 'Instagram' | 'Twitter';
+  url: string;
+}
+
+export interface UpdateSMLinksReqBody {
+  links: SocialMediaLink[];
+}

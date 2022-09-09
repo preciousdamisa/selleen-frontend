@@ -1,18 +1,19 @@
 <app-page-wrapper>
-  <app-seller-dashboard-header title="Settings" subtitle="All Settings">
-  </app-seller-dashboard-header>
-  <app-tab-bar [tabs]="tabs" [currentTabId]="currentTabId"></app-tab-bar>
-  <ng-container *ngIf="currentTabId === 'shop-id'">
-    <app-logo-banner-images></app-logo-banner-images>
-    <div id="container" class="mb-5">
+  <div class="p-1">
+    <app-seller-dashboard-header title="Settings" subtitle="All Settings">
+    </app-seller-dashboard-header>
+    <app-tab-bar [tabs]="tabs" [currentTabId]="currentTabId"></app-tab-bar>
+  </div>
+  <div id="container" class="mb-5">
+    <ng-container *ngIf="currentTabId === 'shop-id'">
+      <app-logo-banner-images></app-logo-banner-images>
       <app-add-edit-shop-info></app-add-edit-shop-info>
-      <!-- <hr class="my-4" />
-      <app-add-edit-prod-variation></app-add-edit-prod-variation> -->
-    </div>
-  </ng-container>
-  <ng-container *ngIf="currentTabId === 'bank-id'">
-    <div id="container" class="mb-5">
+    </ng-container>
+    <ng-container *ngIf="currentTabId === 'bank-id'">
       <app-add-edit-bank-details></app-add-edit-bank-details>
-    </div>
-  </ng-container>
+    </ng-container>
+    <ng-container *ngIf="currentTabId === 'kyc-id'">
+      <app-add-edit-kyc></app-add-edit-kyc>
+    </ng-container>
+  </div>
 </app-page-wrapper>
