@@ -1,5 +1,6 @@
 <button
   [class]="'btn ' + classes"
+  [ngClass]="{ 'w-100': fullWidth }"
   [disabled]="disabled"
   [style.backgroundColor]="colorTheme?.primaryColor"
   [style.color]="colorTheme?.textWhite"

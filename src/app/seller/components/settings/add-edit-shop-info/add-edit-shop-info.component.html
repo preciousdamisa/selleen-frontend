@@ -22,9 +22,13 @@
         enteredAlias
       }}</span></span
     >
+    <app-input-errors
+      [control]="shopInfoForm.get('alias')"
+      label="Shop alias"
+    ></app-input-errors>
   </div>
   <app-input
-    label="Email"
+    label="Shop Email"
     id="email"
     placeholder="mail@abc.com"
     [required]="false"
@@ -33,21 +37,28 @@
   ></app-input>
   <div>
     <div
-      class="d-flex align-items-center"
+      class="row"
       *ngFor="let line of contactLines.controls; let lineIndex = index"
     >
-      <app-input
-        label="Shop contact number"
-        placeholder="e.g. 08077777777"
-        [required]="false"
-        [control]="line"
-      ></app-input>
-      <app-text-button
-        *ngIf="contactLines.controls.length > 1"
-        classes="ml-2"
-        (clicked)="onRemoveContactLine(lineIndex)"
-        ><i class="bi-file-minus fs-3 sln-text-danger"></i
-      ></app-text-button>
+      <div>
+        <app-input
+          classes="col-9 pl-0 vertical-align-middle"
+          label="Shop contact number"
+          placeholder="e.g. 08077777777"
+          [required]="false"
+          [control]="line"
+        ></app-input>
+        <app-text-button
+          *ngIf="contactLines.controls.length > 1"
+          classes="col-1 pr-0 vertical-align-middle"
+          (clicked)="onRemoveContactLine(lineIndex)"
+          ><i class="bi-file-minus fs-4 sln-text-danger"></i
+        ></app-text-button>
+        <app-input-errors
+          [control]="line"
+          label="Contact number"
+        ></app-input-errors>
+      </div>
     </div>
     <app-text-button
       *ngIf="contactLines.controls.length < 2"
@@ -56,45 +67,75 @@
     >
   </div>
   <div class="mt-3" formGroupName="address">
-    <app-input
-      label="Full Address"
-      id="f-addr"
-      [required]="false"
-      placeholder="e.g. 10, Immaculate estate..., Lagos, Nigeria."
-      [control]="shopInfoForm.get('address.full')"
-    ></app-input>
-    <app-input
-      label="City"
-      id="city"
-      placeholder="City"
-      [required]="false"
-      [control]="shopInfoForm.get('address.city')"
-    ></app-input>
-    <app-input
-      type="select"
-      label="State"
-      id="state"
-      [required]="false"
-      [selectOptions]="stateSelectOpts"
-      [control]="shopInfoForm.get('address.state')"
-    ></app-input>
-    <app-input
-      type="select"
-      label="Country"
-      [required]="false"
-      id="country"
-      [selectOptions]="countrySelectOpts"
-      [control]="shopInfoForm.get('address.country')"
-    ></app-input>
+    <div>
+      <app-input
+        label="Full Address"
+        id="f-addr"
+        [required]="false"
+        placeholder="e.g. 10, Immaculate estate..., Lagos, Nigeria."
+        [control]="shopInfoForm.get('address.full')"
+      ></app-input>
+      <app-input-errors
+        [control]="shopInfoForm.get('address.full')"
+        label="Full address"
+      ></app-input-errors>
+    </div>
+    <div>
+      <app-input
+        label="City"
+        id="city"
+        placeholder="City"
+        [required]="false"
+        [control]="shopInfoForm.get('address.city')"
+      ></app-input>
+      <app-input-errors
+        [control]="shopInfoForm.get('address.city')"
+        label="City"
+      ></app-input-errors>
+    </div>
+    <div>
+      <app-input
+        type="select"
+        label="State"
+        id="state"
+        [required]="false"
+        [selectOptions]="stateSelectOpts"
+        [control]="shopInfoForm.get('address.state')"
+      ></app-input>
+      <app-input-errors
+        [control]="shopInfoForm.get('address.state')"
+        label="State"
+      ></app-input-errors>
+    </div>
+    <div>
+      <app-input
+        type="select"
+        label="Country"
+        [required]="false"
+        id="country"
+        [selectOptions]="countrySelectOpts"
+        [control]="shopInfoForm.get('address.country')"
+      ></app-input>
+      <app-input-errors
+        [control]="shopInfoForm.get('address.country')"
+        label="Country"
+      ></app-input-errors>
+    </div>
   </div>
-  <app-input
-    type="textarea"
-    label="Shop Description"
-    placeholder="Tell us about your shop..."
-    [required]="false"
-    id="desc"
-    [control]="shopInfoForm.get('description')"
-  ></app-input>
+  <div>
+    <app-input
+      type="textarea"
+      label="Shop Description"
+      placeholder="Tell us about your shop..."
+      [required]="false"
+      id="desc"
+      [control]="shopInfoForm.get('description')"
+    ></app-input>
+    <app-input-errors
+      [control]="shopInfoForm.get('description')"
+      label="Description"
+    ></app-input-errors>
+  </div>
   <app-button paddingX="3rem" [disabled]="shopInfoForm.invalid"
     ><app-spinner color="#fff" *ngIf="loading"></app-spinner>
     <span *ngIf="!loading">Update</span></app-button

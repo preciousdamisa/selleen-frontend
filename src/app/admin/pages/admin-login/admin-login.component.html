@@ -4,19 +4,31 @@
     <app-card>
       <h2 class="text-align-center">Log in to Your Selleen Admin Account</h2>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-        <app-input
-          label="Email"
-          id="email"
-          placeholder="mail@abc.com"
-          [control]="loginForm.get('email')"
-        ></app-input>
-        <app-input
-          type="password"
-          label="Password"
-          id="pw"
-          placeholder="Password"
-          [control]="loginForm.get('password')"
-        ></app-input>
+        <div>
+          <app-input
+            label="Email"
+            id="email"
+            placeholder="mail@abc.com"
+            [control]="loginForm.get('email')"
+          ></app-input>
+          <app-input-errors
+            [control]="loginForm.get('email')"
+            label="Email"
+          ></app-input-errors>
+        </div>
+        <div>
+          <app-input
+            type="password"
+            label="Password"
+            id="pw"
+            placeholder="Password"
+            [control]="loginForm.get('password')"
+          ></app-input>
+          <app-input-errors
+            [control]="loginForm.get('password')"
+            label="Password"
+          ></app-input-errors>
+        </div>
         <div class="d-flex align-items-center justify-content-between my-1">
           <app-input
             type="checkbox"
@@ -26,7 +38,11 @@
           ></app-input>
           <app-text-button color="#000">Forgot Password?</app-text-button>
         </div>
-        <app-button classes="mt-2 col-10" [disabled]="loginForm.invalid">
+        <app-button
+          classes="mt-2"
+          [fullWidth]="true"
+          [disabled]="loginForm.invalid"
+        >
           <app-spinner color="#fff" *ngIf="loading"></app-spinner
           ><span *ngIf="!loading">Log In</span>
         </app-button>

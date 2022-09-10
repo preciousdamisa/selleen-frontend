@@ -1,9 +1,7 @@
 <app-page-wrapper>
-  <div class="p-1">
-    <app-seller-dashboard-header title="Settings" subtitle="All Settings">
-    </app-seller-dashboard-header>
-    <app-tab-bar [tabs]="tabs" [currentTabId]="currentTabId"></app-tab-bar>
-  </div>
+  <app-seller-dashboard-header title="Settings" subtitle="All Settings">
+  </app-seller-dashboard-header>
+  <app-tab-bar [tabs]="tabs" [currentTabId]="currentTabId"></app-tab-bar>
   <div id="container" class="mb-5">
     <ng-container *ngIf="currentTabId === 'shop-id'">
       <app-logo-banner-images></app-logo-banner-images>
@@ -14,6 +12,9 @@
     </ng-container>
     <ng-container *ngIf="currentTabId === 'kyc-id'">
       <app-add-edit-kyc></app-add-edit-kyc>
+    </ng-container>
+    <ng-container *ngIf="currentTabId === 'pw-id'">
+      <app-change-seller-password></app-change-seller-password>
     </ng-container>
   </div>
 </app-page-wrapper>

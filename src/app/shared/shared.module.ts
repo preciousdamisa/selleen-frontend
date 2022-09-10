@@ -11,6 +11,7 @@ import { TextComponent } from './components/text/text.component';
 import { RouterModule } from '@angular/router';
 import { LinkComponent } from './components/link/link.component';
 import { LogoComponent } from './components/logo/logo.component';
+import { InputErrorsComponent } from './components/input-errors/input-errors.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { LogoComponent } from './components/logo/logo.component';
     TextComponent,
     LinkComponent,
     LogoComponent,
+    InputErrorsComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -35,6 +37,7 @@ import { LogoComponent } from './components/logo/logo.component';
     LinkComponent,
     SpinnerComponent,
     LogoComponent,
+    InputErrorsComponent,
   ],
 })
 export class SharedModule {}

@@ -1,41 +1,36 @@
 <section class="mb-10">
-  <div class="p-1 mt-5">
+  <div class="mt-5 mb-3">
     <h4 class="m-0">Social Media Account Links</h4>
     <p class="fs-2">
       Provide a link (or username) to one or more of your social media
       account(s).
     </p>
   </div>
-  <div class="row">
-    <form class="col-10" [formGroup]="linksForm" (submit)="onSubmit()">
-      <div>
-        <app-input
-          label="Facebook"
-          placeholder="e.g. https://facebook.com/name.name.8"
-          [required]="false"
-          [control]="linksForm.get('facebook.url')"
-        ></app-input>
-      </div>
-      <div>
-        <app-input
-          label="Instagram"
-          placeholder="e.g. michelle_jones"
-          [required]="false"
-          [control]="linksForm.get('instagram.url')"
-        ></app-input>
-      </div>
-      <div>
-        <app-input
-          label="Twitter"
-          placeholder="e.g. @peter_damian"
-          [required]="false"
-          [control]="linksForm.get('twitter.url')"
-        ></app-input>
-      </div>
-      <app-button [disabled]="!formIsValid" paddingX="3rem"
-        ><app-spinner color="#fff" *ngIf="loading"></app-spinner
-        ><span *ngIf="!loading">Update</span></app-button
-      >
-    </form>
-  </div>
+  <form [formGroup]="linksForm" (submit)="onSubmit()">
+    <app-input
+      label="Facebook"
+      placeholder="e.g. https://facebook.com/name.name.8"
+      [required]="false"
+      [bottomMargin]="true"
+      [control]="linksForm.get('facebook.url')"
+    ></app-input>
+    <app-input
+      label="Instagram"
+      placeholder="e.g. michelle_jones"
+      [required]="false"
+      [bottomMargin]="true"
+      [control]="linksForm.get('instagram.url')"
+    ></app-input>
+    <app-input
+      label="Twitter"
+      placeholder="e.g. @peter_damian"
+      [required]="false"
+      [bottomMargin]="true"
+      [control]="linksForm.get('twitter.url')"
+    ></app-input>
+    <app-button [disabled]="!formIsValid" paddingX="3rem"
+      ><app-spinner color="#fff" *ngIf="loading"></app-spinner
+      ><span *ngIf="!loading">Update</span></app-button
+    >
+  </form>
 </section>

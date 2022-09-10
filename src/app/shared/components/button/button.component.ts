@@ -14,6 +14,7 @@ export class ButtonComponent implements OnInit {
   @Input() paddingX = '0.5rem';
   @Input() paddingY = '0.5rem';
   @Input() borderRadius = '3px';
+  @Input() fullWidth = false;
   @Input() disabled = false;
 
   subs?: Subscription;

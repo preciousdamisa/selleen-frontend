@@ -5,8 +5,8 @@ import { BehaviorSubject } from 'rxjs';
 import { exhaustMap, tap, take } from 'rxjs/operators';
 
 import { User } from '../models/user.model';
-import { AuthReqBody, AuthResBody } from '../types/shared';
-import { GetUserResBody } from '../types/user';
+import { AuthReqBody, AuthResBody, SimpleResBody } from '../types/shared';
+import { ChangePwReqBody, GetUserResBody } from '../types/user';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -97,5 +97,12 @@ export class UserService {
       clearTimeout(this.timerRef);
       this.timerRef = null;
     }
+  }
+
+  changePassword(data: ChangePwReqBody) {
+    return this.http.patch<SimpleResBody>(
+      `${this.baseUrl}users/me/change-password`,
+      data
+    );
   }
 }

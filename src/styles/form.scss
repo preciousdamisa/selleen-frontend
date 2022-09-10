@@ -1,14 +1,12 @@
+.form-group {
+  margin-bottom: 1rem;
+}
+
 .form-group label {
   display: block;
   font-size: 0.8rem;
   font-weight: 500;
-  margin-bottom: 0.2rem;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
+  margin-bottom: 0.3rem;
 }
 
 .form-control {
@@ -33,7 +31,7 @@
 .input-error-text {
   color: red;
   font-size: 0.8rem;
-  margin: 0.5rem 0;
+  margin: 0.3rem 0;
   display: block;
 }
 

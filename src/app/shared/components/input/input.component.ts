@@ -38,7 +38,7 @@ export class InputComponent implements OnInit, OnDestroy {
   @Input() placeholder = '';
   @Input() required = true;
   @Input() disabled = false;
-  @Input() errorMessage = '';
+  @Input() bottomMargin = true;
 
   subs?: Subscription;
   colorTheme?: ColorTheme;
@@ -53,7 +53,7 @@ export class InputComponent implements OnInit, OnDestroy {
     });
   }
 
-  hasErrors() {
+  get hasErrors() {
     const { touched, errors } = this.control;
     return touched && errors;
   }

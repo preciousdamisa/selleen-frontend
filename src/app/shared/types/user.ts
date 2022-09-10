@@ -15,3 +15,8 @@ export interface GetUserResBody {
     shops: UserShop[];
   };
 }
+
+export interface ChangePwReqBody {
+  oldPassword: string;
+  newPassword: string;
+}

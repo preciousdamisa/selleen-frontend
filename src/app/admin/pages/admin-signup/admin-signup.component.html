@@ -9,95 +9,149 @@
         class="signup-form"
       >
         <div class="row" formGroupName="name">
-          <div class="col-5">
-            <app-input
-              label="First Name"
-              id="f-name"
-              placeholder="First name"
-              [control]="signupForm.get('name.last')"
-            ></app-input>
-          </div>
-          <div class="col-5">
-            <app-input
-              label="Last Name"
-              id="l-name"
-              placeholder="Last name"
+          <app-input
+            classes="col-5 pl-0"
+            label="First Name"
+            id="f-name"
+            placeholder="First name"
+            [control]="signupForm.get('name.first')"
+          ></app-input>
+          <app-input
+            classes="col-5 pr-0"
+            label="Last Name"
+            id="l-name"
+            placeholder="Last name"
+            [control]="signupForm.get('name.last')"
+          ></app-input>
+        </div>
+        <div class="row" *ngIf="firstNameHasError || lastNameHasError">
+          <div class="col-5 pl-0">
+            <app-input-errors
               [control]="signupForm.get('name.first')"
-            ></app-input>
+              label="First name"
+            ></app-input-errors>
+          </div>
+          <div class="col-5 pr-0">
+            <app-input-errors
+              [control]="signupForm.get('name.last')"
+              label="Last name"
+            ></app-input-errors>
           </div>
         </div>
-        <app-input
-          label="Email"
-          id="email"
-          placeholder="mail@abc.com"
-          [control]="signupForm.get('email')"
-        ></app-input>
-        <app-input
-          label="Phone Number"
-          id="phone"
-          placeholder="08000000000"
-          [control]="signupForm.get('phone')"
-        ></app-input>
+        <div>
+          <app-input
+            label="Email"
+            id="email"
+            placeholder="mail@abc.com"
+            [control]="signupForm.get('email')"
+          ></app-input>
+          <app-input-errors
+            [control]="signupForm.get('email')"
+            label="Email"
+          ></app-input-errors>
+        </div>
+        <div>
+          <app-input
+            label="Phone Number"
+            id="phone"
+            placeholder="08000000000"
+            [control]="signupForm.get('phone')"
+          ></app-input>
+          <app-input-errors
+            [control]="signupForm.get('phone')"
+            label="Phone"
+          ></app-input-errors>
+        </div>
         <div formGroupName="address">
-          <app-input
-            label="Full Address"
-            id="f-addr"
-            placeholder="e.g. 10, Immaculate estate..., Lagos, Nigeria."
-            [control]="signupForm.get('address.full')"
-          ></app-input>
-          <app-input
-            label="City"
-            id="city"
-            placeholder="City"
-            [required]="false"
-            [control]="signupForm.get('address.city')"
-          ></app-input>
-          <app-input
-            type="select"
-            label="State"
-            id="state"
-            [selectOptions]="stateSelectOpts"
-            [control]="signupForm.get('address.state')"
-          ></app-input>
-          <app-input
-            type="select"
-            label="Country"
-            id="country"
-            [selectOptions]="countrySelectOpts"
-            [control]="signupForm.get('address.country')"
-          ></app-input>
+          <div>
+            <app-input
+              label="Full Address"
+              id="f-addr"
+              placeholder="e.g. 10, Immaculate estate..., Lagos, Nigeria."
+              [control]="signupForm.get('address.full')"
+            ></app-input>
+            <app-input-errors
+              [control]="signupForm.get('address.full')"
+              label="Full address"
+            ></app-input-errors>
+          </div>
+          <div>
+            <app-input
+              label="City"
+              id="city"
+              placeholder="City"
+              [required]="false"
+              [control]="signupForm.get('address.city')"
+            ></app-input>
+            <app-input-errors
+              [control]="signupForm.get('address.city')"
+              label="City"
+            ></app-input-errors>
+          </div>
+          <div>
+            <app-input
+              type="select"
+              label="State"
+              id="state"
+              [selectOptions]="stateSelectOpts"
+              [control]="signupForm.get('address.state')"
+            ></app-input>
+            <app-input-errors
+              [control]="signupForm.get('address.state')"
+              label="State"
+            ></app-input-errors>
+          </div>
+          <div>
+            <app-input
+              type="select"
+              label="Country"
+              id="country"
+              [selectOptions]="countrySelectOpts"
+              [control]="signupForm.get('address.country')"
+            ></app-input>
+            <app-input-errors
+              [control]="signupForm.get('address.country')"
+              label="Country"
+            ></app-input-errors>
+          </div>
         </div>
-        <app-input
-          type="password"
-          label="Password"
-          id="pw"
-          placeholder="Password"
-          [control]="signupForm.get('password')"
-        ></app-input>
-        <app-input
-          type="password"
-          label="Confirm Password"
-          id="confirm-pw"
-          placeholder="Re-enter password"
-          [errorMessage]="
-            signupForm.controls['confirmPassword']['errors'] &&
-            signupForm.controls['confirmPassword']['errors']['mustMatch']
-              ? 'Passwords do not match'
-              : ''
+        <div>
+          <app-input
+            type="password"
+            label="Password"
+            id="pw"
+            placeholder="Password"
+            [control]="signupForm.get('password')"
+          ></app-input>
+          <app-input-errors
+            [control]="signupForm.get('password')"
+            label="Password"
+          ></app-input-errors>
+        </div>
+        <div>
+          <app-input
+            type="password"
+            label="Confirm Password"
+            id="confirm-pw"
+            placeholder="Re-enter password"
+            [control]="signupForm.get('confirmPassword')"
+          ></app-input>
+          <app-input-errors
+            [control]="signupForm.get('confirmPassword')"
+            label="Confirm password"
+            [custom]="{ key: 'mustMatch', message: 'Passwords do not match' }"
+          ></app-input-errors>
+        </div>
+        <app-button
+          classes="mt-2"
+          [fullWidth]="true"
+          [disabled]="
+            signupForm.invalid || !signupForm.get('agreedToTerms')?.value
           "
-          [control]="signupForm.get('confirmPassword')"
-        ></app-input>
-        <div class="row">
-          <app-button
-            classes="mt-2 col-10"
-            [disabled]="
-              signupForm.invalid || !signupForm.get('agreedToTerms')?.value
-            "
-          >
-            <app-spinner color="#fff" *ngIf="loading"></app-spinner
-            ><span *ngIf="!loading">Sign Up</span>
-          </app-button>
-        </div>
+        >
+          <app-spinner color="#fff" *ngIf="loading"></app-spinner
+          ><span *ngIf="!loading">Sign Up</span>
+        </app-button>
         <div class="d-flex align-items-end my-2">
           <label class="d-flex align-items-center fs-2 cursor"
             ><input

@@ -15,32 +15,56 @@
   <h4 class="m-0">Update your Bank Account Details</h4>
   <p class="fs-2">This is where your money will be sent to.</p>
   <form [formGroup]="bankDetailsForm" (submit)="onSubmit()">
-    <app-input
-      type="select"
-      label="Bank Name"
-      [required]="false"
-      [selectOptions]="bankOpts"
-      [control]="bankDetailsForm.get('bankName')"
-    ></app-input>
-    <app-input
-      label=""
-      [required]="false"
-      placeholder="Account Name"
-      [control]="bankDetailsForm.get('accountName')"
-    ></app-input>
-    <app-input
-      type="select"
-      label="Account Type"
-      [required]="false"
-      [selectOptions]="accTypeOpts"
-      [control]="bankDetailsForm.get('accountType')"
-    ></app-input>
-    <app-input
-      label="Account Number"
-      [required]="false"
-      placeholder="Account Number"
-      [control]="bankDetailsForm.get('accountNumber')"
-    ></app-input>
+    <div>
+      <app-input
+        type="select"
+        label="Bank Name"
+        [required]="false"
+        [selectOptions]="bankOpts"
+        [control]="bankDetailsForm.get('bankName')"
+      ></app-input>
+      <app-input-errors
+        [control]="bankDetailsForm.get('bankName')"
+        label="Bank name"
+      ></app-input-errors>
+    </div>
+    <div>
+      <app-input
+        label="Account Name"
+        [required]="false"
+        placeholder="Account Name"
+        [control]="bankDetailsForm.get('accountName')"
+      ></app-input>
+      <app-input-errors
+        [control]="bankDetailsForm.get('accountName')"
+        label="Account name"
+      ></app-input-errors>
+    </div>
+    <div>
+      <app-input
+        type="select"
+        label="Account Type"
+        [required]="false"
+        [selectOptions]="accTypeOpts"
+        [control]="bankDetailsForm.get('accountType')"
+      ></app-input>
+      <app-input-errors
+        [control]="bankDetailsForm.get('accountType')"
+        label="Account type"
+      ></app-input-errors>
+    </div>
+    <div>
+      <app-input
+        label="Account Number"
+        [required]="false"
+        placeholder="Account Number"
+        [control]="bankDetailsForm.get('accountNumber')"
+      ></app-input>
+      <app-input-errors
+        [control]="bankDetailsForm.get('accountNumber')"
+        label="Account number"
+      ></app-input-errors>
+    </div>
     <app-button [disabled]="bankDetailsForm.invalid" paddingX="3rem"
       ><app-spinner color="#fff" *ngIf="updating"></app-spinner>
       <span *ngIf="!updating">Update</span></app-button

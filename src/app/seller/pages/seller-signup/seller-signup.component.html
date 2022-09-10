@@ -11,105 +11,179 @@
         class="signup-form"
       >
         <div class="row" formGroupName="name">
-          <div class="col-5">
-            <app-input
-              label="First Name"
-              id="f-name"
-              placeholder="First name"
-              [control]="signupForm.get('name.last')"
-            ></app-input>
-          </div>
-          <div class="col-5 ml-2">
-            <app-input
-              label="Last Name"
-              id="l-name"
-              placeholder="Last name"
+          <app-input
+            classes="col-5 pl-0"
+            label="First Name"
+            id="f-name"
+            placeholder="First name"
+            [control]="signupForm.get('name.first')"
+          ></app-input>
+          <app-input
+            classes="col-5 pr-0"
+            label="Last Name"
+            id="l-name"
+            placeholder="Last name"
+            [control]="signupForm.get('name.last')"
+          ></app-input>
+        </div>
+        <div class="row" *ngIf="firstNameHasError || lastNameHasError">
+          <div class="col-5 pl-0">
+            <app-input-errors
               [control]="signupForm.get('name.first')"
-            ></app-input>
+              label="First name"
+            ></app-input-errors>
+          </div>
+          <div class="col-5 pr-0">
+            <app-input-errors
+              [control]="signupForm.get('name.last')"
+              label="Last name"
+            ></app-input-errors>
           </div>
         </div>
-        <app-input
-          label="Personal Email"
-          id="email"
-          placeholder="mail@abc.com"
-          [control]="signupForm.get('email')"
-        ></app-input>
-        <app-input
-          label="Personal Phone Number"
-          id="phone"
-          placeholder="08000000000"
-          [control]="signupForm.get('phone')"
-        ></app-input>
-        <app-input
-          label="Shop Name"
-          id="shop-name"
-          placeholder="e.g. Fidex Wears"
-          [control]="signupForm.get('shopName')"
-        ></app-input>
-        <app-input
-          label="Shop Email"
-          id="shop-email"
-          placeholder="mail@abc.com"
-          [control]="signupForm.get('shopEmail')"
-        ></app-input>
-        <div formGroupName="shopAddress">
+        <div>
           <app-input
-            label="Shop Full Address"
-            id="f-addr"
-            placeholder="e.g. 10, Immaculate estate..., Lagos, Nigeria."
-            [control]="signupForm.get('shopAddress.full')"
+            label="Personal Email"
+            id="email"
+            placeholder="mail@abc.com"
+            [control]="signupForm.get('email')"
           ></app-input>
-          <app-input
-            label="What city is your shop in?"
-            id="city"
-            placeholder="City"
-            [required]="false"
-            [control]="signupForm.get('shopAddress.city')"
-          ></app-input>
-          <app-input
-            type="select"
-            label="What state is your shop based?"
-            id="state"
-            [selectOptions]="stateOpts"
-            [control]="signupForm.get('shopAddress.state')"
-          ></app-input>
-          <app-input
-            type="select"
-            label="What country is your shop based?"
-            id="country"
-            [selectOptions]="countryOpts"
-            [control]="signupForm.get('shopAddress.country')"
-          ></app-input>
+          <app-input-errors
+            [control]="signupForm.get('email')"
+            label="Personal email"
+          ></app-input-errors>
         </div>
-        <app-input
-          type="select"
-          label="How did you get to know of Selleen?"
-          id="know-of"
-          [selectOptions]="knowOfOpts"
-          [control]="signupForm.get('knowOf')"
-        ></app-input>
-        <app-input
-          type="password"
-          label="Password"
-          id="pw"
-          placeholder="Password"
-          [control]="signupForm.get('password')"
-        ></app-input>
-        <app-input
-          type="password"
-          label="Repeat Password"
-          id="confirm-pw"
-          placeholder="Re-enter password"
-          [errorMessage]="
-            signupForm.controls['confirmPassword']['errors'] &&
-            signupForm.controls['confirmPassword']['errors']['mustMatch']
-              ? 'Passwords do not match'
-              : ''
-          "
-          [control]="signupForm.get('confirmPassword')"
-        ></app-input>
+        <div>
+          <app-input
+            label="Personal Phone Number"
+            id="phone"
+            placeholder="08000000000"
+            [control]="signupForm.get('phone')"
+          ></app-input>
+          <app-input-errors
+            [control]="signupForm.get('phone')"
+            label="Personal phone number"
+          ></app-input-errors>
+        </div>
+        <div>
+          <app-input
+            label="Shop Name"
+            id="shop-name"
+            placeholder="e.g. Fidex Wears"
+            [control]="signupForm.get('shopName')"
+          ></app-input>
+          <app-input-errors
+            [control]="signupForm.get('shopName')"
+            label="Shop name"
+          ></app-input-errors>
+        </div>
+        <div>
+          <app-input
+            label="Shop Email"
+            id="shop-email"
+            placeholder="mail@abc.com"
+            [control]="signupForm.get('shopEmail')"
+          ></app-input>
+          <app-input-errors
+            [control]="signupForm.get('shopEmail')"
+            label="Shop email"
+          ></app-input-errors>
+        </div>
+        <div formGroupName="shopAddress">
+          <div>
+            <app-input
+              label="Shop's Full Address"
+              id="f-addr"
+              placeholder="e.g. 10, Immaculate estate..., Lagos, Nigeria."
+              [control]="signupForm.get('shopAddress.full')"
+            ></app-input>
+            <app-input-errors
+              [control]="signupForm.get('shopAddress.full')"
+              label="Shop's full address"
+            ></app-input-errors>
+          </div>
+          <div>
+            <app-input
+              label="What city is your shop in?"
+              id="city"
+              placeholder="City"
+              [required]="false"
+              [control]="signupForm.get('shopAddress.city')"
+            ></app-input>
+            <app-input-errors
+              [control]="signupForm.get('shopAddress.city')"
+              label="City"
+            ></app-input-errors>
+          </div>
+          <div>
+            <app-input
+              type="select"
+              label="What state is your shop based?"
+              id="state"
+              [selectOptions]="stateOpts"
+              [control]="signupForm.get('shopAddress.state')"
+            ></app-input>
+            <app-input-errors
+              [control]="signupForm.get('shopAddress.state')"
+              label="State"
+            ></app-input-errors>
+          </div>
+          <div>
+            <app-input
+              type="select"
+              label="What country is your shop based?"
+              id="country"
+              [selectOptions]="countryOpts"
+              [control]="signupForm.get('shopAddress.country')"
+            ></app-input>
+            <app-input-errors
+              [control]="signupForm.get('shopAddress.country')"
+              label="Country"
+            ></app-input-errors>
+          </div>
+        </div>
+        <div>
+          <app-input
+            type="select"
+            label="How did you get to know of Selleen?"
+            id="know-of"
+            [selectOptions]="knowOfOpts"
+            [control]="signupForm.get('knowOf')"
+          ></app-input>
+          <app-input-errors
+            [control]="signupForm.get('knowOf')"
+            label="How did you know of Selleen"
+          ></app-input-errors>
+        </div>
+        <div>
+          <app-input
+            type="password"
+            label="Password"
+            id="pw"
+            placeholder="Password"
+            [control]="signupForm.get('password')"
+          ></app-input>
+          <app-input-errors
+            [control]="signupForm.get('password')"
+            label="Password"
+          ></app-input-errors>
+        </div>
+        <div>
+          <app-input
+            type="password"
+            label="Repeat Password"
+            id="confirm-pw"
+            placeholder="Re-enter password"
+            [control]="signupForm.get('confirmPassword')"
+          ></app-input>
+          <app-input-errors
+            [control]="signupForm.get('confirmPassword')"
+            label="Confirm password"
+            [custom]="{ key: 'mustMatch', message: 'Passwords do not match' }"
+          ></app-input-errors>
+        </div>
         <app-button
-          classes="mt-2 col-10"
+          classes="mt-2"
+          [fullWidth]="true"
           [disabled]="
             signupForm.invalid || !signupForm.get('agreedToTerms')?.value
           "

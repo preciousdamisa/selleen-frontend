@@ -19,7 +19,6 @@ import { AppComponent } from './app.component';
     AdminModule,
     SellerModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

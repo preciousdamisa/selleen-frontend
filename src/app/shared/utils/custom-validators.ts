@@ -22,3 +22,44 @@ export default class CustomValidators {
     };
   }
 }
+
+export function getInputErrors(
+  label: string,
+  control: AbstractControl | null,
+  custom?: { key: string; message: string }
+): string[] {
+  const { touched, errors } = control!;
+  const errMsgs: string[] = [];
+
+  if (touched && errors) {
+    if (errors['required']) {
+      errMsgs.push(`${label} is required`);
+    }
+
+    if (errors['minlength']) {
+      errMsgs.push(
+        `${label} should be at least ${errors['minlength']['requiredLength']} characters`
+      );
+    }
+
+    if (errors['maxlength']) {
+      errMsgs.push(
+        `${label} should be at least ${errors['maxlength']['requiredLength']} characters`
+      );
+    }
+
+    if (errors['pattern']) {
+      errMsgs.push(`${label} isn't in the right format`);
+    }
+
+    if (errors['email']) {
+      errMsgs.push(`${label} is invalid`);
+    }
+
+    if (custom && errors[custom.key]) {
+      errMsgs.push(custom.message);
+    }
+  }
+
+  return errMsgs;
+}

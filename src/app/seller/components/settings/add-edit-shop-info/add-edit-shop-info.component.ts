@@ -91,10 +91,7 @@ export class AddEditShopInfoComponent implements OnInit, OnDestroy {
           this.shop?.address.full || '',
           Validators.required
         ),
-        city: new FormControl(
-          this.shop?.address.city || '',
-          Validators.required
-        ),
+        city: new FormControl(this.shop?.address.city || ''),
         state: new FormControl(
           this.shop?.address.state || '',
           Validators.required

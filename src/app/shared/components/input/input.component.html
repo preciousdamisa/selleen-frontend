@@ -11,7 +11,7 @@
     "
     [style.borderColor]="colorTheme?.textDark"
     class="form-control"
-    [ngClass]="{ 'mb-2': !hasErrors() }"
+    [ngClass]="{ 'mb-0': hasErrors && bottomMargin }"
     [id]="id"
     [type]="type"
     [placeholder]="placeholder"
@@ -22,7 +22,7 @@
     *ngIf="type === 'textarea'"
     [style.borderColor]="colorTheme?.textDark"
     class="form-control"
-    [ngClass]="{ 'mb-2': !hasErrors() }"
+    [ngClass]="{ 'mb-0': hasErrors && bottomMargin }"
     [id]="id"
     [placeholder]="placeholder"
     [formControl]="control"
@@ -32,7 +32,7 @@
   ></textarea>
   <select
     class="form-control"
-    [ngClass]="{ 'mb-2': !hasErrors() }"
+    [ngClass]="{ 'mb-0': hasErrors && bottomMargin }"
     *ngIf="type === 'select'"
     [id]="id"
     [formControl]="control"
@@ -57,23 +57,3 @@
     {{ label }}
   </label>
 </div>
-<!-- <div *ngIf="hasErrors()">
-  <span class="input-error-text" *ngIf="control.errors.required"
-    >{{ label }} is required</span
-  >
-  <span class="input-error-text" *ngIf="control.errors.minlength">
-    {{ label }} should be at least
-    {{ control.errors.minlength.requiredLength }} characters long
-  </span>
-  <span class="input-error-text" *ngIf="control.errors.maxlength">
-    {{ label }} can't be more than
-    {{ control.errors.maxlength.requiredLength }} characters
-  </span>
-  <span class="input-error-text" *ngIf="control.errors.pattern"
-    >{{ label }} isn't in the right format</span
-  >
-  <span class="input-error-text" *ngIf="control.errors.email"
-    >Email is invalid</span
-  >
-</div> -->
-<!-- <span class="input-error-text" *ngIf="errorMessage">{{ errorMessage }}</span> -->

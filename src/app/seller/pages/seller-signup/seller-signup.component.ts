@@ -71,11 +71,23 @@ export class SellerSignupComponent implements OnInit, OnDestroy {
           Validators.required,
           Validators.minLength(6),
         ]),
-        confirmPassword: new FormControl('', [Validators.required]),
+        confirmPassword: new FormControl('', Validators.required),
         agreedToTerms: new FormControl(false),
       },
       CustomValidators.mustMatch('password', 'confirmPassword')
     );
+  }
+
+  get firstNameHasError() {
+    const { touched, errors } = this.signupForm.get(
+      'name.first'
+    ) as FormControl;
+    return touched && errors;
+  }
+
+  get lastNameHasError() {
+    const { touched, errors } = this.signupForm.get('name.last') as FormControl;
+    return touched && errors;
   }
 
   onSubmit() {
