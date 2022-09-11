@@ -8,9 +8,10 @@ import { SellerModule } from './seller/seller.module';
 import { BuyerModule } from './buyer/buyer.module';
 
 import { AppComponent } from './app.component';
+import { NotificationListComponent } from './components/notification-list/notification-list.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotificationListComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

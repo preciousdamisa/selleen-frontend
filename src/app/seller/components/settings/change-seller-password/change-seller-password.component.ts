@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { UserService } from 'src/app/shared/services/user.service';
+import { NotificationsService } from 'src/app/services/notification.service';
 import CustomValidators from 'src/app/shared/utils/custom-validators';
 
 @Component({
@@ -15,7 +16,10 @@ export class ChangeSellerPasswordComponent implements OnInit, OnDestroy {
   pwForm!: FormGroup;
   loading = false;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private notifService: NotificationsService
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -44,6 +48,7 @@ export class ChangeSellerPasswordComponent implements OnInit, OnDestroy {
 
     this.subs = this.userService.changePassword(this.pwForm.value).subscribe({
       next: () => {
+        this.notifService.add('Password changed successfuly!', 'success');
         this.loading = false;
       },
       error: () => {

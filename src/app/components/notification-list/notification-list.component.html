@@ -1,0 +1,20 @@
+<div
+  *ngFor="let msg of messages"
+  class="notif p-1"
+  [ngClass]="{
+    'notif-bg-success': msg.type === 'success',
+    'notif-bg-error': msg.type === 'error'
+  }"
+>
+  <div class="notif-container">
+    <i
+      class="fs-3"
+      [ngClass]="
+        msg.type === 'success'
+          ? 'text-success bi-patch-check-fill'
+          : 'text-danger bi-exclamation-circle'
+      "
+    ></i>
+    <p class="m-0 ml-2">{{ msg.text }}</p>
+  </div>
+</div>

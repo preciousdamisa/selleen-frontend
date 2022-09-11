@@ -1,35 +1,48 @@
-.sln-text-white {
+.text-white {
   color: #fff;
 }
 
-.sln-text-dark {
+.text-dark {
   color: #000;
 }
 
-.sln-text-light {
+.text-light {
   color: #958f8f;
 }
 
-.sln-bg-primary {
-  background: #36abd9;
-}
-
-.sln-text-primary {
+.text-primary {
   color: #36abd9;
 }
 
-.sln-bg-secondary {
-  background: #8dd5f2;
-}
-
-.sln-bg-secondary-light {
-  background: #c2e0f2;
-}
-
-.sln-text-grey {
+.text-grey {
   color: #8d8d8d;
 }
 
-.sln-text-danger {
-  color: red;
+.text-danger {
+  color: #ea3939;
+}
+
+.text-success {
+  color: #00cb73;
+}
+
+/* BACKGROUNDS */
+.bg-primary {
+  background: #36abd9;
+}
+
+.bg-secondary {
+  background: #8dd5f2;
+}
+
+.bg-secondary-light {
+  background: #c2e0f2;
+}
+
+.bg-success {
+  background: #00cb73;
+}
+
+.bg-error {
+  background: #ea3939;
 }
