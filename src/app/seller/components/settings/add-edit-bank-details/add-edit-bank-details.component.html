@@ -15,59 +15,67 @@
   <h4 class="m-0">Update your Bank Account Details</h4>
   <p class="fs-2">This is where your money will be sent to.</p>
   <form [formGroup]="bankDetailsForm" (submit)="onSubmit()">
-    <div>
-      <app-input
-        type="select"
-        label="Bank Name"
-        [required]="false"
-        [selectOptions]="bankOpts"
-        [control]="bankDetailsForm.get('bankName')"
-      ></app-input>
+    <div class="form-group">
+      <label for="bank-name"
+        >Bank Name <small class="text-danger">*</small></label
+      >
+      <select class="form-control" id="bank-name" formControlName="bankName">
+        <option *ngFor="let opt of bankOpts" [value]="opt.value">
+          {{ opt.label }}
+        </option>
+      </select>
       <app-input-errors
         [control]="bankDetailsForm.get('bankName')"
         label="Bank name"
       ></app-input-errors>
     </div>
-    <div>
-      <app-input
-        label="Account Name"
-        [required]="false"
-        placeholder="Account Name"
-        [control]="bankDetailsForm.get('accountName')"
-      ></app-input>
+    <div class="form-group">
+      <label for="acc-name"
+        >Account Name <small class="text-danger">*</small></label
+      >
+      <input
+        id="acc-name"
+        class="form-control"
+        placeholder="Enter account name"
+        formControlName="accountName"
+      />
       <app-input-errors
         [control]="bankDetailsForm.get('accountName')"
         label="Account name"
       ></app-input-errors>
     </div>
-    <div>
-      <app-input
-        type="select"
-        label="Account Type"
-        [required]="false"
-        [selectOptions]="accTypeOpts"
-        [control]="bankDetailsForm.get('accountType')"
-      ></app-input>
+    <div class="form-group">
+      <label for="acc-type"
+        >Account Type <small class="text-danger">*</small></label
+      >
+      <select class="form-control" id="acc-type" formControlName="accountType">
+        <option *ngFor="let opt of accTypeOpts" [value]="opt.value">
+          {{ opt.label }}
+        </option>
+      </select>
       <app-input-errors
         [control]="bankDetailsForm.get('accountType')"
-        label="Account type"
+        label="Account Type"
       ></app-input-errors>
     </div>
-    <div>
-      <app-input
-        label="Account Number"
-        [required]="false"
-        placeholder="Account Number"
-        [control]="bankDetailsForm.get('accountNumber')"
-      ></app-input>
+    <div class="form-group">
+      <label for="acc-no"
+        >Account Number <small class="text-danger">*</small></label
+      >
+      <input
+        id="acc-no"
+        class="form-control"
+        placeholder="Enter account number"
+        formControlName="accountNumber"
+      />
       <app-input-errors
         [control]="bankDetailsForm.get('accountNumber')"
         label="Account number"
       ></app-input-errors>
     </div>
     <app-button [disabled]="bankDetailsForm.invalid" paddingX="3rem"
-      ><app-spinner color="#fff" *ngIf="updating"></app-spinner>
-      <span *ngIf="!updating">Update</span></app-button
+      ><app-spinner color="#fff" *ngIf="loading"></app-spinner>
+      <span *ngIf="!loading">Update</span></app-button
     >
   </form>
 </div>

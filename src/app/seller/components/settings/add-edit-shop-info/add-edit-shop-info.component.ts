@@ -7,6 +7,7 @@ import { Shop } from 'src/app/seller/models/shop.model';
 import { UserService } from 'src/app/shared/services/user.service';
 import { ShopService } from 'src/app/seller/services/shop.service';
 import { SelectOption } from 'src/app/shared/types/shared';
+import { NotificationsService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-add-edit-shop-info',
@@ -19,14 +20,14 @@ export class AddEditShopInfoComponent implements OnInit, OnDestroy {
   user?: User | null;
   shop?: Shop | null;
 
-  stateSelectOpts: SelectOption[] = [
+  stateOpts: SelectOption[] = [
     { label: '~~ Select State ~~', value: '' },
     { label: 'Abuja', value: 'Abuja' },
     { label: 'Delta', value: 'Delta' },
     { label: 'Edo', value: 'Edo' },
     { label: 'Lagos', value: 'Lagos' },
   ];
-  countrySelectOpts: SelectOption[] = [
+  countryOpts: SelectOption[] = [
     { label: '~~ Select Country ~~', value: '' },
     { label: 'Nigeria', value: 'Nigeria' },
   ];
@@ -37,7 +38,8 @@ export class AddEditShopInfoComponent implements OnInit, OnDestroy {
 
   constructor(
     private userService: UserService,
-    private shopService: ShopService
+    private shopService: ShopService,
+    private notifService: NotificationsService
   ) {}
 
   ngOnInit(): void {
@@ -75,7 +77,7 @@ export class AddEditShopInfoComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.shopInfoForm = new FormGroup({
-      ownersName: new FormControl(
+      ownerName: new FormControl(
         this.user?.name.first + ' ' + this.user?.name.last || ''
       ),
       shopName: new FormControl(this.shop?.name),
@@ -150,6 +152,10 @@ export class AddEditShopInfoComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.subs$))
       .subscribe({
         next: () => {
+          this.notifService.add(
+            'Shop Information updated successfully!',
+            'success'
+          );
           this.loading = false;
         },
         error: () => {

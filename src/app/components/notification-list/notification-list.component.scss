@@ -17,17 +17,6 @@
   background: #fff3f3;
 }
 
-.notif-container {
-  display: flex;
-  align-items: center;
-}
-
-.close {
-  background-color: transparent;
-  border: none;
-  font-weight: bold;
-}
-
 @media (min-width: 40rem) {
   .notif {
     width: 50vw;

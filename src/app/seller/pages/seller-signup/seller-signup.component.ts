@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { SelectOption } from 'src/app/shared/types/shared';
 import CustomValidators from 'src/app/shared/utils/custom-validators';
 import { SellerService } from '../../services/seller.service';
+import { NotificationsService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-seller-signup',
@@ -38,7 +39,10 @@ export class SellerSignupComponent implements OnInit, OnDestroy {
 
   loading = false;
 
-  constructor(private sellerService: SellerService) {}
+  constructor(
+    private sellerService: SellerService,
+    private notifService: NotificationsService
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -103,6 +107,7 @@ export class SellerSignupComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.subs = this.sellerService.signup(this.signupForm.value).subscribe({
       next: () => {
+        this.notifService.add('Signed up successfully!', 'success');
         this.loading = false;
       },
       error: () => {

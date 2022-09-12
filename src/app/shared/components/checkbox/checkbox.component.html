@@ -1,0 +1,13 @@
+<div class="d-flex align-items-end">
+  <label class="d-flex align-items-center fs-2 cursor" [style.fontSize]="size"
+    ><input
+      class="d-inline-block ml-0 my-0 mr-1"
+      type="checkbox"
+      [style.width]="size"
+      [style.height]="size"
+      [formControl]="control"
+      [readonly]="disabled"
+    />
+    {{ label }}
+  </label>
+</div>

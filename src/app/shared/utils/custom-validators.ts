@@ -44,7 +44,7 @@ export function getInputErrors(
 
     if (errors['maxlength']) {
       errMsgs.push(
-        `${label} should be at least ${errors['maxlength']['requiredLength']} characters`
+        `${label} should be at most ${errors['maxlength']['requiredLength']} characters`
       );
     }
 

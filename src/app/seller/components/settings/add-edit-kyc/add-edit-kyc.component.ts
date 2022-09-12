@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { Shop } from 'src/app/seller/models/shop.model';
 import { ShopService } from 'src/app/seller/services/shop.service';
+import { NotificationsService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-add-edit-kyc',
@@ -16,7 +17,10 @@ export class AddEditKycComponent implements OnInit, OnDestroy {
   linksForm!: FormGroup;
   loading = false;
 
-  constructor(private shopService: ShopService) {}
+  constructor(
+    private shopService: ShopService,
+    private notifService: NotificationsService
+  ) {}
 
   ngOnInit(): void {
     this.getShop();
@@ -78,8 +82,11 @@ export class AddEditKycComponent implements OnInit, OnDestroy {
     this.subs = this.shopService
       .updateSMLinks({ links }, this.currentShop?._id!)
       .subscribe({
-        next: (res) => {
-          console.log(res);
+        next: () => {
+          this.notifService.add(
+            'Social media link(s) updated successfully!',
+            'success'
+          );
           this.loading = false;
         },
         error: () => {

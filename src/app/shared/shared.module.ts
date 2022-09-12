@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { LinkComponent } from './components/link/link.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { InputErrorsComponent } from './components/input-errors/input-errors.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { InputErrorsComponent } from './components/input-errors/input-errors.com
     LinkComponent,
     LogoComponent,
     InputErrorsComponent,
+    CheckboxComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -38,6 +40,7 @@ import { InputErrorsComponent } from './components/input-errors/input-errors.com
     SpinnerComponent,
     LogoComponent,
     InputErrorsComponent,
+    CheckboxComponent,
   ],
 })
 export class SharedModule {}

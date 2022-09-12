@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { SelectOption } from 'src/app/shared/types/shared';
 import CustomValidators from 'src/app/shared/utils/custom-validators';
 import { AdminAuthService } from '../../services/admin-auth.service';
+import { NotificationsService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-admin-signup',
@@ -15,21 +16,24 @@ export class AdminSignupComponent implements OnInit, OnDestroy {
   subs?: Subscription;
 
   signupForm!: FormGroup;
-  stateSelectOpts: SelectOption[] = [
+  stateOpts: SelectOption[] = [
     { label: '~~ Select State ~~', value: '' },
     { label: 'Abuja', value: 'Abuja' },
     { label: 'Delta', value: 'Delta' },
     { label: 'Edo', value: 'Edo' },
     { label: 'Lagos', value: 'Lagos' },
   ];
-  countrySelectOpts: SelectOption[] = [
+  countryOpts: SelectOption[] = [
     { label: '~~ Select Country ~~', value: '' },
     { label: 'Nigeria', value: 'Nigeria' },
   ];
 
   loading = false;
 
-  constructor(private adminAuthService: AdminAuthService) {}
+  constructor(
+    private adminAuthService: AdminAuthService,
+    private notifService: NotificationsService
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -91,6 +95,7 @@ export class AdminSignupComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.subs = this.adminAuthService.signup(this.signupForm.value).subscribe({
       next: () => {
+        this.notifService.add('Signed up successfully!', 'success');
         this.loading = false;
       },
       error: () => {

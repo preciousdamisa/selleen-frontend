@@ -1,6 +1,6 @@
 <section class="mt-10">
   <app-logo></app-logo>
-  <div class="signup-form center mt-3 mx-2">
+  <div class="form-container center pt-3 mx-2">
     <app-card>
       <h2 class="text-align-center">
         Let's get you started with your Selleen Account
@@ -10,171 +10,194 @@
         (ngSubmit)="onSubmit()"
         class="signup-form"
       >
-        <div class="row" formGroupName="name">
-          <app-input
-            classes="col-5 pl-0"
-            label="First Name"
-            id="f-name"
-            placeholder="First name"
-            [control]="signupForm.get('name.first')"
-          ></app-input>
-          <app-input
-            classes="col-5 pr-0"
-            label="Last Name"
-            id="l-name"
-            placeholder="Last name"
-            [control]="signupForm.get('name.last')"
-          ></app-input>
-        </div>
-        <div class="row" *ngIf="firstNameHasError || lastNameHasError">
-          <div class="col-5 pl-0">
+        <div formGroupName="name" class="d-flex">
+          <div class="form-group pr-1 col">
+            <label for="f-name"
+              >First Name <small class="text-danger">*</small></label
+            >
+            <input
+              id="f-name"
+              class="form-control"
+              placeholder="Enter first name"
+              formControlName="first"
+            />
             <app-input-errors
               [control]="signupForm.get('name.first')"
               label="First name"
             ></app-input-errors>
           </div>
-          <div class="col-5 pr-0">
+          <div class="form-group pl-1 col">
+            <label for="l-name"
+              >Last Name <small class="text-danger">*</small></label
+            >
+            <input
+              id="l-name"
+              class="form-control"
+              placeholder="Enter last name"
+              formControlName="last"
+            />
             <app-input-errors
               [control]="signupForm.get('name.last')"
               label="Last name"
             ></app-input-errors>
           </div>
         </div>
-        <div>
-          <app-input
-            label="Personal Email"
-            id="email"
-            placeholder="mail@abc.com"
-            [control]="signupForm.get('email')"
-          ></app-input>
+        <div class="form-group">
+          <label for="p-email"
+            >Personal Email <small class="text-danger">*</small></label
+          >
+          <input
+            id="p-email"
+            class="form-control"
+            placeholder="e.g. mail@abc.com"
+            formControlName="email"
+          />
           <app-input-errors
             [control]="signupForm.get('email')"
             label="Personal email"
           ></app-input-errors>
         </div>
-        <div>
-          <app-input
-            label="Personal Phone Number"
+        <div class="form-group">
+          <label for="phone"
+            >Personal Phone Number <small class="text-danger">*</small></label
+          >
+          <input
             id="phone"
-            placeholder="08000000000"
-            [control]="signupForm.get('phone')"
-          ></app-input>
+            class="form-control"
+            placeholder="e.g. 09066666666"
+            formControlName="phone"
+          />
           <app-input-errors
             [control]="signupForm.get('phone')"
             label="Personal phone number"
           ></app-input-errors>
         </div>
-        <div>
-          <app-input
-            label="Shop Name"
+        <div class="form-group">
+          <label for="shop-name"
+            >Shop Name <small class="text-danger">*</small></label
+          >
+          <input
             id="shop-name"
-            placeholder="e.g. Fidex Wears"
-            [control]="signupForm.get('shopName')"
-          ></app-input>
+            class="form-control"
+            placeholder="Enter shop name"
+            formControlName="shopName"
+          />
           <app-input-errors
             [control]="signupForm.get('shopName')"
             label="Shop name"
           ></app-input-errors>
         </div>
-        <div>
-          <app-input
-            label="Shop Email"
-            id="shop-email"
-            placeholder="mail@abc.com"
-            [control]="signupForm.get('shopEmail')"
-          ></app-input>
+        <div class="form-group">
+          <label for="s-email"
+            >Shop Email <small class="text-danger">*</small></label
+          >
+          <input
+            id="s-email"
+            class="form-control"
+            placeholder="e.g. mail@abc.com"
+            formControlName="shopEmail"
+          />
           <app-input-errors
             [control]="signupForm.get('shopEmail')"
             label="Shop email"
           ></app-input-errors>
         </div>
         <div formGroupName="shopAddress">
-          <div>
-            <app-input
-              label="Shop's Full Address"
-              id="f-addr"
-              placeholder="e.g. 10, Immaculate estate..., Lagos, Nigeria."
-              [control]="signupForm.get('shopAddress.full')"
-            ></app-input>
+          <div class="form-group">
+            <label for="full-addr"
+              >Shop's Full Address <small class="text-danger">*</small></label
+            >
+            <input
+              id="full-addr"
+              class="form-control"
+              placeholder="e.g. 10, Immaculate street..., Edo state, Nigeria."
+              formControlName="full"
+            />
             <app-input-errors
               [control]="signupForm.get('shopAddress.full')"
               label="Shop's full address"
             ></app-input-errors>
           </div>
-          <div>
-            <app-input
-              label="What city is your shop in?"
+          <div class="form-group">
+            <label for="city">What city is your shop in?</label>
+            <input
               id="city"
-              placeholder="City"
-              [required]="false"
-              [control]="signupForm.get('shopAddress.city')"
-            ></app-input>
-            <app-input-errors
-              [control]="signupForm.get('shopAddress.city')"
-              label="City"
-            ></app-input-errors>
+              class="form-control"
+              placeholder="e.g. Benin"
+              formControlName="city"
+            />
           </div>
-          <div>
-            <app-input
-              type="select"
-              label="What state is your shop based?"
-              id="state"
-              [selectOptions]="stateOpts"
-              [control]="signupForm.get('shopAddress.state')"
-            ></app-input>
+          <div class="form-group">
+            <label for="state"
+              >What state is your shop based?
+              <small class="text-danger">*</small></label
+            >
+            <select class="form-control" id="state" formControlName="state">
+              <option *ngFor="let opt of stateOpts" [value]="opt.value">
+                {{ opt.label }}
+              </option>
+            </select>
             <app-input-errors
               [control]="signupForm.get('shopAddress.state')"
               label="State"
             ></app-input-errors>
           </div>
-          <div>
-            <app-input
-              type="select"
-              label="What country is your shop based?"
-              id="country"
-              [selectOptions]="countryOpts"
-              [control]="signupForm.get('shopAddress.country')"
-            ></app-input>
+          <div class="form-group">
+            <label for="country"
+              >What country is your shop in?
+              <small class="text-danger">*</small></label
+            >
+            <select class="form-control" id="country" formControlName="country">
+              <option *ngFor="let opt of countryOpts" [value]="opt.value">
+                {{ opt.label }}
+              </option>
+            </select>
             <app-input-errors
               [control]="signupForm.get('shopAddress.country')"
               label="Country"
             ></app-input-errors>
           </div>
         </div>
-        <div>
-          <app-input
-            type="select"
-            label="How did you get to know of Selleen?"
-            id="know-of"
-            [selectOptions]="knowOfOpts"
-            [control]="signupForm.get('knowOf')"
-          ></app-input>
+        <div class="form-group">
+          <label for="know-of"
+            >How did you get to know of Selleen?
+            <small class="text-danger">*</small></label
+          >
+          <select class="form-control" id="know-of" formControlName="knowOf">
+            <option *ngFor="let opt of knowOfOpts" [value]="opt.value">
+              {{ opt.label }}
+            </option>
+          </select>
           <app-input-errors
             [control]="signupForm.get('knowOf')"
             label="How did you know of Selleen"
           ></app-input-errors>
         </div>
-        <div>
-          <app-input
-            type="password"
-            label="Password"
+        <div class="form-group">
+          <label for="pw">Password <small class="text-danger">*</small></label>
+          <input
             id="pw"
-            placeholder="Password"
-            [control]="signupForm.get('password')"
-          ></app-input>
+            class="form-control"
+            placeholder="Enter password"
+            type="password"
+            formControlName="password"
+          />
           <app-input-errors
             [control]="signupForm.get('password')"
             label="Password"
           ></app-input-errors>
         </div>
-        <div>
-          <app-input
-            type="password"
-            label="Repeat Password"
+        <div class="form-group">
+          <label for="confirm-pw"
+            >Confirm Password <small class="text-danger">*</small></label
+          >
+          <input
             id="confirm-pw"
-            placeholder="Re-enter password"
-            [control]="signupForm.get('confirmPassword')"
-          ></app-input>
+            class="form-control"
+            placeholder="Repeat password"
+            type="password"
+            formControlName="confirmPassword"
+          />
           <app-input-errors
             [control]="signupForm.get('confirmPassword')"
             label="Confirm password"

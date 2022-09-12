@@ -6,15 +6,15 @@
     'notif-bg-error': msg.type === 'error'
   }"
 >
-  <div class="notif-container">
+  <div class="d-flex align-items-center">
     <i
-      class="fs-3"
+      class="fs-3 ml-1"
       [ngClass]="
         msg.type === 'success'
           ? 'text-success bi-patch-check-fill'
           : 'text-danger bi-exclamation-circle'
       "
     ></i>
-    <p class="m-0 ml-2">{{ msg.text }}</p>
+    <p class="m-0 ml-1">{{ msg.text }}</p>
   </div>
 </div>

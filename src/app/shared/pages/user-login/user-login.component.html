@@ -1,44 +1,46 @@
 <section class="mt-10">
   <app-logo></app-logo>
-  <div class="signup-form center mt-3 mx-2">
+  <div class="form-container pt-3 mx-2">
     <app-card>
       <h2 class="text-align-center mb-0">Log in to Your Account</h2>
       <p class="text-align-center mt-0">
         See what is going on with your business
       </p>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-        <div>
-          <app-input
-            label="Email"
+        <div class="form-group">
+          <label for="email">Email <small class="text-danger">*</small></label>
+          <input
             id="email"
-            placeholder="mail@abc.com"
-            [control]="loginForm.get('email')"
-          ></app-input>
+            class="form-control"
+            placeholder="e.g. mail@abc.com"
+            formControlName="email"
+          />
           <app-input-errors
             [control]="loginForm.get('email')"
             label="Email"
           ></app-input-errors>
         </div>
-        <div>
-          <app-input
-            type="password"
-            label="Password"
+        <div class="form-group">
+          <label for="pw">Password <small class="text-danger">*</small></label>
+          <input
             id="pw"
-            placeholder="Password"
-            [control]="loginForm.get('password')"
-          ></app-input>
+            type="password"
+            class="form-control"
+            placeholder="Enter password"
+            formControlName="password"
+          />
           <app-input-errors
             [control]="loginForm.get('password')"
             label="Password"
           ></app-input-errors>
         </div>
         <div class="d-flex align-items-center justify-content-between my-1">
-          <app-input
+          <app-checkbox
             type="checkbox"
             id="rem-me"
             label="Remember Me"
             [control]="loginForm.get('rememberMe')"
-          ></app-input>
+          ></app-checkbox>
           <app-text-button color="#000">Forgot Password?</app-text-button>
         </div>
         <app-button

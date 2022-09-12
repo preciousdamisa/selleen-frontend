@@ -7,27 +7,33 @@
     </p>
   </div>
   <form [formGroup]="linksForm" (submit)="onSubmit()">
-    <app-input
-      label="Facebook"
-      placeholder="e.g. https://facebook.com/name.name.8"
-      [required]="false"
-      [bottomMargin]="true"
-      [control]="linksForm.get('facebook.url')"
-    ></app-input>
-    <app-input
-      label="Instagram"
-      placeholder="e.g. michelle_jones"
-      [required]="false"
-      [bottomMargin]="true"
-      [control]="linksForm.get('instagram.url')"
-    ></app-input>
-    <app-input
-      label="Twitter"
-      placeholder="e.g. @peter_damian"
-      [required]="false"
-      [bottomMargin]="true"
-      [control]="linksForm.get('twitter.url')"
-    ></app-input>
+    <div class="form-group" formGroupName="facebook">
+      <label for="fb-link">Facebook</label>
+      <input
+        id="fb-link"
+        placeholder="e.g. https://facebook.com/name.name.8"
+        class="form-control"
+        formControlName="url"
+      />
+    </div>
+    <div class="form-group" formGroupName="instagram">
+      <label for="ig-link">Instagram</label>
+      <input
+        id="ig-link"
+        placeholder="e.g. michelle_jones"
+        class="form-control"
+        formControlName="url"
+      />
+    </div>
+    <div class="form-group" formGroupName="twitter">
+      <label for="tw-link">twitter</label>
+      <input
+        id="tw-link"
+        placeholder="e.g. @peter_damian"
+        class="form-control"
+        formControlName="url"
+      />
+    </div>
     <app-button [disabled]="!formIsValid" paddingX="3rem"
       ><app-spinner color="#fff" *ngIf="loading"></app-spinner
       ><span *ngIf="!loading">Update</span></app-button

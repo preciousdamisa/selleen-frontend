@@ -7,6 +7,7 @@ import { ShopService } from 'src/app/seller/services/shop.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { SelectOption } from 'src/app/shared/types/shared';
 import { Shop } from 'src/app/seller/models/shop.model';
+import { NotificationsService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-add-edit-bank-details',
@@ -36,11 +37,12 @@ export class AddEditBankDetailsComponent implements OnInit, OnDestroy {
   shop?: Shop | null;
   shopId!: string;
 
-  updating = false;
+  loading = false;
 
   constructor(
     private userService: UserService,
-    private shopService: ShopService
+    private shopService: ShopService,
+    private notifService: NotificationsService
   ) {}
 
   ngOnInit(): void {
@@ -121,16 +123,20 @@ export class AddEditBankDetailsComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.updating = true;
+    this.loading = true;
     this.shopService
       .updateBankAccDetails(this.bankDetailsForm.value, this.shopId)
       .pipe(takeUntil(this.subs$))
       .subscribe({
         next: () => {
-          this.updating = false;
+          this.notifService.add(
+            'Bank details updated successfully!',
+            'success'
+          );
+          this.loading = false;
         },
         error: () => {
-          this.updating = false;
+          this.loading = false;
         },
       });
   }

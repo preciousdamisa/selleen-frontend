@@ -1,7 +1,10 @@
 @media (min-width: 40rem) {
-  .signup-form {
-    width: 40vw;
-    padding: 2rem;
+  .form-container {
+    width: 45%;
     margin: auto;
+  }
+
+  .signup-form {
+    padding: 2rem;
   }
 }

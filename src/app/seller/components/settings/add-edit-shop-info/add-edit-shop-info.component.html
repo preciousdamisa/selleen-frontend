@@ -1,23 +1,35 @@
 <form class="mt-5 mb-10" [formGroup]="shopInfoForm" (submit)="onSubmit()">
-  <app-input
-    label="Owner's Name"
-    [required]="false"
-    [control]="shopInfoForm.get('ownersName')"
-    [disabled]="true"
-  ></app-input>
-  <app-input
-    label="Shop Name"
-    [required]="false"
-    [control]="shopInfoForm.get('shopName')"
-    [disabled]="true"
-  ></app-input>
-  <div class="mb-2">
-    <app-input
-      label="Shop Alias"
-      [required]="false"
-      [control]="shopInfoForm.get('alias')"
-    ></app-input>
-    <span
+  <div class="form-group">
+    <label for="owner-name"
+      >Owner Name <small class="text-danger">*</small></label
+    >
+    <input
+      id="owner-name"
+      class="form-control"
+      readonly
+      formControlName="ownerName"
+    />
+  </div>
+  <div class="form-group">
+    <label for="shop-name"
+      >Shop Name <small class="text-danger">*</small></label
+    >
+    <input
+      id="shop-name"
+      class="form-control"
+      readonly
+      formControlName="shopName"
+    />
+  </div>
+  <div class="form-group mb-2">
+    <label for="alias">Shop Alias <small class="text-danger">*</small></label>
+    <input
+      id="alias"
+      class="form-control"
+      placeholder="Enter shop alias"
+      formControlName="alias"
+    />
+    <span class="d-block mt-1"
       >https://www.selleen.com/<span class="fw-5">{{
         enteredAlias
       }}</span></span
@@ -27,110 +39,98 @@
       label="Shop alias"
     ></app-input-errors>
   </div>
-  <app-input
-    label="Shop Email"
-    id="email"
-    placeholder="mail@abc.com"
-    [required]="false"
-    [control]="shopInfoForm.get('email')"
-    [disabled]="true"
-  ></app-input>
-  <div>
+  <div class="form-group">
+    <label for="email">Shop Email <small class="text-danger">*</small></label>
+    <input id="email" class="form-control" readonly formControlName="email" />
+  </div>
+  <ng-container formArrayName="contactLines">
     <div
-      class="row"
-      *ngFor="let line of contactLines.controls; let lineIndex = index"
+      class="form-group mb-2"
+      *ngFor="let line of contactLines.controls; let i = index"
     >
-      <div>
-        <app-input
-          classes="col-9 pl-0 vertical-align-middle"
-          label="Shop contact number"
-          placeholder="e.g. 08077777777"
-          [required]="false"
-          [control]="line"
-        ></app-input>
+      <label>Shop Contact Number <small class="text-danger">*</small></label>
+      <div class="d-flex align-items-center">
+        <input
+          class="form-control mr-1"
+          placeholder="e.g. 090666666666"
+          [formControlName]="i"
+        />
         <app-text-button
           *ngIf="contactLines.controls.length > 1"
-          classes="col-1 pr-0 vertical-align-middle"
-          (clicked)="onRemoveContactLine(lineIndex)"
-          ><i class="bi-file-minus fs-4 text-danger"></i
+          (clicked)="onRemoveContactLine(i)"
+          ><i class="bi-file-minus fs-3 text-danger"></i
         ></app-text-button>
-        <app-input-errors
-          [control]="line"
-          label="Contact number"
-        ></app-input-errors>
       </div>
+      <app-input-errors
+        [control]="line"
+        label="Contact number"
+      ></app-input-errors>
     </div>
-    <app-text-button
-      *ngIf="contactLines.controls.length < 2"
-      (clicked)="onAddContactLine()"
-      ><i class="bi-plus fs-2"></i> Add Second Contact Number</app-text-button
-    >
-  </div>
+  </ng-container>
+  <app-text-button
+    *ngIf="contactLines.controls.length < 2"
+    (clicked)="onAddContactLine()"
+    ><i class="bi-plus fs-2"></i> Add Second Contact Number</app-text-button
+  >
   <div class="mt-3" formGroupName="address">
-    <div>
-      <app-input
-        label="Full Address"
-        id="f-addr"
-        [required]="false"
-        placeholder="e.g. 10, Immaculate estate..., Lagos, Nigeria."
-        [control]="shopInfoForm.get('address.full')"
-      ></app-input>
+    <div class="form-group">
+      <label for="full-addr"
+        >Full Address <small class="text-danger">*</small></label
+      >
+      <input
+        id="full-addr"
+        class="form-control"
+        placeholder="e.g. 10, Immaculate street..., Edo state, Nigeria."
+        formControlName="full"
+      />
       <app-input-errors
         [control]="shopInfoForm.get('address.full')"
         label="Full address"
       ></app-input-errors>
     </div>
-    <div>
-      <app-input
-        label="City"
+    <div class="form-group">
+      <label for="city">City</label>
+      <input
         id="city"
-        placeholder="City"
-        [required]="false"
-        [control]="shopInfoForm.get('address.city')"
-      ></app-input>
-      <app-input-errors
-        [control]="shopInfoForm.get('address.city')"
-        label="City"
-      ></app-input-errors>
+        class="form-control"
+        placeholder="e.g. Benin"
+        formControlName="city"
+      />
     </div>
-    <div>
-      <app-input
-        type="select"
-        label="State"
-        id="state"
-        [required]="false"
-        [selectOptions]="stateSelectOpts"
-        [control]="shopInfoForm.get('address.state')"
-      ></app-input>
+    <div class="form-group">
+      <label for="state">State <small class="text-danger">*</small></label>
+      <select class="form-control" id="state" formControlName="state">
+        <option *ngFor="let opt of stateOpts" [value]="opt.value">
+          {{ opt.label }}
+        </option>
+      </select>
       <app-input-errors
         [control]="shopInfoForm.get('address.state')"
         label="State"
       ></app-input-errors>
     </div>
-    <div>
-      <app-input
-        type="select"
-        label="Country"
-        [required]="false"
-        id="country"
-        [selectOptions]="countrySelectOpts"
-        [control]="shopInfoForm.get('address.country')"
-      ></app-input>
+    <div class="form-group">
+      <label for="country">Country <small class="text-danger">*</small></label>
+      <select class="form-control" id="country" formControlName="country">
+        <option *ngFor="let opt of countryOpts" [value]="opt.value">
+          {{ opt.label }}
+        </option>
+      </select>
       <app-input-errors
         [control]="shopInfoForm.get('address.country')"
         label="Country"
       ></app-input-errors>
     </div>
   </div>
-  <div>
-    <app-input
-      type="textarea"
-      label="Shop Description"
-      placeholder="Tell us about your shop..."
-      [required]="false"
+  <div class="form-group">
+    <label for="desc">Description <small class="text-danger">*</small></label>
+    <textarea
       id="desc"
-      [control]="shopInfoForm.get('description')"
-    ></app-input>
+      class="form-control"
+      placeholder="Tell us about your shop..."
+      formControlName="description"
+      rows="10"
+    ></textarea>
     <app-input-errors
       [control]="shopInfoForm.get('description')"
       label="Description"

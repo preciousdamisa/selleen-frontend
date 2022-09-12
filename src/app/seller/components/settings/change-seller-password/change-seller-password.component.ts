@@ -48,7 +48,7 @@ export class ChangeSellerPasswordComponent implements OnInit, OnDestroy {
 
     this.subs = this.userService.changePassword(this.pwForm.value).subscribe({
       next: () => {
-        this.notifService.add('Password changed successfuly!', 'success');
+        this.notifService.add('Password changed successfully!', 'success');
         this.loading = false;
       },
       error: () => {
