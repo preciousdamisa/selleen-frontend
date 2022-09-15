@@ -28,6 +28,7 @@ export class Shop {
     public approved: boolean,
     public approval: { comment: string },
     public status: ShopStatus,
-    public paymentDetails: { bankAccountDetails: BankAccountDetails }
+    public paymentDetails: { bankAccountDetails: BankAccountDetails },
+    public createdAt: string,
   ) {}
 }

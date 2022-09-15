@@ -1,0 +1,40 @@
+<section>
+  <app-modal-header classes="p-2" title="Shop Approval"></app-modal-header>
+  <form class="p-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="comment">Approval Comment</label>
+      <textarea
+        class="form-control"
+        placeholder="Enter your comment"
+        id="comment"
+        rows="10"
+        formControlName="comment"
+      ></textarea>
+      <app-input-errors
+        [control]="form.get('comment')"
+        label="Comment"
+      ></app-input-errors>
+    </div>
+    <div>
+      <app-button
+        classes="mr-2"
+        paddingX="3rem"
+        [disabled]="form.invalid || loading"
+        (clicked)="onSetApprovalAction('Approved')"
+        ><span *ngIf="!loading">Approve</span>
+        <app-spinner
+          *ngIf="loading && form.get('action')?.value === 'Approved'"
+        ></app-spinner></app-button
+      ><app-button
+        [disabled]="form.invalid || loading"
+        paddingX="3rem"
+        backgroundColor="red"
+        (clicked)="onSetApprovalAction('Disapproved')"
+        ><span *ngIf="!loading">Disapprove</span>
+        <app-spinner
+          *ngIf="loading && form.get('action')?.value === 'Disapproved'"
+        ></app-spinner
+      ></app-button>
+    </div>
+  </form>
+</section>

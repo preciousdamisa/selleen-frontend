@@ -1,9 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+
 import { ColorThemeService } from 'src/app/shared/services/color-theme.service';
 import { ColorTheme } from 'src/app/shared/types/color-theme';
-
-import { Tab } from '../../types/seller-shared';
+import { Tab } from '../../types/shared';
 
 @Component({
   selector: 'app-tab-bar',
@@ -13,6 +13,7 @@ import { Tab } from '../../types/seller-shared';
 export class TabBarComponent implements OnInit, OnDestroy {
   @Input() tabs: Tab[] = [];
   @Input() currentTabId = '';
+  @Input() classes = '';
 
   subs?: Subscription;
   colorTheme?: ColorTheme;

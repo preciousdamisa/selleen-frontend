@@ -19,6 +19,12 @@ export interface SimpleResBody {
   message: string;
 }
 
+export interface SimpleReqQuery {
+  searchText?: string;
+  pageNumber: number;
+  pageSize: number;
+}
+
 export interface AuthReqBody {
   email: string;
   password: string;
@@ -68,4 +74,15 @@ export interface GetTodosResBody {
 export interface Creator {
   userId: string;
   name: Name;
+}
+
+export interface DropdownItem {
+  id: string;
+  name: string;
+  iconName?: string;
+}
+
+export interface Tab {
+  id: string;
+  name: string;
 }

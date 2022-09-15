@@ -1,0 +1,12 @@
+<section class="p-2">
+  <app-modal-header title="Shop Details"></app-modal-header>
+  <app-tab-bar [tabs]="tabs" [currentTabId]="currentTabId"></app-tab-bar>
+  <app-shop-data
+    *ngIf="currentTabId === 'shop-id'"
+    [shop]="shop"
+  ></app-shop-data>
+  <app-shop-bank-data
+    *ngIf="currentTabId === 'bank-id'"
+    [shop]="shop"
+  ></app-shop-bank-data>
+</section>

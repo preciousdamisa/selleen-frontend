@@ -1,0 +1,47 @@
+<div class="mt-5 container">
+  <div class="data-item">
+    <label>Owner's Name</label>
+    <p>{{ shop.owners[0].name.first + " " + shop.owners[0].name.last }}</p>
+  </div>
+  <div class="data-item">
+    <label>Shop Name</label>
+    <p>{{ shop.name }}</p>
+  </div>
+  <div class="data-item">
+    <label>Shop Alias</label>
+    <p>{{ shop.alias }}</p>
+  </div>
+  <div class="data-item">
+    <label>Shop Email</label>
+    <p>{{ shop.email }}</p>
+  </div>
+  <div class="data-item">
+    <label>Owner's Name</label>
+    <p>{{ shop.owners[0].name.first + " " + shop.owners[0].name.last }}</p>
+  </div>
+  <div class="data-item">
+    <label>Shop Contact Numbers</label>
+    <p *ngFor="let no of shop.contactLines">{{ no }}</p>
+  </div>
+  <h2>Address</h2>
+  <div class="data-item">
+    <label>Full Address</label>
+    <p>{{ shop.address.full }}</p>
+  </div>
+  <div class="data-item">
+    <label>City</label>
+    <p>{{ shop.address.city }}</p>
+  </div>
+  <div class="data-item">
+    <label>State</label>
+    <p>{{ shop.address.state }}</p>
+  </div>
+  <div class="data-item">
+    <label>Country</label>
+    <p>{{ shop.address.country }}</p>
+  </div>
+  <div class="data-item">
+    <label>Description</label>
+    <p>{{ shop.description }}</p>
+  </div>
+</div>

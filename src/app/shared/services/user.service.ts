@@ -93,6 +93,8 @@ export class UserService {
     this.currentUser = null;
 
     localStorage.removeItem('userData');
+    localStorage.removeItem('shopData');
+    
     if (this.timerRef) {
       clearTimeout(this.timerRef);
       this.timerRef = null;

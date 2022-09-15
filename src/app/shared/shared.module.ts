@@ -13,6 +13,10 @@ import { LinkComponent } from './components/link/link.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { InputErrorsComponent } from './components/input-errors/input-errors.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { ModalHeaderComponent } from './components/modal-header/modal-header.component';
+
+import { SpacePipe } from './pipes/space.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,9 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
     LogoComponent,
     InputErrorsComponent,
     CheckboxComponent,
+    DropdownComponent,
+    SpacePipe,
+    ModalHeaderComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -41,6 +48,9 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
     LogoComponent,
     InputErrorsComponent,
     CheckboxComponent,
+    DropdownComponent,
+    ModalHeaderComponent,
+    SpacePipe,
   ],
 })
 export class SharedModule {}

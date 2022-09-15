@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ColorThemeService } from '../../services/color-theme.service';
@@ -14,8 +14,11 @@ export class ButtonComponent implements OnInit {
   @Input() paddingX = '0.5rem';
   @Input() paddingY = '0.5rem';
   @Input() borderRadius = '3px';
+  @Input() backgroundColor?: string;
   @Input() fullWidth = false;
   @Input() disabled = false;
+
+  @Output() clicked = new EventEmitter();
 
   subs?: Subscription;
   colorTheme?: ColorTheme;

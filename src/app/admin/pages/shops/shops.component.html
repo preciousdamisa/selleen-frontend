@@ -1,0 +1,53 @@
+<app-page-wrapper>
+  <app-admin-page-header title="Shops"></app-admin-page-header>
+  <div class="center" *ngIf="gettingShops">
+    <app-spinner size="1rem"></app-spinner>
+    <p>Loading shops...</p>
+  </div>
+  <table class="mt-10" *ngIf="!gettingShops && shops.length > 0">
+    <thead>
+      <tr>
+        <th class="text-align-left">Name</th>
+        <th class="text-align-left">Alias</th>
+        <th class="text-align-center">State</th>
+        <th class="text-align-center">Created At</th>
+        <th class="text-align-center">Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let shop of shops">
+        <td class="text-align-left">{{ shop.name }}</td>
+        <td class="text-align-left">{{ shop.alias }}</td>
+        <td class="text-align-center">{{ shop.address.state }}</td>
+        <td class="text-align-center">{{ shop.createdAt | date }}</td>
+        <td class="text-align-center">
+          <span
+            class="badge"
+            [ngClass]="{
+              'bg-success': shop.status === 'Approved',
+              'bg-warning': shop.status === 'InReview',
+              'bg-danger': shop.status === 'Disapproved'
+            }"
+            >{{ shop.status | space }}</span
+          >
+        </td>
+        <td class="text-align-center">
+          <app-dropdown
+            [items]="dropdownItems"
+            (selected)="onSelectItem($event, shop, shopApproval, shopInfo)"
+          ></app-dropdown>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</app-page-wrapper>
+<ng-template #shopApproval>
+  <app-shop-approval
+    [shopId]="selectedShop._id"
+    (refetchShops)="getShops()"
+  ></app-shop-approval>
+</ng-template>
+<ng-template #shopInfo>
+  <app-shop-info [shop]="selectedShop"></app-shop-info>
+</ng-template>

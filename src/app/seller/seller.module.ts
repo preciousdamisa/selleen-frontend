@@ -14,8 +14,6 @@ import { WalletComponent } from './pages/wallet/wallet.component';
 import { SellerNavComponent } from './components/seller-nav/seller-nav.component';
 import { SellerDashboardHeaderComponent } from './components/seller-dashboard-header/seller-dashboard-header.component';
 import { ProductsComponent } from './pages/products/products.component';
-import { TabComponent } from './components/tab/tab.component';
-import { TabBarComponent } from './components/tab-bar/tab-bar.component';
 import { LogoBannerImagesComponent } from './components/settings/logo-banner-images/logo-banner-images.component';
 import { AddEditShopInfoComponent } from './components/settings/add-edit-shop-info/add-edit-shop-info.component';
 import { AddEditProdVariationComponent } from './components/settings/add-edit-prod-variation/add-edit-prod-variation.component';
@@ -35,8 +33,6 @@ import { ChangeSellerPasswordComponent } from './components/settings/change-sell
     SellerNavComponent,
     SellerDashboardHeaderComponent,
     ProductsComponent,
-    TabComponent,
-    TabBarComponent,
     LogoBannerImagesComponent,
     AddEditShopInfoComponent,
     AddEditProdVariationComponent,

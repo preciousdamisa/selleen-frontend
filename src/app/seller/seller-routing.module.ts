@@ -15,7 +15,7 @@ import { SellerAuthGuard } from './services/seller-auth.guard';
 
 const routes: Routes = [
   {
-    path: 'seller',
+    path: '',
     children: [
       { path: '', redirectTo: '/seller/shop/dashboard', pathMatch: 'full' },
       { path: 'signup', component: SellerSignupComponent },

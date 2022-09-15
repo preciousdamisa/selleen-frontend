@@ -1,0 +1,17 @@
+<div class="backdrop" *ngIf="showModalData.view"></div>
+<div
+  class="modal"
+  [ngClass]="{ center: showModalData.centered }"
+  *ngIf="showModalData.view"
+>
+  <div
+    class="modal-content"
+    [ngClass]="{
+      'modal-lg': showModalData.size === 'lg',
+      'modal-md': showModalData.size === 'md',
+      'modal-sm': showModalData.size === 'sm'
+    }"
+  >
+    <ng-container *ngTemplateOutlet="showModalData.view"></ng-container>
+  </div>
+</div>

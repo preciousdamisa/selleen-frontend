@@ -1,8 +1,8 @@
 import { Address, Creator, Name, Image } from 'src/app/shared/types/shared';
 
-export type ShopStatus = 'InReview' | 'Approved' | 'Suspended';
+export type ShopStatus = 'InReview' | 'Approved' | 'Suspended' | 'Disapproved';
 
-interface Shop {
+export interface Shop {
   _id: string;
   shortId: string;
   name: string;
@@ -24,9 +24,11 @@ interface Shop {
   personalIds: PersonalId[];
   approved: boolean;
   approval: { comment: string };
-  status: 'InReview' | 'Approved' | 'Suspended';
+  status: 'InReview' | 'Approved' | 'Suspended' | 'Disapproved';
   paymentDetails: { bankAccountDetails: BankAccountDetails };
+  createdAt: string;
 }
+
 export interface GetShopByIdResBody {
   message: string;
   data: Shop;

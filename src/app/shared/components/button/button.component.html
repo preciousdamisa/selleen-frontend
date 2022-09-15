@@ -2,13 +2,16 @@
   [class]="'btn ' + classes"
   [ngClass]="{ 'w-100': fullWidth }"
   [disabled]="disabled"
-  [style.backgroundColor]="colorTheme?.primaryColor"
+  [style.backgroundColor]="
+    backgroundColor ? backgroundColor : colorTheme?.primaryColor
+  "
   [style.color]="colorTheme?.textWhite"
   [style.paddingLeft]="paddingX"
   [style.paddingRight]="paddingX"
   [style.paddingTop]="paddingY"
   [style.paddingBottom]="paddingY"
   [style.borderRadius]="borderRadius"
+  (click)="clicked.emit()"
 >
   <ng-content></ng-content>
 </button>

@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { TabBarService } from '../../services/tab-bar.service';
-import { Tab } from '../../types/seller-shared';
+import { Tab } from 'src/app/shared/types/shared';
+import { TabBarService } from '../../../shared/services/tab-bar.service';
 
 @Component({
   selector: 'app-seller-settings',

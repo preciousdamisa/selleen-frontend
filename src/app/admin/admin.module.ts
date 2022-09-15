@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminSellerSharedModule } from '../shared/admin-seller-shared.module';
@@ -10,9 +9,17 @@ import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
-import { AdminDashboardHeaderComponent } from './components/admin-dashboard-header/admin-dashboard-header.component';
+import { PaymentComponent } from './pages/payment/payment.component';
+import { AdminPageHeaderComponent } from './components/admin-page-header/admin-page-header.component';
+import { ShopsComponent } from './pages/shops/shops.component';
+import { UsersComponent } from './pages/users/users.component';
+import { AdminSettingsComponent } from './pages/admin-settings/admin-settings.component';
 
-import { AdminAuthInterceptorService } from './services/admin-auth-interceptor.service';
+import { ShopApprovalComponent } from './components/shop/shop-approval/shop-approval.component';
+import { ShopDataComponent } from './components/shop/shop-data/shop-data.component';
+import { ShopBankDataComponent } from './components/shop/shop-bank-data/shop-bank-data.component';
+import { ShopKycDataComponent } from './components/shop/shop-kyc-data/shop-kyc-data.component';
+import { ShopInfoComponent } from './components/shop/shop-info/shop-info.component';
 
 @NgModule({
   declarations: [
@@ -21,15 +28,17 @@ import { AdminAuthInterceptorService } from './services/admin-auth-interceptor.s
     AdminDashboardComponent,
     AdminLoginComponent,
     AdminNavComponent,
-    AdminDashboardHeaderComponent,
+    PaymentComponent,
+    AdminPageHeaderComponent,
+    ShopsComponent,
+    UsersComponent,
+    AdminSettingsComponent,
+    ShopApprovalComponent,
+    ShopDataComponent,
+    ShopBankDataComponent,
+    ShopKycDataComponent,
+    ShopInfoComponent,
   ],
   imports: [AdminRoutingModule, AdminSellerSharedModule, SharedModule],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AdminAuthInterceptorService,
-      multi: true,
-    },
-  ],
 })
 export class AdminModule {}
