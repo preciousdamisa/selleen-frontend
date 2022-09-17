@@ -1,0 +1,158 @@
+<app-page-wrapper>
+  <app-seller-page-header title="Add a Product"></app-seller-page-header>
+  <div class="my-5">
+    <a class="back-btn" routerLink="../"
+      ><i class="bi-chevron-left"></i> Back to Products</a
+    >
+  </div>
+  <app-card classes="p-2 mb-10">
+    <div class="row">
+      <div class="col-md-6">
+        <form [formGroup]="form" (submit)="onSubmit()">
+          <div class="form-group">
+            <label for="prod-name"
+              >Product Name <small class="text-danger">*</small></label
+            >
+            <input
+              id="prod-name"
+              class="form-control"
+              formControlName="name"
+              placeholder="Enter product name"
+            />
+            <app-input-errors
+              [control]="form.get('name')"
+              label="Product name"
+            ></app-input-errors>
+          </div>
+          <div class="row" formGroupName="price">
+            <div class="col-6 form-group">
+              <label for="original-price (optional)"
+                >Original Price
+                <i
+                  class="bi-info-circle"
+                  [tooltip]="'The old price of the product.'"
+                ></i
+              ></label>
+              <input
+                id="original-price"
+                type="number"
+                class="form-control"
+                formControlName="original"
+              />
+              <app-input-errors
+                [control]="form.get('price.original')"
+                label="Original price"
+              ></app-input-errors>
+            </div>
+            <div class="col-6 form-group">
+              <label for="sales-price"
+                >Sales Price <small class="text-danger mr-1">*</small>
+                <span
+                  class="bi-info-circle"
+                  [tooltip]="
+                    'The current price at which the product is being sold.'
+                  "
+                ></span
+              ></label>
+              <input
+                id="sales-price"
+                type="number"
+                class="form-control"
+                formControlName="sales"
+              />
+              <app-input-errors
+                [control]="form.get('price.sales')"
+                label="Sales price"
+              ></app-input-errors>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="number-in-stock"
+              >Number In Stock <small class="text-danger">*</small></label
+            >
+            <input
+              id="number-in-stock"
+              type="number"
+              class="form-control"
+              formControlName="numberInStock"
+            />
+            <app-input-errors
+              [control]="form.get('numberInStock')"
+              label="Number in stock"
+            ></app-input-errors>
+          </div>
+          <div class="form-group">
+            <label for="desc"
+              >Description <small class="text-danger">*</small></label
+            >
+            <textarea
+              id="desc"
+              class="form-control"
+              placeholder="Full description of the product"
+              formControlName="description"
+              rows="10"
+            ></textarea>
+            <app-input-errors
+              [control]="form.get('description')"
+              label="Description"
+            ></app-input-errors>
+          </div>
+          <h5 *ngIf="features.controls.length > 0">Key Features</h5>
+          <ng-container formArrayName="features">
+            <ng-container *ngFor="let feat of features.controls; let i = index">
+              <ng-container [formGroupName]="i">
+                <div>
+                  <div class="d-flex align-items-center">
+                    <div class="form-group pr-1 w-100">
+                      <label for="feat-name">Name</label>
+                      <input
+                        id="feat-name"
+                        class="form-control"
+                        placeholder="e.g Lifespan"
+                        formControlName="name"
+                      />
+                    </div>
+                    <div>
+                      <app-text-button (clicked)="onRemoveFeature(i)"
+                        ><i class="bi-file-minus fs-3 text-danger"></i
+                      ></app-text-button>
+                    </div>
+                  </div>
+                  <app-input-errors
+                    [control]="feat?.get('name')"
+                    label="Name"
+                  ></app-input-errors>
+                </div>
+                <div>
+                  <div class="form-group">
+                    <label for="details">Details</label>
+                    <textarea
+                      id="details"
+                      formControlName="details"
+                      class="form-control"
+                      placeholder="It can last for up to a year..."
+                      rows="3"
+                    ></textarea>
+                  </div>
+                  <app-input-errors
+                    [control]="feat?.get('details')"
+                    label="Details"
+                  ></app-input-errors>
+                </div>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+          <app-text-button (clicked)="onAddFeature()"
+            ><span class="d-flex align-items-center"
+              ><i class="bi-plus fs-3"></i> <span>Add Key Feature</span></span
+            ></app-text-button
+          >
+          <app-button classes="mt-5" paddingX="3rem" [disabled]="form.invalid"
+            ><span *ngIf="!loading">Add Product</span>
+            <app-spinner *ngIf="loading"></app-spinner
+          ></app-button>
+        </form>
+      </div>
+    </div>
+  </app-card>
+</app-page-wrapper>

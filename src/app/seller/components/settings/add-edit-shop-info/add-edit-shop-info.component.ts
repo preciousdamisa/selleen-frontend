@@ -65,14 +65,7 @@ export class AddEditShopInfoComponent implements OnInit, OnDestroy {
   }
 
   getShop() {
-    this.shopService
-      .getShop(this.user?.shops[0].id!)
-      .pipe(takeUntil(this.subs$))
-      .subscribe({
-        next: (res) => {
-          this.shop = res.data;
-        },
-      });
+    this.shop = this.shopService.currentShop;
   }
 
   initForm() {
@@ -90,16 +83,16 @@ export class AddEditShopInfoComponent implements OnInit, OnDestroy {
       contactLines: new FormArray([], [Validators.required]),
       address: new FormGroup({
         full: new FormControl(
-          this.shop?.address.full || '',
+          this.shop?.address?.full || '',
           Validators.required
         ),
-        city: new FormControl(this.shop?.address.city || ''),
+        city: new FormControl(this.shop?.address?.city || ''),
         state: new FormControl(
-          this.shop?.address.state || '',
+          this.shop?.address?.state || '',
           Validators.required
         ),
         country: new FormControl(
-          this.shop?.address.country || '',
+          this.shop?.address?.country || '',
           Validators.required
         ),
       }),

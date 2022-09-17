@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { exhaustMap, take, tap } from 'rxjs/operators';
+import { exhaustMap, map, take, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { Shop } from '../models/shop.model';
 import { SimpleResBody } from 'src/app/shared/types/shared';
 import {
   BankAccountDetails,
   GetShopByIdResBody,
+  Shop,
   UpdateShopReqBody,
   UpdateSMLinksReqBody,
 } from '../types/shop';
@@ -27,27 +27,32 @@ export class ShopService {
   getShop(id: string) {
     let req: Observable<GetShopByIdResBody>;
 
-    const storageResult = this.lookupStorage();
+    const storageResult = this.lookupStorage()?.pipe(
+      map((shop) => ({ message: 'Successfully retrieved shop', data: shop }))
+    );
 
     if (storageResult && !this.shopUpdated) req = storageResult;
     else req = this.http.get<GetShopByIdResBody>(`${this.baseUrl}shops/${id}`);
 
-    return req.pipe(tap((res) => this.handleShop(res)));
+    return req.pipe(
+      map((x) => x.data),
+      tap((res) => this.handleShop(res))
+    );
   }
 
-  lookupStorage(): Observable<GetShopByIdResBody> | null {
+  lookupStorage(): Observable<Shop> | null {
     const shopData = localStorage.getItem('shopData');
     if (!shopData) return null;
 
     const parsedShopData = JSON.parse(shopData);
 
-    return new Observable<GetShopByIdResBody>((subscriber) => {
+    return new Observable<Shop>((subscriber) => {
       subscriber.next(parsedShopData);
       subscriber.complete();
     });
   }
 
-  handleShop(res: GetShopByIdResBody) {
+  handleShop(shop: Shop) {
     // const shop = new Shop(
     //   res.data._id,
     //   res.data.name,
@@ -72,10 +77,10 @@ export class ShopService {
     // );
 
     // this.shop$.next(shop);
-    this.currentShop = res.data;
+    this.currentShop = shop;
     this.shopUpdated = false;
 
-    localStorage.setItem('shopData', JSON.stringify(res));
+    localStorage.setItem('shopData', JSON.stringify(shop));
   }
 
   updateShop(data: UpdateShopReqBody, shopId: string) {

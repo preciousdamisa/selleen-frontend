@@ -10,8 +10,11 @@ import { SalesComponent } from './pages/sales/sales.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { WalletComponent } from './pages/wallet/wallet.component';
 import { ShippingComponent } from './pages/shipping/shipping.component';
+import { ProductsHomeComponent } from './pages/products-home/products-home.component';
+import { AddEditProductComponent } from './pages/add-edit-product/add-edit-product.component';
 
 import { SellerAuthGuard } from './services/seller-auth.guard';
+import { ShopResolverService } from './services/shop-resolver.service';
 
 const routes: Routes = [
   {
@@ -24,6 +27,7 @@ const routes: Routes = [
         path: 'shop',
         component: SellerHomeComponent,
         canActivate: [SellerAuthGuard],
+        resolve: [ShopResolverService],
         children: [
           { path: '', redirectTo: '/seller/shop/dashboard', pathMatch: 'full' },
           {
@@ -36,7 +40,11 @@ const routes: Routes = [
           },
           {
             path: 'products',
-            component: ProductsComponent,
+            component: ProductsHomeComponent,
+            children: [
+              { path: '', pathMatch: 'full', component: ProductsComponent },
+              { path: 'add-edit-product', component: AddEditProductComponent },
+            ],
           },
           {
             path: 'shipping',

@@ -1,11 +1,7 @@
 <div
-  class="shadow"
+  [class]="'shadow ' + classes"
   [style.width]="width"
   [style.borderRadius]="borderRadius"
-  [style.paddingLeft]="paddingX"
-  [style.paddingRight]="paddingX"
-  [style.paddingTop]="paddingY"
-  [style.paddingBottom]="paddingY"
 >
   <ng-content></ng-content>
 </div>

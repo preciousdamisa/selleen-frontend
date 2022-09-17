@@ -4,7 +4,6 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { ShopService } from 'src/app/seller/services/shop.service';
-import { UserService } from 'src/app/shared/services/user.service';
 import { SelectOption } from 'src/app/shared/types/shared';
 import { Shop } from 'src/app/seller/models/shop.model';
 import { NotificationsService } from 'src/app/services/notification.service';
@@ -35,12 +34,10 @@ export class AddEditBankDetailsComponent implements OnInit, OnDestroy {
   enteredAccNo = '';
 
   shop?: Shop | null;
-  shopId!: string;
 
   loading = false;
 
   constructor(
-    private userService: UserService,
     private shopService: ShopService,
     private notifService: NotificationsService
   ) {}
@@ -76,7 +73,7 @@ export class AddEditBankDetailsComponent implements OnInit, OnDestroy {
   }
 
   initForm() {
-    const accDetails = this.shop?.paymentDetails.bankAccountDetails;
+    const accDetails = this.shop?.paymentDetails?.bankAccountDetails;
 
     this.bankDetailsForm = new FormGroup({
       bankName: new FormControl(accDetails?.bankName || '', [
@@ -98,7 +95,7 @@ export class AddEditBankDetailsComponent implements OnInit, OnDestroy {
       ]),
     });
 
-    if (this.shop?.paymentDetails.bankAccountDetails) {
+    if (this.shop?.paymentDetails?.bankAccountDetails) {
       const { bankName, accountName, accountType, accountNumber } =
         this.shop?.paymentDetails.bankAccountDetails;
 
@@ -110,22 +107,13 @@ export class AddEditBankDetailsComponent implements OnInit, OnDestroy {
   }
 
   getShop() {
-    const shopId = this.userService.currentUser?.shops[0].id!;
-    this.shopService
-      .getShop(shopId)
-      .pipe(takeUntil(this.subs$))
-      .subscribe({
-        next: (res) => {
-          this.shop = res.data;
-          this.shopId = shopId;
-        },
-      });
+    this.shop = this.shopService.currentShop;
   }
 
   onSubmit() {
     this.loading = true;
     this.shopService
-      .updateBankAccDetails(this.bankDetailsForm.value, this.shopId)
+      .updateBankAccDetails(this.bankDetailsForm.value, this.shop?._id!)
       .pipe(takeUntil(this.subs$))
       .subscribe({
         next: () => {

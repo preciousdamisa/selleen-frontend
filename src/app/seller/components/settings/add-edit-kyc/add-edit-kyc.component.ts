@@ -13,7 +13,7 @@ import { NotificationsService } from 'src/app/services/notification.service';
 })
 export class AddEditKycComponent implements OnInit, OnDestroy {
   subs?: Subscription;
-  currentShop?: Shop;
+  shop?: Shop;
   linksForm!: FormGroup;
   loading = false;
 
@@ -28,7 +28,7 @@ export class AddEditKycComponent implements OnInit, OnDestroy {
   }
 
   getShop() {
-    this.currentShop = this.shopService.currentShop;
+    this.shop = this.shopService.currentShop;
   }
 
   initForms() {
@@ -53,7 +53,7 @@ export class AddEditKycComponent implements OnInit, OnDestroy {
       }),
     });
 
-    const smLinks = this.currentShop?.socialMediaLinks;
+    const smLinks = this.shop?.socialMediaLinks;
     if (smLinks && smLinks.length > 0) {
       smLinks.forEach((link) => {
         const linkInForm = this.linksForm.get(link.name.toLowerCase());
@@ -80,7 +80,7 @@ export class AddEditKycComponent implements OnInit, OnDestroy {
     );
 
     this.subs = this.shopService
-      .updateSMLinks({ links }, this.currentShop?._id!)
+      .updateSMLinks({ links }, this.shop?._id!)
       .subscribe({
         next: () => {
           this.notifService.add(

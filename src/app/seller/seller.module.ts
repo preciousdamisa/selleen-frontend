@@ -12,7 +12,6 @@ import { SalesComponent } from './pages/sales/sales.component';
 import { ShippingComponent } from './pages/shipping/shipping.component';
 import { WalletComponent } from './pages/wallet/wallet.component';
 import { SellerNavComponent } from './components/seller-nav/seller-nav.component';
-import { SellerDashboardHeaderComponent } from './components/seller-dashboard-header/seller-dashboard-header.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { LogoBannerImagesComponent } from './components/settings/logo-banner-images/logo-banner-images.component';
 import { AddEditShopInfoComponent } from './components/settings/add-edit-shop-info/add-edit-shop-info.component';
@@ -20,6 +19,9 @@ import { AddEditProdVariationComponent } from './components/settings/add-edit-pr
 import { AddEditBankDetailsComponent } from './components/settings/add-edit-bank-details/add-edit-bank-details.component';
 import { AddEditKycComponent } from './components/settings/add-edit-kyc/add-edit-kyc.component';
 import { ChangeSellerPasswordComponent } from './components/settings/change-seller-password/change-seller-password.component';
+import { ProductsHomeComponent } from './pages/products-home/products-home.component';
+import { AddEditProductComponent } from './pages/add-edit-product/add-edit-product.component';
+import { SellerPageHeaderComponent } from './components/seller-page-header/seller-page-header.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,6 @@ import { ChangeSellerPasswordComponent } from './components/settings/change-sell
     ShippingComponent,
     WalletComponent,
     SellerNavComponent,
-    SellerDashboardHeaderComponent,
     ProductsComponent,
     LogoBannerImagesComponent,
     AddEditShopInfoComponent,
@@ -39,6 +40,9 @@ import { ChangeSellerPasswordComponent } from './components/settings/change-sell
     AddEditBankDetailsComponent,
     AddEditKycComponent,
     ChangeSellerPasswordComponent,
+    ProductsHomeComponent,
+    AddEditProductComponent,
+    SellerPageHeaderComponent,
   ],
   imports: [
     SellerRoutingModule,

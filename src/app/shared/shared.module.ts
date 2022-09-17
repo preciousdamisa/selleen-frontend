@@ -15,6 +15,9 @@ import { InputErrorsComponent } from './components/input-errors/input-errors.com
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { ModalHeaderComponent } from './components/modal-header/modal-header.component';
+import { TooltipComponent } from './components/tooltip/tooltip.component';
+
+import { TooltipDirective } from './directives/tooltip.directive';
 
 import { SpacePipe } from './pipes/space.pipe';
 
@@ -33,6 +36,8 @@ import { SpacePipe } from './pipes/space.pipe';
     DropdownComponent,
     SpacePipe,
     ModalHeaderComponent,
+    TooltipComponent,
+    TooltipDirective,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -50,6 +55,7 @@ import { SpacePipe } from './pipes/space.pipe';
     CheckboxComponent,
     DropdownComponent,
     ModalHeaderComponent,
+    TooltipDirective,
     SpacePipe,
   ],
 })
