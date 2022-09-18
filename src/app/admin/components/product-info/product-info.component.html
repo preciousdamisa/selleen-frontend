@@ -1,0 +1,12 @@
+<section class="p-2">
+  <app-modal-header title="Product Information"></app-modal-header>
+  <app-tab-bar [tabs]="tabs" [currentTabId]="currentTabId"></app-tab-bar>
+  <app-product-data
+    [product]="product"
+    *ngIf="currentTabId === 'prod-details'"
+  ></app-product-data>
+  <app-product-approval
+    [productId]="product._id"
+    *ngIf="currentTabId === 'prod-approval'"
+  ></app-product-approval>
+</section>

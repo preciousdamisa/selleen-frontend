@@ -2,8 +2,11 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
-import { SimpleReqQuery } from 'src/app/shared/types/shared';
-import { ApproveShopReqBody, GetShopsResBody } from '../types/admin-shop';
+import {
+  ApproveEntityReqBody,
+  SimpleReqQuery,
+} from 'src/app/shared/types/shared';
+import { GetShopsResBody } from '../types/admin-shop';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +24,7 @@ export class AdminShopService {
     });
   }
 
-  approveShop(data: ApproveShopReqBody, shopId: string) {
+  approveShop(data: ApproveEntityReqBody, shopId: string) {
     return this.http.patch(
       `${this.baseUrl}admin/shops/${shopId}/approve`,
       data

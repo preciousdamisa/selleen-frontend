@@ -1,0 +1,40 @@
+<div class="mt-5 row">
+  <div class="col-md-6">
+    <div class="data-item">
+      <label>Product Name</label>
+      <p>{{ product.name }}</p>
+    </div>
+    <div class="data-item">
+      <label>Sales Price</label>
+      <p>{{ product.price.sales }}</p>
+    </div>
+    <div class="data-item">
+      <label>Original Price</label>
+      <p>{{ product.price.original }}</p>
+    </div>
+    <div class="data-item">
+      <label>Number In Stock</label>
+      <p>{{ product.numberInStock }}</p>
+    </div>
+    <h4>Key Features</h4>
+    <div class="data-item">
+      <div *ngFor="let feat of product.features; let i = index">
+        <p>{{ i + 1 }}: {{ feat.name }}</p>
+        <p>{{ feat.details }}</p>
+        <hr />
+      </div>
+    </div>
+    <div class="data-item">
+      <label>Description</label>
+      <p>{{ product.description }}</p>
+    </div>
+    <div class="data-item">
+      <label>Rating</label>
+      <p>{{ product.rating }}</p>
+    </div>
+    <div class="data-item">
+      <label>Created At</label>
+      <p>{{ product.createdAt | date }}</p>
+    </div>
+  </div>
+</div>

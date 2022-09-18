@@ -1,33 +1,25 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  Output,
-  EventEmitter,
-  OnDestroy,
-} from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { ModalService } from 'src/app/services/modal.service';
 import { NotificationsService } from 'src/app/services/notification.service';
-import { AdminShopService } from '../../../services/admin-shop.service';
+import { AdminProductsService } from '../../services/admin-products.service';
 
 @Component({
-  selector: 'app-shop-approval',
-  templateUrl: './shop-approval.component.html',
-  styleUrls: ['./shop-approval.component.scss'],
+  selector: 'app-product-approval',
+  templateUrl: './product-approval.component.html',
+  styleUrls: ['./product-approval.component.scss'],
 })
-export class ShopApprovalComponent implements OnInit, OnDestroy {
-  @Input() shopId!: string;
-  @Output() refetchShops = new EventEmitter();
+export class ProductApprovalComponent implements OnInit, OnDestroy {
+  @Input() productId!: string;
 
   subs?: Subscription;
   form!: FormGroup;
   loading = false;
 
   constructor(
-    private shopService: AdminShopService,
+    private prodService: AdminProductsService,
     private modalService: ModalService,
     private notifService: NotificationsService
   ) {}
@@ -52,8 +44,8 @@ export class ShopApprovalComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.loading = true;
-    this.subs = this.shopService
-      .approveShop(this.form.value, this.shopId)
+    this.subs = this.prodService
+      .approveProduct(this.form.value, this.productId)
       .subscribe({
         next: () => {
           this.loading = false;
@@ -61,8 +53,7 @@ export class ShopApprovalComponent implements OnInit, OnDestroy {
           if (this.form.get('action')?.value === 'Disapproved')
             clause = 'disapproved';
 
-          this.notifService.add(`Shop ${clause} successfully!`, 'success');
-          this.refetchShops.emit();
+          this.notifService.add(`Product ${clause} successfully!`, 'success');
           this.modalService.close();
         },
         error: () => {

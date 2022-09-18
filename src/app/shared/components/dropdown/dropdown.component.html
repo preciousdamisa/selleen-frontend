@@ -1,13 +1,13 @@
-<div class="dropdown">
+<div class="dropdown" outsideClick (outsideClick)="onClose()">
   <i
     class="dropdown-btn bi-three-dots-vertical cursor"
     (click)="onToggle()"
   ></i>
-  <div *ngIf="open" class="dropdown-menu shadow">
+  <div *ngIf="opened" class="dropdown-menu shadow">
     <a
       *ngFor="let item of items"
       class="dropdown-item d-flex cursor"
-      (click)="onSelect(item.id)"
+      (click)="onSelect(item.id); onClose()"
       ><i class="mr-1" *ngIf="item.iconName" [class]="item.iconName"></i
       ><span>{{ item.name }}</span></a
     >

@@ -18,6 +18,7 @@ import { ModalHeaderComponent } from './components/modal-header/modal-header.com
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 
 import { TooltipDirective } from './directives/tooltip.directive';
+import { OutsideClickDirective } from './directives/outside-click.directive';
 
 import { SpacePipe } from './pipes/space.pipe';
 
@@ -38,6 +39,7 @@ import { SpacePipe } from './pipes/space.pipe';
     ModalHeaderComponent,
     TooltipComponent,
     TooltipDirective,
+    OutsideClickDirective,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -56,6 +58,7 @@ import { SpacePipe } from './pipes/space.pipe';
     DropdownComponent,
     ModalHeaderComponent,
     TooltipDirective,
+    OutsideClickDirective,
     SpacePipe,
   ],
 })

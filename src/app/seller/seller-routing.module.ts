@@ -7,11 +7,11 @@ import { SellerHomeComponent } from './pages/seller-home/seller-home.component';
 import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashboard.component';
 import { SellerSettingsComponent } from './pages/seller-settings/seller-settings.component';
 import { SalesComponent } from './pages/sales/sales.component';
-import { ProductsComponent } from './pages/products/products.component';
 import { WalletComponent } from './pages/wallet/wallet.component';
 import { ShippingComponent } from './pages/shipping/shipping.component';
-import { ProductsHomeComponent } from './pages/products-home/products-home.component';
 import { AddEditProductComponent } from './pages/add-edit-product/add-edit-product.component';
+import { SellerProductsComponent } from './pages/seller-products/seller-products.component';
+import { SellerProductsHomeComponent } from './pages/seller-products-home/seller-products-home.component';
 
 import { SellerAuthGuard } from './services/seller-auth.guard';
 import { ShopResolverService } from './services/shop-resolver.service';
@@ -40,9 +40,13 @@ const routes: Routes = [
           },
           {
             path: 'products',
-            component: ProductsHomeComponent,
+            component: SellerProductsHomeComponent,
             children: [
-              { path: '', pathMatch: 'full', component: ProductsComponent },
+              {
+                path: '',
+                pathMatch: 'full',
+                component: SellerProductsComponent,
+              },
               { path: 'add-edit-product', component: AddEditProductComponent },
             ],
           },

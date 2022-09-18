@@ -57,15 +57,15 @@ export class TooltipDirective implements OnDestroy {
     this.destroy();
   }
 
-  ngOnDestroy(): void {
-    this.destroy();
-  }
-
   destroy(): void {
     if (this.componentRef !== null) {
       this.appRef.detachView(this.componentRef.hostView);
       this.componentRef.destroy();
       this.componentRef = null;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy();
   }
 }

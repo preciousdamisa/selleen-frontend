@@ -1,11 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { NotificationsService } from 'src/app/services/notification.service';
-import { ProdMgtService } from '../../services/prod-mgt.service';
+import { SimpleResBody } from 'src/app/shared/types/shared';
+import { SellerProductsService } from '../../services/seller-products.service';
 import { ShopService } from '../../services/shop.service';
+import { Product, ProductFeature } from '../../types/product';
 
 @Component({
   selector: 'app-add-edit-product',
@@ -15,62 +17,75 @@ import { ShopService } from '../../services/shop.service';
 export class AddEditProductComponent implements OnInit, OnDestroy {
   subs?: Subscription;
   form!: FormGroup;
+  editMode = false;
+  product: Product | null = null;
   loading = false;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private prodService: ProdMgtService,
+    private prodService: SellerProductsService,
     private shopService: ShopService,
     private notifService: NotificationsService
   ) {}
 
   ngOnInit(): void {
+    if (this.prodService.selectedProduct) {
+      this.editMode = true;
+      this.product = this.prodService.selectedProduct;
+    }
+
     this.initForm();
   }
 
   initForm() {
     this.form = new FormGroup({
-      name: new FormControl('', [
+      name: new FormControl(this.product?.name || '', [
         Validators.required,
         Validators.maxLength(250),
       ]),
       price: new FormGroup({
-        original: new FormControl('', [
+        original: new FormControl(this.product?.price.original || '', [
           Validators.min(100),
           Validators.max(1000000),
         ]),
-        sales: new FormControl('', [
+        sales: new FormControl(this.product?.price.sales || '', [
           Validators.required,
           Validators.min(100),
           Validators.max(1000000),
         ]),
       }),
-      numberInStock: new FormControl(''),
+      numberInStock: new FormControl(this.product?.numberInStock || ''),
       features: new FormArray([]),
-      description: new FormControl('', [
+      description: new FormControl(this.product?.description || '', [
         Validators.required,
         Validators.maxLength(500),
       ]),
     });
+
+    if (this.editMode) {
+      this.product?.features.forEach((feat) => {
+        this.onAddFeature(feat);
+      });
+    }
   }
 
   get features() {
     return this.form.get('features') as FormArray;
   }
 
-  onAddFeature() {
-    const feat = new FormGroup({
-      name: new FormControl('', [
+  onAddFeature(feat?: ProductFeature) {
+    const control = new FormGroup({
+      name: new FormControl(feat?.name || '', [
         Validators.required,
         Validators.maxLength(50),
       ]),
-      details: new FormControl('', [
+      details: new FormControl(feat?.details || '', [
         Validators.required,
         Validators.maxLength(250),
       ]),
     });
-    this.features.push(feat);
+    this.features.push(control);
   }
 
   onRemoveFeature(i: number) {
@@ -82,10 +97,21 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
     const data = this.form.value;
     data.shopId = this.shopService.currentShop?._id;
 
-    this.subs = this.prodService.addProduct(data).subscribe({
+    let req: Observable<SimpleResBody>;
+    let phrase: string;
+
+    if (this.editMode) {
+      req = this.prodService.editProduct(data, this.product?._id!);
+      phrase = 'edited';
+    } else {
+      req = this.prodService.addProduct(data);
+      phrase = 'added';
+    }
+
+    this.subs = req.subscribe({
       next: () => {
         this.loading = false;
-        this.notifService.add('Product added successfully!', 'success');
+        this.notifService.add(`Product ${phrase} successfully!`, 'success');
         this.router.navigate(['../'], { relativeTo: this.route });
       },
       error: () => {
@@ -95,6 +121,7 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.prodService.selectedProduct = null;
     this.subs?.unsubscribe();
   }
 }

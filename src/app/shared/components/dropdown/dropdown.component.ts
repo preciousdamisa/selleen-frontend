@@ -11,10 +11,10 @@ export class DropdownComponent {
   @Input() items: DropdownItem[] = [];
   @Output() selected = new EventEmitter<string>();
 
-  open = false;
+  opened = false;
 
   onToggle() {
-    this.open = !this.open;
+    this.opened = !this.opened;
   }
 
   onSelect(id: string) {
@@ -22,11 +22,7 @@ export class DropdownComponent {
     this.onClose();
   }
 
-  onOpen() {
-    this.open = true;
-  }
-
   onClose() {
-    this.open = false;
+    this.opened = false;
   }
 }

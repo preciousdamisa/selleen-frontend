@@ -1,0 +1,52 @@
+<app-page-wrapper>
+  <app-seller-page-header title="Products" subtitle="Manage your Products">
+  </app-seller-page-header>
+  <div class="d-flex justify-content-end mt-5">
+    <app-button (clicked)="onAddProduct()"
+      ><span class="d-flex align-items-center"
+        ><i class="bi-plus fs-3"></i> <span>Add a Product</span></span
+      ></app-button
+    >
+  </div>
+  <div class="center mt-10" *ngIf="loading">
+    <app-spinner size="1rem"></app-spinner>
+    <p>Loading Products...</p>
+  </div>
+  <table class="table mt-10" *ngIf="!loading && products.length > 0">
+    <thead>
+      <tr>
+        <th class="text-align-left">Name</th>
+        <th class="text-align-center">Number In Stock</th>
+        <th class="text-align-center">Sales Price</th>
+        <th class="text-align-center">Created At</th>
+        <th class="text-align-center">Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prod of products">
+        <td class="text-align-left">{{ prod.name }}</td>
+        <td class="text-align-center">{{ prod.numberInStock }}</td>
+        <td class="text-align-center">{{ prod.price.sales }}</td>
+        <td class="text-align-center">{{ prod.createdAt | date }}</td>
+        <td class="text-align-center">
+          <span
+            class="badge"
+            [ngClass]="{
+              'bg-success': prod.status === 'Approved',
+              'bg-warning': prod.status === 'InReview',
+              'bg-danger': prod.status === 'Disapproved'
+            }"
+            >{{ prod.status | space }}</span
+          >
+        </td>
+        <td class="text-align-center">
+          <app-dropdown
+            [items]="dropdownItems"
+            (selected)="onSelectProduct(prod); onSelectItem($event)"
+          ></app-dropdown>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</app-page-wrapper>

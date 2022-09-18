@@ -5,7 +5,3 @@ export interface GetShopsResBody {
   data: Shop[];
 }
 
-export interface ApproveShopReqBody {
-  action: 'Approved' | 'Disapproved' | 'Suspended';
-  comment: string;
-}

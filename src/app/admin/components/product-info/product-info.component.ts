@@ -1,26 +1,26 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Shop } from 'src/app/seller/types/shop';
-import { TabBarService } from 'src/app/shared/services/tab-bar.service';
+
+import { Product } from 'src/app/seller/types/product';
 import { Tab } from 'src/app/shared/types/shared';
+import { TabBarService } from 'src/app/shared/services/tab-bar.service';
 
 @Component({
-  selector: 'app-shop-info',
-  templateUrl: './shop-info.component.html',
-  styleUrls: ['./shop-info.component.scss'],
+  selector: 'app-product-info',
+  templateUrl: './product-info.component.html',
+  styleUrls: ['./product-info.component.scss'],
 })
-export class ShopInfoComponent implements OnInit {
-  @Input() shop!: Shop;
+export class ProductInfoComponent implements OnInit {
+  @Input() product!: Product;
 
   subs?: Subscription;
 
   tabs: Tab[] = [
-    { name: 'Shop', id: 'shop-id' },
-    { name: 'Bank', id: 'bank-id' },
-    { name: 'KYC', id: 'kyc-id' },
+    { name: 'Details', id: 'prod-details' },
+    { name: 'Approval', id: 'prod-approval' },
   ];
-  currentTabId = 'shop-id';
+  currentTabId = 'prod-details';
 
   constructor(private tabBarService: TabBarService) {}
 

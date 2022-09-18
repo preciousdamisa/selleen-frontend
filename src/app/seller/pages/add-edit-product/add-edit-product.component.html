@@ -1,5 +1,7 @@
 <app-page-wrapper>
-  <app-seller-page-header title="Add a Product"></app-seller-page-header>
+  <app-seller-page-header
+    [title]="editMode ? 'Edit Product' : 'Add Product'"
+  ></app-seller-page-header>
   <div class="my-5">
     <a class="back-btn" routerLink="../"
       ><i class="bi-chevron-left"></i> Back to Products</a
@@ -148,7 +150,9 @@
             ></app-text-button
           >
           <app-button classes="mt-5" paddingX="3rem" [disabled]="form.invalid"
-            ><span *ngIf="!loading">Add Product</span>
+            ><span *ngIf="!loading">{{
+              editMode ? "Edit Product" : "Add Product"
+            }}</span>
             <app-spinner *ngIf="loading"></app-spinner
           ></app-button>
         </form>

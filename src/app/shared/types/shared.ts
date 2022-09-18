@@ -46,6 +46,11 @@ export interface GetEntityCountResBody {
   };
 }
 
+export interface ApproveEntityReqBody {
+  action: 'Approved' | 'Disapproved' | 'Suspended';
+  comment: string;
+}
+
 export interface Image {
   thumbnail: { url: string; dUrl: string };
   original: { url: string; dUrl: string };
@@ -85,4 +90,9 @@ export interface DropdownItem {
 export interface Tab {
   id: string;
   name: string;
+}
+
+export interface Price {
+  original: number;
+  sales: number;
 }
