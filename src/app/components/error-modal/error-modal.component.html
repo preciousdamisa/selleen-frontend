@@ -1,0 +1,11 @@
+<div class="backdrop" *ngIf="opened"></div>
+<div class="modal" *ngIf="opened">
+  <div class="modal-content text-danger text-align-center p-2">
+    <i class="bi-info-circle fs-6"></i>
+    <h3>An Error Occurred!</h3>
+    <p>
+      {{ message }}
+    </p>
+    <button class="mt-2 close-btn fs-3" (click)="onDismiss()">Dismiss</button>
+  </div>
+</div>

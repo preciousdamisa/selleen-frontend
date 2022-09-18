@@ -7,15 +7,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotificationListComponent } from './components/notification-list/notification-list.component';
 import { ModalComponent } from './components/modal/modal.component';
-import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { RequestInterceptorService } from './services/request-interceptor.service';
+import { ErrorModalComponent } from './components/error-modal/error-modal.component';
 
 @NgModule({
-  declarations: [AppComponent, NotificationListComponent, ModalComponent],
+  declarations: [
+    AppComponent,
+    NotificationListComponent,
+    ModalComponent,
+    ErrorModalComponent,
+  ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
+      useClass: RequestInterceptorService,
       multi: true,
     },
   ],

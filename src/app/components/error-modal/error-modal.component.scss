@@ -1,0 +1,27 @@
+.backdrop {
+  z-index: 2000;
+}
+
+.modal {
+  z-index: 2010;
+}
+
+.modal-content {
+  background: #fff3f3;
+  width: 90%;
+  margin-top: 25vh;
+}
+
+.close-btn {
+  border: none;
+  background: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20%;
+  cursor: pointer;
+}
+
+@media (min-width: 40rem) {
+  .modal-content {
+    width: 30%;
+  }
+}

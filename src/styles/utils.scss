@@ -59,3 +59,33 @@
 .table th:last-child {
   border-right: 1px solid #dddddd;
 }
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.modal-content {
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.4rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
+  margin: 2rem auto;
+}
