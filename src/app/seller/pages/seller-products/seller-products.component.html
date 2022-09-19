@@ -12,7 +12,7 @@
     <app-spinner size="1rem"></app-spinner>
     <p>Loading Products...</p>
   </div>
-  <table class="table mt-10" *ngIf="!loading && products.length > 0">
+  <table class="table mt-2" *ngIf="!loading && products.length > 0">
     <thead>
       <tr>
         <th class="text-align-left">Name</th>
@@ -49,4 +49,49 @@
       </tr>
     </tbody>
   </table>
+  <div class="custom-table">
+    <app-list-tile
+      *ngFor="let prod of products"
+      imageUrl="assets/images/profile-img-placeholder.svg"
+      classes="shadow mt-2 p-1"
+    >
+      <h5 class="m-0" top>{{ prod.name }}</h5>
+      <div middle class="my-1 d-flex justify-content-between">
+        <p class="m-0">
+          <span
+            *ngIf="prod.price.original"
+            class="line-through text-light mr-2"
+            >{{ prod.price.original }}</span
+          ><span>{{ prod.price.sales }}</span>
+        </p>
+        <span
+          class="badge"
+          [ngClass]="{
+            'bg-success': prod.status === 'Approved',
+            'bg-warning': prod.status === 'InReview',
+            'bg-danger': prod.status === 'Disapproved'
+          }"
+          >{{ prod.status | space }}</span
+        >
+      </div>
+      <div bottom>
+        <app-text-button (clicked)="onActionButtonClicked('view')"
+          >View</app-text-button
+        >
+        <app-text-button
+          classes="mx-3"
+          (clicked)="onSelectProduct(prod); onActionButtonClicked('edit')"
+          >Edit</app-text-button
+        >
+        <app-text-button
+          classes="mr-3"
+          (clicked)="onActionButtonClicked('copy')"
+          >Copy Link</app-text-button
+        >
+        <app-text-button color="red" (clicked)="onActionButtonClicked('delete')"
+          >Delete</app-text-button
+        >
+      </div>
+    </app-list-tile>
+  </div>
 </app-page-wrapper>

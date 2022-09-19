@@ -18,9 +18,10 @@ export class SellerProductsComponent implements OnInit {
   loading = false;
 
   dropdownItems: DropdownItem[] = [
-    { id: 'edit-prod', name: 'Edit', iconName: 'bi-pencil-square' },
-    { id: 'prod-link', name: 'Copy Link', iconName: 'bi-link-45deg fs-3' },
-    { id: 'del-prod', name: 'Delete', iconName: 'bi-trash' },
+    { id: 'view', name: 'View', iconName: 'bi-eye' },
+    { id: 'edit', name: 'Edit', iconName: 'bi-pencil-square' },
+    { id: 'copy', name: 'Copy Link', iconName: 'bi-link-45deg fs-3' },
+    { id: 'delete', name: 'Delete', iconName: 'bi-trash' },
   ];
 
   constructor(
@@ -35,11 +36,15 @@ export class SellerProductsComponent implements OnInit {
   }
 
   onSelectItem(id: string) {
-    if (id === 'edit-prod') this.gotoAddOrEditPage();
+    if (id === 'edit') this.gotoAddOrEditPage();
   }
 
   onSelectProduct(p: Product) {
     this.prodService.selectedProduct = p;
+  }
+
+  onActionButtonClicked(id: string) {
+    if (id === 'edit') this.gotoAddOrEditPage();
   }
 
   getProducts() {

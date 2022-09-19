@@ -1,0 +1,11 @@
+<div [class]="'d-flex align-items-center ' + classes">
+  <div *ngIf="imageUrl || iconName" class="mr-1">
+    <img *ngIf="imageUrl" [src]="imageUrl" [alt]="imageAltText" />
+    <i [class]="iconName"></i>
+  </div>
+  <div class="flex-1 d-flex-col">
+    <ng-content select="[top]"></ng-content>
+    <ng-content select="[middle]"></ng-content>
+    <ng-content select="[bottom]"></ng-content>
+  </div>
+</div>
