@@ -27,7 +27,9 @@
       <tr *ngFor="let prod of products">
         <td class="text-align-left">{{ prod.name }}</td>
         <td class="text-align-center">{{ prod.numberInStock }}</td>
-        <td class="text-align-center">{{ prod.price.sales }}</td>
+        <td class="text-align-center">
+          {{ prod.price.sales | number: "1.2-2" }}
+        </td>
         <td class="text-align-center">{{ prod.createdAt | date }}</td>
         <td class="text-align-center">
           <span
@@ -61,8 +63,8 @@
           <span
             *ngIf="prod.price.original"
             class="line-through text-light mr-2"
-            >{{ prod.price.original }}</span
-          ><span>{{ prod.price.sales }}</span>
+            >{{ prod.price.original | number: "1.2-2" }}</span
+          ><span>{{ prod.price.sales | number: "1.2-2" }}</span>
         </p>
         <span
           class="badge"

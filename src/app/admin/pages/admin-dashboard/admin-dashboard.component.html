@@ -4,7 +4,7 @@
     subtitle="Welcome back 👋"
   ></app-admin-page-header>
   <div id="all-stats-container" class="mt-5">
-    <app-card
+    <app-card classes="p-3"
       ><app-statistic
         name="Total Sales"
         [text]="buyerCount"
@@ -26,21 +26,21 @@
   </div>
   <div id="single-stat-container">
     <div class="mt-5 d-flex justify-content-between">
-      <app-card paddingX="4rem" paddingY="2rem"
+      <app-card classes="px-6 py-4"
         ><app-statistic
           name="Total Buyers"
           [text]="buyerCount"
           iconName="bi-people"
         ></app-statistic>
       </app-card>
-      <app-card paddingX="4rem" paddingY="2rem">
+      <app-card classes="px-6 py-4">
         <app-statistic
           name="Total Sellers"
           [text]="sellerCount"
           iconName="bi-shop-window"
         ></app-statistic>
       </app-card>
-      <app-card paddingX="4rem" paddingY="2rem"
+      <app-card classes="px-6 py-4"
         ><app-statistic
           name="Total Products"
           text="0"

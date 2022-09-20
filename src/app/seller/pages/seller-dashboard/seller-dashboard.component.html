@@ -2,10 +2,11 @@
   <app-seller-page-header
     [title]="user?.name?.first + ' ' + user?.name?.last + ','"
     subtitle="Welcome back 👋"
+    [showShopStatus]="true"
   >
   </app-seller-page-header>
   <section id="all-stats-container" class="mt-5">
-    <app-card
+    <app-card classes="p-3"
       ><app-statistic
         name="Total Sales"
         text="0"
@@ -27,21 +28,21 @@
   </section>
   <section id="single-stat-container">
     <div class="mt-5 d-flex justify-content-between">
-      <app-card paddingX="4rem" paddingY="2rem"
+      <app-card classes="px-6 py-4"
         ><app-statistic
           name="Total Sales"
           text="0"
           iconName="bi-cash-stack"
         ></app-statistic>
       </app-card>
-      <app-card paddingX="4rem" paddingY="2rem">
+      <app-card classes="px-6 py-4">
         <app-statistic
           name="Total Revenue"
           text="0"
           iconName="bi-graph-up-arrow"
         ></app-statistic>
       </app-card>
-      <app-card paddingX="4rem" paddingY="2rem"
+      <app-card classes="px-6 py-4"
         ><app-statistic
           name="Total Visitors"
           text="0"

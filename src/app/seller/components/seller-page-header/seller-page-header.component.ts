@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class SellerPageHeaderComponent {
   @Input() title!: string;
   @Input() subtitle?: string;
+  @Input() showShopStatus = false;
 }
