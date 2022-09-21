@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AdminAuthService } from '../../services/admin-auth.service';
 
+import { AdminAuthService } from '../../services/admin-auth.service';
 import { AdminNavService } from '../../services/admin-nav.service';
 
 @Component({
@@ -12,6 +12,8 @@ import { AdminNavService } from '../../services/admin-nav.service';
 export class AdminNavComponent implements OnInit, OnDestroy {
   subs?: Subscription;
   open = true;
+  showNav = true;
+  previousScrollY = 0;
 
   constructor(
     private adminNavService: AdminNavService,
@@ -24,6 +26,16 @@ export class AdminNavComponent implements OnInit, OnDestroy {
         this.open = show;
       },
     });
+  }
+
+  @HostListener('window:scroll') getScrollHeight() {
+    if (window.scrollY > this.previousScrollY) {
+      this.showNav = false;
+      this.previousScrollY = window.scrollY;
+    } else {
+      this.showNav = true;
+      this.previousScrollY = window.scrollY;
+    }
   }
 
   onLogout() {

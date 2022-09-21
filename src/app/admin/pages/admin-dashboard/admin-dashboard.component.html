@@ -19,7 +19,7 @@
       </div>
       <app-statistic
         name="Total Products"
-        text="0"
+        [text]="prodCount"
         iconName="bi-diagram-2"
       ></app-statistic>
     </app-card>
@@ -43,7 +43,7 @@
       <app-card classes="px-6 py-4"
         ><app-statistic
           name="Total Products"
-          text="0"
+          [text]="prodCount"
           iconName="bi-diagram-2"
         ></app-statistic>
       </app-card>

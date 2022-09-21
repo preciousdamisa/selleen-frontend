@@ -23,4 +23,10 @@ export class AdminDashboardService {
       `${this.baseUrl}admin/sellers/count`
     );
   }
+
+  getProductCount() {
+    return this.http.get<GetEntityCountResBody>(
+      `${this.baseUrl}admin/products/count`
+    );
+  }
 }

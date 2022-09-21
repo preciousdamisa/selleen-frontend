@@ -19,6 +19,7 @@ export class AdminAuthService {
   private baseUrl = `${environment.apiUrl}`;
 
   admin$ = new BehaviorSubject<Admin | null>(null);
+  currentAdmin?: Admin | null;
 
   private timerRef: any;
 
@@ -68,6 +69,7 @@ export class AdminAuthService {
 
           this.admin$.next(admin);
           this.router.navigate(['/admin']);
+          this.currentAdmin = admin;
 
           this.autoLogout(expDate);
         })
@@ -84,6 +86,7 @@ export class AdminAuthService {
     if (!admin.token) return;
 
     this.admin$.next(admin);
+    this.currentAdmin = admin;
 
     this.autoLogout(new Date(parsedAdmin.tokenExpirationDate));
   }
@@ -98,6 +101,9 @@ export class AdminAuthService {
 
   logout() {
     this.router.navigate(['/admin/login']);
+
+    this.admin$.next(null);
+    this.currentAdmin = null;
 
     localStorage.removeItem('adminData');
     if (this.timerRef) {

@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-seller-home',
-  templateUrl: './seller-home.component.html',
-  styleUrls: ['./seller-home.component.scss'],
+  template: `<section>
+    <app-seller-nav></app-seller-nav>
+    <router-outlet></router-outlet>
+  </section>`,
 })
 export class SellerHomeComponent {}

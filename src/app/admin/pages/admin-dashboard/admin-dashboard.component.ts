@@ -17,6 +17,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   admin?: Admin | null;
   buyerCount?: string;
   sellerCount?: string;
+  prodCount?: string;
 
   constructor(
     private adminAuthService: AdminAuthService,
@@ -24,17 +25,11 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.getAdmin();
+    this.admin = this.adminAuthService.currentAdmin;
+
     this.fetchBuyerCount();
     this.fetchSellerCount();
-  }
-
-  getAdmin() {
-    this.adminAuthService.admin$.pipe(takeUntil(this.subs$)).subscribe({
-      next: (admin) => {
-        this.admin = admin;
-      },
-    });
+    this.fetchProdCount();
   }
 
   fetchBuyerCount() {
@@ -55,6 +50,17 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (res) => {
           this.sellerCount = res.data.count.toString();
+        },
+      });
+  }
+
+  fetchProdCount() {
+    this.dashboardService
+      .getProductCount()
+      .pipe(takeUntil(this.subs$))
+      .subscribe({
+        next: (res) => {
+          this.prodCount = res.data.count.toString();
         },
       });
   }

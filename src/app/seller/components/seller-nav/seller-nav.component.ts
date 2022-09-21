@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { User } from 'src/app/shared/models/user.model';
 import { UserService } from 'src/app/shared/services/user.service';
 import { SellerNavService } from '../../services/seller-nav.service';
 
@@ -14,7 +13,8 @@ import { SellerNavService } from '../../services/seller-nav.service';
 export class SellerNavComponent implements OnInit {
   subs$ = new Subject<void>();
   open = true;
-  user?: User | null;
+  showNav = true;
+  previousScrollY = 0;
 
   constructor(
     private sellerNavService: SellerNavService,
@@ -23,21 +23,22 @@ export class SellerNavComponent implements OnInit {
 
   ngOnInit(): void {
     this.listenForNavStatusChange();
-    this.getUser();
+  }
+
+  @HostListener('window:scroll') getScrollHeight() {
+    if (window.scrollY > this.previousScrollY) {
+      this.showNav = false;
+      this.previousScrollY = window.scrollY;
+    } else {
+      this.showNav = true;
+      this.previousScrollY = window.scrollY;
+    }
   }
 
   listenForNavStatusChange() {
     this.sellerNavService.show.pipe(takeUntil(this.subs$)).subscribe({
       next: (show) => {
         this.open = show;
-      },
-    });
-  }
-
-  getUser() {
-    this.userService.user$.pipe(takeUntil(this.subs$)).subscribe({
-      next: (user) => {
-        this.user = user;
       },
     });
   }
