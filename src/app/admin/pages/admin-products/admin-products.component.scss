@@ -1,0 +1,17 @@
+#table-md {
+  display: none;
+}
+
+#table-sm {
+  display: block;
+}
+
+@media (min-width: 40rem) {
+  #table-md {
+    display: table;
+  }
+
+  #table-sm {
+    display: none;
+  }
+}

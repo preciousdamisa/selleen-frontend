@@ -1,11 +1,19 @@
+.modal-sm,
+.modal-md,
 .modal-lg {
-  max-width: 80%;
+  max-width: 90%;
 }
 
-.modal-md {
-  max-width: 50%;
-}
+@media (min-width: 40rem) {
+  .modal-lg {
+    max-width: 80%;
+  }
 
-.modal-sm {
-  max-width: 30%;
+  .modal-md {
+    max-width: 50%;
+  }
+
+  .modal-sm {
+    max-width: 30%;
+  }
 }

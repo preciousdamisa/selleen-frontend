@@ -42,7 +42,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSelectItem(id: string, prod: Product, view: any) {
+  onAction(id: string, prod: Product, view: any) {
     this.selectedProd = prod;
 
     if (id === 'view') {

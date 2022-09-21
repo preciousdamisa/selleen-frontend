@@ -2,6 +2,10 @@
   display: none;
 }
 
+#role-badge {
+  display: inline-block;
+}
+
 @media (min-width: 40rem) {
   #role-badge {
     display: none;
