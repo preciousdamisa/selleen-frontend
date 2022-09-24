@@ -11,7 +11,7 @@ import { ColorTheme } from '../../types/color-theme';
 })
 export class ButtonComponent implements OnInit {
   @Input() classes = '';
-  @Input() paddingX = '0.5rem';
+  @Input() paddingX = '0.8rem';
   @Input() paddingY = '0.5rem';
   @Input() borderRadius = '3px';
   @Input() backgroundColor?: string;

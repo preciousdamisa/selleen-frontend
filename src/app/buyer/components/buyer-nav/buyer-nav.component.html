@@ -1,66 +1,60 @@
-<nav id="navbar" class="px-3 py-2" *ngIf="open">
-  <div id="logo"><app-logo size="8rem"></app-logo></div>
+<nav id="nav-sm" class="shadow px-2 py-2" *ngIf="open">
   <ul
     id="nav-items"
     class="d-flex justify-content-between list-style-none p-0 m-0"
   >
     <li>
       <a
-        id="nav-link"
-        class="d-flex-col fs-2 align-items-center"
+        class="nav-link d-flex-col fs-2 align-items-center"
         routerLink=""
         routerLinkActive="active"
-        ><i id="nav-link-icon" class="bi-house-door"></i
-        ><span id="nav-link-text">Home</span></a
+        ><i class="nav-link-icon bi-house-door"></i><span>Home</span></a
       >
     </li>
     <li>
       <a
-        id="nav-link"
-        class="d-flex-col fs-2 align-items-center"
+        class="nav-link d-flex-col fs-2 align-items-center"
         routerLinkActive="active"
-        ><i id="nav-link-icon" class="bi-cart4"></i
-        ><span id="nav-link-text">Cart</span></a
+        ><i class="nav-link-icon bi-cart4"></i><span>Cart</span></a
       >
     </li>
     <li>
       <a
-        id="nav-link"
-        class="d-flex-col fs-2 align-items-center"
+        class="nav-link d-flex-col fs-2 align-items-center"
         routerLinkActive="active"
-        ><i id="nav-link-icon" class="bi-heart"></i
-        ><span id="nav-link-text">Saved</span></a
+        ><i class="nav-link-icon bi-heart"></i><span>Saved</span></a
       >
     </li>
     <li>
       <a
-        id="nav-link"
         routerLink="/seller/login"
-        class="d-flex-col fs-2 align-items-center"
+        class="nav-link d-flex-col fs-2 align-items-center"
         routerLinkActive="active"
-        ><i id="nav-link-icon" class="bi-shop-window"></i
-        ><span id="nav-link-text">Shop</span></a
+        ><i class="nav-link-icon bi-shop-window"></i><span>Shop</span></a
       >
     </li>
     <li>
       <a
-        id="nav-link"
-        class="d-flex-col fs-2 align-items-center"
+        class="nav-link d-flex-col fs-2 align-items-center"
         routerLinkActive="active"
-        ><i id="nav-link-icon" class="bi-person-circle"></i
-        ><span id="nav-link-text">My Account</span></a
-      >
-    </li>
-    <li id="logout-item">
-      <hr />
-      <a
-        id="nav-link"
-        class="d-flex-col fs-2 align-items-center"
-        routerLinkActive="active"
-        (click)="onLogout()"
-        ><i id="nav-link-icon" class="bi-box-arrow-left"></i
-        ><span id="nav-link-text">Logout</span></a
+        ><i class="nav-link-icon bi-person-circle"></i
+        ><span>My Account</span></a
       >
     </li>
   </ul>
 </nav>
+<div id="nav-md-top">
+  <div class="container d-flex align-items-center justify-content-between">
+    <div id="logo"><app-logo size="8rem"></app-logo></div>
+    <input
+      id="search-input"
+      class="flex-1 mx-5"
+      placeholder="Search for anything..."
+    />
+    <div class="d-flex align-items-center">
+      <a><i class="bi-person-circle text-primary"></i> My Account</a>
+      <a class="mx-2"><i class="bi-cart4 text-primary"></i> Cart</a>
+      <app-button>Start Selling</app-button>
+    </div>
+  </div>
+</div>

@@ -2,9 +2,15 @@
   <app-logo></app-logo>
   <div class="form-container pt-3 mx-2">
     <app-card classes="p-2">
-      <h2 class="text-align-center mb-0">Log in to Your Account</h2>
+      <h2 class="text-align-center mb-0">
+        Log in to Your {{ forSeller ? "Selleen Seller" : "" }} Account
+      </h2>
       <p class="text-align-center mt-1 mb-3">
-        See what is going on with your business
+        {{
+          forSeller
+            ? "See what is going on with your business"
+            : "Have a great shopping experience"
+        }}
       </p>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
         <div class="form-group">

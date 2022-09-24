@@ -1,4 +1,59 @@
 <ng-container *ngIf="open">
+  <nav id="nav-sm" class="shadow px-2 py-2" *ngIf="showNav">
+    <ul
+      id="nav-items"
+      class="d-flex justify-content-between list-style-none p-0 m-0"
+    >
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLink="/seller/shop/dashboard"
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-shop"></i><span>Dashboard</span></a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLink="/seller/shop/sales"
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-cart4"></i><span>Sales</span></a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLink="/seller/shop/products"
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-bag"></i><span>Products</span></a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLink="/seller/shop/shipping"
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-truck"></i><span>Shipping</span></a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLink="/seller/shop/wallet"
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-wallet2"></i><span>Wallet</span></a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLink="/seller/shop/settings"
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-gear"></i><span>Settings</span></a
+        >
+      </li>
+    </ul>
+  </nav>
   <nav id="nav-md" class="px-3 py-2">
     <div id="logo"><app-logo size="8rem"></app-logo></div>
     <ul
@@ -66,67 +121,6 @@
           (click)="onLogout()"
           ><i class="nav-link-icon bi-box-arrow-left"></i
           ><span class="nav-link-text">Logout</span></a
-        >
-      </li>
-    </ul>
-  </nav>
-  <nav id="nav-sm" class="shadow px-2 py-2" *ngIf="showNav">
-    <ul
-      id="nav-items"
-      class="d-flex justify-content-between list-style-none p-0 m-0"
-    >
-      <li>
-        <a
-          class="nav-link d-flex-col fs-2 align-items-center"
-          routerLink="/seller/shop/dashboard"
-          routerLinkActive="active"
-          ><i class="nav-link-icon bi-shop"></i
-          ><span class="nav-link-text">Dashboard</span></a
-        >
-      </li>
-      <li>
-        <a
-          class="nav-link d-flex-col fs-2 align-items-center"
-          routerLink="/seller/shop/sales"
-          routerLinkActive="active"
-          ><i class="nav-link-icon bi-cart4"></i
-          ><span class="nav-link-text">Sales</span></a
-        >
-      </li>
-      <li>
-        <a
-          class="nav-link d-flex-col fs-2 align-items-center"
-          routerLink="/seller/shop/products"
-          routerLinkActive="active"
-          ><i class="nav-link-icon bi-bag"></i
-          ><span class="nav-link-text">Products</span></a
-        >
-      </li>
-      <li>
-        <a
-          class="nav-link d-flex-col fs-2 align-items-center"
-          routerLink="/seller/shop/shipping"
-          routerLinkActive="active"
-          ><i class="nav-link-icon bi-truck"></i
-          ><span class="nav-link-text">Shipping</span></a
-        >
-      </li>
-      <li>
-        <a
-          class="nav-link d-flex-col fs-2 align-items-center"
-          routerLink="/seller/shop/wallet"
-          routerLinkActive="active"
-          ><i class="nav-link-icon bi-wallet2"></i
-          ><span class="nav-link-text">Wallet</span></a
-        >
-      </li>
-      <li>
-        <a
-          class="nav-link d-flex-col fs-2 align-items-center"
-          routerLink="/seller/shop/settings"
-          routerLinkActive="active"
-          ><i class="nav-link-icon bi-gear"></i
-          ><span class="nav-link-text">Settings</span></a
         >
       </li>
     </ul>

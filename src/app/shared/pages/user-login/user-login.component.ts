@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -11,13 +13,22 @@ import { UserService } from '../../services/user.service';
 export class UserLoginComponent implements OnInit, OnDestroy {
   subs?: Subscription;
 
+  forSeller = false;
   loginForm!: FormGroup;
   loading = false;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
+    this.getRouteData();
     this.initForm();
+  }
+
+  getRouteData() {
+    this.forSeller = this.route.snapshot.data['forSeller'];
   }
 
   initForm() {

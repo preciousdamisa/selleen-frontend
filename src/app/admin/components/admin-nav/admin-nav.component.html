@@ -1,4 +1,59 @@
 <ng-container *ngIf="open">
+  <nav id="nav-sm" class="shadow px-2 py-2" *ngIf="showNav">
+    <ul
+      id="nav-items"
+      class="d-flex justify-content-between list-style-none p-0 m-0"
+    >
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLink="/admin/dashboard"
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-grid"></i><span>Dashboard</span></a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLink="/admin/products"
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-bag"></i><span>Products</span></a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLink="/admin/shops"
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-shop-window"></i><span>Shops</span></a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLink="/admin/shops"
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-shop-window"></i><span>Shops</span></a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLink="/admin/users"
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-people"></i><span>Users</span></a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLink="/admin/settings"
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-gear"></i><span>Settings</span></a
+        >
+      </li>
+    </ul>
+  </nav>
   <nav id="nav-md" class="px-3 py-2">
     <div id="logo"><app-logo size="8rem"></app-logo></div>
     <ul
@@ -66,67 +121,6 @@
           (click)="onLogout()"
           ><i class="nav-link-icon bi-box-arrow-left"></i
           ><span class="nav-link-text">Logout</span></a
-        >
-      </li>
-    </ul>
-  </nav>
-  <nav id="nav-sm" class="shadow px-2 py-2" *ngIf="showNav">
-    <ul
-      id="nav-items"
-      class="d-flex justify-content-between list-style-none p-0 m-0"
-    >
-      <li>
-        <a
-          class="nav-link d-flex-col fs-2 align-items-center"
-          routerLink="/admin/dashboard"
-          routerLinkActive="active"
-          ><i class="nav-link-icon bi-grid"></i
-          ><span class="nav-link-text">Dashboard</span></a
-        >
-      </li>
-      <li>
-        <a
-          class="nav-link d-flex-col fs-2 align-items-center"
-          routerLink="/admin/products"
-          routerLinkActive="active"
-          ><i class="nav-link-icon bi-bag"></i
-          ><span class="nav-link-text">Products</span></a
-        >
-      </li>
-      <li>
-        <a
-          class="nav-link d-flex-col fs-2 align-items-center"
-          routerLink="/admin/shops"
-          routerLinkActive="active"
-          ><i class="nav-link-icon bi-shop-window"></i
-          ><span class="nav-link-text">Shops</span></a
-        >
-      </li>
-      <li>
-        <a
-          class="nav-link d-flex-col fs-2 align-items-center"
-          routerLink="/admin/shops"
-          routerLinkActive="active"
-          ><i class="nav-link-icon bi-shop-window"></i
-          ><span class="nav-link-text">Shops</span></a
-        >
-      </li>
-      <li>
-        <a
-          class="nav-link d-flex-col fs-2 align-items-center"
-          routerLink="/admin/users"
-          routerLinkActive="active"
-          ><i class="nav-link-icon bi-people"></i
-          ><span class="nav-link-text">Users</span></a
-        >
-      </li>
-      <li>
-        <a
-          class="nav-link d-flex-col fs-2 align-items-center"
-          routerLink="/admin/settings"
-          routerLinkActive="active"
-          ><i class="nav-link-icon bi-gear"></i
-          ><span class="nav-link-text">Settings</span></a
         >
       </li>
     </ul>

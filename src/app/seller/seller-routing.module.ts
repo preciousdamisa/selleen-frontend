@@ -22,7 +22,11 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/seller/shop/dashboard', pathMatch: 'full' },
       { path: 'signup', component: SellerSignupComponent },
-      { path: 'login', component: UserLoginComponent },
+      {
+        path: 'login',
+        component: UserLoginComponent,
+        data: { forSeller: true },
+      },
       {
         path: 'shop',
         component: SellerHomeComponent,

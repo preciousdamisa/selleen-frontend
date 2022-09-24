@@ -48,6 +48,14 @@ export function getInputErrors(
       );
     }
 
+    if (errors['min']) {
+      errMsgs.push(`${label} can't be less than ${errors['min']['min']}`);
+    }
+
+    if (errors['max']) {
+      errMsgs.push(`${label} can't be greater than ${errors['max']['max']}`);
+    }
+
     if (errors['pattern']) {
       errMsgs.push(`${label} isn't in the right format`);
     }
