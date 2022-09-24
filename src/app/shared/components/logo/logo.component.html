@@ -1,6 +1,10 @@
 <div class="center">
   <img
-    src="assets/images/sln-logo-text-dark.svg"
+    [src]="
+      color === 'black'
+        ? 'assets/images/sln-logo-text-black.svg'
+        : 'assets/images/sln-logo-text-white.svg'
+    "
     alt="Selleen Logo"
     [style.width]="size"
   />
