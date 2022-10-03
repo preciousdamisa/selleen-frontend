@@ -1,0 +1,40 @@
+<section>
+  <div class="pt-1 px-2 pb-2">
+    <div class="mb-3">
+      <app-modal-header title="Cart"></app-modal-header>
+    </div>
+    <app-cart-product
+      *ngFor="let prod of products"
+      [product]="prod"
+    ></app-cart-product>
+    <app-text *ngIf="prodsTotalAmt < 1" size="1rem"
+      >No item(s) in your cart. Add some items.</app-text
+    >
+    <div
+      *ngIf="prodsTotalAmt > 0"
+      class="d-flex justify-content-end align-items-center mt-4"
+    >
+      <app-text-button (clicked)="emptyCart()" color="red"
+        ><i class="bi-trash mr-1"></i><span>Empty Cart</span></app-text-button
+      >
+    </div>
+  </div>
+  <hr class="divider" />
+  <div class="p-2">
+    <p class="d-flex justify-content-between m-0">
+      <span>Items</span><span class="fw-6">₦ {{ prodsTotalAmt | number }}</span>
+    </p>
+    <p class="d-flex justify-content-between mb-4">
+      <span>Total</span><span class="fw-6">₦ {{ prodsTotalAmt | number }}</span>
+    </p>
+    <app-button
+      (clicked)="onContinue(checkout)"
+      [disabled]="prodsTotalAmt < 1"
+      [fullWidth]="true"
+      >Continue</app-button
+    >
+  </div>
+</section>
+<ng-template #checkout>
+  <app-checkout></app-checkout>
+</ng-template>

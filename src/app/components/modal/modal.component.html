@@ -2,7 +2,7 @@
 <div
   class="modal"
   [ngClass]="{ center: showModalData.centered }"
-  *ngIf="showModalData.view"
+  *ngIf="showModalData.view && !showModalData.side"
 >
   <div
     class="modal-content"
@@ -14,4 +14,7 @@
   >
     <ng-container *ngTemplateOutlet="showModalData.view"></ng-container>
   </div>
+</div>
+<div *ngIf="showModalData.view && showModalData.side" class="side-modal">
+  <ng-container *ngTemplateOutlet="showModalData.view"></ng-container>
 </div>

@@ -4,6 +4,19 @@
   max-width: 90%;
 }
 
+.side-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1050;
+  height: 100%;
+  width: 90%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
 @media (min-width: 40rem) {
   .modal-lg {
     max-width: 80%;
@@ -15,5 +28,9 @@
 
   .modal-sm {
     max-width: 30%;
+  }
+
+  .side-modal {
+    width: 40%;
   }
 }

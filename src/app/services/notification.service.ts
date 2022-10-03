@@ -22,7 +22,11 @@ export class NotificationsService {
     );
   }
 
-  add(text: string, type: 'success' | 'error' | 'clear') {
+  add(
+    text: string,
+    type: 'success' | 'error' | 'clear',
+    opts = { duration: 5000 }
+  ) {
     const id = this.randomId();
 
     this.messagesIn.next({
@@ -33,7 +37,7 @@ export class NotificationsService {
 
     setTimeout(() => {
       this.clear(id);
-    }, 5000);
+    }, opts.duration);
   }
 
   clear(id: number) {

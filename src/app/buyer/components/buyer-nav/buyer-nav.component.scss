@@ -12,30 +12,29 @@
 }
 
 .nav-link-icon {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 
 #nav-md-top {
   display: none;
 }
 
-#search-input {
-  outline: none;
-  padding: 0.5rem;
-  border-radius: 6px;
-  border-width: 1.3px;
-  border: 1px solid #958f8f;
+.cart-icon {
+  position: relative;
 }
 
-#search-input::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #958f8f;
-  opacity: 1; /* Firefox */
-}
-
-#search-input::-ms-input-placeholder {
-  /* Microsoft Edge */
-  color: #958f8f;
+.cart-item-count {
+  bottom: 15px;
+  left: 18px;
+  text-align: center;
+  position: absolute;
+  font-size: 0.6rem;
+  background: red;
+  color: white;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  padding: 0.1rem
 }
 
 @media (min-width: 40rem) {

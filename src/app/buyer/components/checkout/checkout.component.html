@@ -1,0 +1,147 @@
+<section>
+  <div class="pt-1 px-2 pb-2">
+    <div class="mb-3">
+      <app-modal-header title="Checkout"></app-modal-header>
+    </div>
+  </div>
+  <form class="px-2" [formGroup]="form">
+    <div formGroupName="name" class="d-flex">
+      <div class="form-group pr-1 col">
+        <label for="f-name"
+          >First Name <small class="text-danger">*</small></label
+        >
+        <input
+          id="f-name"
+          class="form-control"
+          placeholder="Enter first name"
+          formControlName="first"
+        />
+        <app-input-errors
+          [control]="form.get('name.first')"
+          label="First name"
+        ></app-input-errors>
+      </div>
+      <div class="form-group pl-1 col">
+        <label for="l-name"
+          >Last Name <small class="text-danger">*</small></label
+        >
+        <input
+          id="l-name"
+          class="form-control"
+          placeholder="Enter last name"
+          formControlName="last"
+        />
+        <app-input-errors
+          [control]="form.get('name.last')"
+          label="Last name"
+        ></app-input-errors>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phone"
+        >Phone Number <small class="text-danger">*</small></label
+      >
+      <input
+        id="phone"
+        class="form-control"
+        placeholder="e.g. 09066666666"
+        formControlName="phone"
+      />
+      <app-input-errors
+        [control]="form.get('phone')"
+        label="Phone number"
+      ></app-input-errors>
+    </div>
+    <div formGroupName="address">
+      <div class="form-group">
+        <label for="full-addr"
+          >Full Address <small class="text-danger">*</small></label
+        >
+        <input
+          id="full-addr"
+          class="form-control"
+          placeholder="e.g. 10, Immaculate street..., Edo state, Nigeria."
+          formControlName="full"
+        />
+        <app-input-errors
+          [control]="form.get('address.full')"
+          label="Shop's full address"
+        ></app-input-errors>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="state"
+              >State <small class="text-danger">*</small></label
+            >
+            <select class="form-control" id="state" formControlName="state">
+              <option *ngFor="let opt of stateOpts" [value]="opt.value">
+                {{ opt.label }}
+              </option>
+            </select>
+            <app-input-errors
+              [control]="form.get('address.state')"
+              label="State"
+            ></app-input-errors>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input
+              id="city"
+              class="form-control"
+              placeholder="e.g. Benin"
+              formControlName="city"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="country"
+          >Country <small class="text-danger">*</small></label
+        >
+        <select class="form-control" id="country" formControlName="country">
+          <option *ngFor="let opt of countryOpts" [value]="opt.value">
+            {{ opt.label }}
+          </option>
+        </select>
+        <app-input-errors
+          [control]="form.get('address.country')"
+          label="Country"
+        ></app-input-errors>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="note">Note</label>
+      <textarea
+        id="note"
+        class="form-control"
+        placeholder="Any extra information for the seller about the item(s) or the delivery."
+        formControlName="note"
+        rows="5"
+      ></textarea>
+      <app-input-errors
+        [control]="form.get('note')"
+        label="Note"
+      ></app-input-errors>
+    </div>
+  </form>
+  <hr class="divider" />
+  <div class="p-2">
+    <p class="d-flex justify-content-between m-0">
+      <span>Items</span><span class="fw-6">₦ {{ totalAmt | number }}</span>
+    </p>
+    <p class="d-flex justify-content-between mb-4">
+      <span>Total</span><span class="fw-6">₦ {{ totalAmt | number }}</span>
+    </p>
+    <app-button
+      [disabled]="form.invalid"
+      (clicked)="onPlaceOrder()"
+      [fullWidth]="true"
+    >
+      <app-spinner color="#fff" *ngIf="loading"></app-spinner
+      ><span *ngIf="!loading">Place Order</span></app-button
+    >
+  </div>
+</section>

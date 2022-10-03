@@ -8,11 +8,8 @@ import { BuyerProductsComponent } from './pages/buyer-products/buyer-products.co
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     component: BuyerHomeComponent,
-    children: [
-      { path: '', pathMatch: 'full', component: BuyerProductsComponent },
-    ],
+    children: [{ path: '', component: BuyerProductsComponent }],
   },
   {
     path: 'login',

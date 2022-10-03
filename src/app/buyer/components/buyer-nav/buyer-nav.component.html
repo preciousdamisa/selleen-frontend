@@ -1,60 +1,78 @@
-<nav id="nav-sm" class="shadow px-2 py-2" *ngIf="open">
-  <ul
-    id="nav-items"
-    class="d-flex justify-content-between list-style-none p-0 m-0"
-  >
-    <li>
-      <a
-        class="nav-link d-flex-col fs-2 align-items-center"
-        routerLink=""
-        routerLinkActive="active"
-        ><i class="nav-link-icon bi-house-door"></i><span>Home</span></a
-      >
-    </li>
-    <li>
-      <a
-        class="nav-link d-flex-col fs-2 align-items-center"
-        routerLinkActive="active"
-        ><i class="nav-link-icon bi-cart4"></i><span>Cart</span></a
-      >
-    </li>
-    <li>
-      <a
-        class="nav-link d-flex-col fs-2 align-items-center"
-        routerLinkActive="active"
-        ><i class="nav-link-icon bi-heart"></i><span>Saved</span></a
-      >
-    </li>
-    <li>
-      <a
-        routerLink="/seller/login"
-        class="nav-link d-flex-col fs-2 align-items-center"
-        routerLinkActive="active"
-        ><i class="nav-link-icon bi-shop-window"></i><span>Shop</span></a
-      >
-    </li>
-    <li>
-      <a
-        class="nav-link d-flex-col fs-2 align-items-center"
-        routerLinkActive="active"
-        ><i class="nav-link-icon bi-person-circle"></i
-        ><span>My Account</span></a
-      >
-    </li>
-  </ul>
-</nav>
+<ng-container *ngIf="open">
+  <nav id="nav-sm" class="shadow px-2 py-2" *ngIf="showNav">
+    <ul
+      id="nav-items"
+      class="d-flex justify-content-between list-style-none p-0 m-0"
+    >
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLink=""
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-house-door"></i><span>Home</span></a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center cursor"
+          (click)="onViewCart(cart)"
+          routerLinkActive="active"
+          ><i class="cart-icon nav-link-icon bi-cart4"
+            ><span *ngIf="totalCartItems > 0" class="cart-item-count">{{
+              totalCartItems
+            }}</span></i
+          ><span>Cart</span></a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-heart"></i><span>Saved</span></a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/seller"
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-shop-window"></i><span>Shop</span></a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link d-flex-col fs-2 align-items-center"
+          routerLinkActive="active"
+          ><i class="nav-link-icon bi-person-circle"></i
+          ><span>My Account</span></a
+        >
+      </li>
+    </ul>
+  </nav>
+</ng-container>
 <div id="nav-md-top" class="shadow">
   <div class="container d-flex align-items-center justify-content-between">
     <div id="logo"><app-logo size="8rem"></app-logo></div>
-    <input
-      id="search-input"
-      class="flex-1 mx-5"
-      placeholder="Search for anything..."
-    />
+    <div class="flex-1 px-5">
+      <app-buyer-product-search></app-buyer-product-search>
+    </div>
     <div class="d-flex align-items-center">
-      <a><i class="bi-person-circle text-primary"></i> My Account</a>
-      <a class="mx-2"><i class="bi-cart4 text-primary"></i> Cart</a>
-      <app-button>Start Selling</app-button>
+      <a class="d-flex align-items-center"
+        ><i class="bi-person-circle nav-link-icon text-primary mr-1"></i>
+        <span>My Account</span></a
+      >
+      <a class="mx-2 cursor" (click)="onViewCart(cart)"
+        ><i class="cart-icon bi-cart4 nav-link-icon text-primary mr-1"
+          ><span *ngIf="totalCartItems > 0" class="cart-item-count">{{
+            totalCartItems
+          }}</span></i
+        >
+        <span>Cart</span>
+      </a>
+      <app-button (clicked)="onStartSelling()">Start Selling</app-button>
     </div>
   </div>
 </div>
+<ng-template #cart>
+  <app-cart></app-cart>
+</ng-template>

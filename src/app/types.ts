@@ -11,4 +11,5 @@ export interface ShowModalData {
   view: TemplateRef<any> | null;
   size?: ModalSize;
   centered?: boolean;
+  side?: boolean;
 }

@@ -1,15 +1,19 @@
 <div class="d-flex-col product">
   <div class="product-image"></div>
   <p class="product-name m-0 mt-1">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste ad voluptas
-    autem.
+    {{ product.name }}
   </p>
   <p class="price m-0">
-    <span class="text-light line-through original-price mr-1">{{
-      30000 | number
-    }}</span
-    ><span class="fw-5">{{ 30000 | number }}</span>
+    <span
+      *ngIf="product.price.original"
+      class="text-light line-through original-price mr-1"
+      >₦ {{ product.price.original | number }}</span
+    ><span class="fw-5">₦ {{ product.price.sales | number }}</span>
   </p>
-  <p class="m-0 my-2 fs-2">Sold By: <a href="#">Jane deo</a></p>
-  <app-button [fullWidth]="true">Add to Cart</app-button>
+  <p class="m-0 my-2 fs-2">
+    Sold By: <a href="#">{{ product.shop.alias }}</a>
+  </p>
+  <app-button [fullWidth]="true" (clicked)="onAddToCart()"
+    >Add to Cart</app-button
+  >
 </div>

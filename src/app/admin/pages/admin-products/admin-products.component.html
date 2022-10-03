@@ -24,7 +24,9 @@
       <tr *ngFor="let prod of products">
         <td class="text-align-left">{{ prod.name }}</td>
         <td class="text-align-center">{{ prod.numberInStock }}</td>
-        <td class="text-align-center">{{ prod.price.sales }}</td>
+        <td class="text-align-center">
+          {{ prod.price.sales | number: "1.2-2" }}
+        </td>
         <td class="text-align-center">{{ prod.createdAt | date }}</td>
         <td class="text-align-center">
           <span

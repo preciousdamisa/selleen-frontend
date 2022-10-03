@@ -22,6 +22,7 @@ import { TooltipDirective } from './directives/tooltip.directive';
 import { OutsideClickDirective } from './directives/outside-click.directive';
 
 import { SpacePipe } from './pipes/space.pipe';
+import { LocationPromptComponent } from './components/location-prompt/location-prompt.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SpacePipe } from './pipes/space.pipe';
     TooltipDirective,
     OutsideClickDirective,
     ListTileComponent,
+    LocationPromptComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -63,6 +65,7 @@ import { SpacePipe } from './pipes/space.pipe';
     TooltipDirective,
     OutsideClickDirective,
     SpacePipe,
+    LocationPromptComponent,
   ],
 })
 export class SharedModule {}

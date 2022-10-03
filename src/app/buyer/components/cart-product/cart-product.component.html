@@ -1,0 +1,30 @@
+<div class="d-flex align-items-center justify-content-between">
+  <div class="flex-1 mr-2">
+    <p class="mb-0">{{ product.name }}</p>
+    <p class="fw-6 mt-1">₦ {{ product.price | number }}</p>
+  </div>
+  <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center">
+      <button
+        class="btn bg-primary fs-3 text-white"
+        (click)="onDecreaseProdQty(product.productId)"
+      >
+        -
+      </button>
+      <span class="d-flex align-items-center justify-content-center qty fs-3">{{
+        product.quantity
+      }}</span>
+      <button
+        class="btn bg-primary fs-3 text-white"
+        (click)="onIncreaseProdQty(product.productId)"
+      >
+        +
+      </button>
+    </div>
+    <span
+      (click)="onRemoveProd(product.productId)"
+      class="cursor ml-2 fw-4 fs-4"
+      >&times;</span
+    >
+  </div>
+</div>

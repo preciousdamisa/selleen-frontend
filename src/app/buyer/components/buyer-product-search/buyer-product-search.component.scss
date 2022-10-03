@@ -1,0 +1,19 @@
+#prod-search-input {
+  outline: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border-width: 1.3px;
+  border: 1px solid #958f8f;
+  width: 100%;
+}
+
+#prod-search-input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #958f8f;
+  opacity: 1; /* Firefox */
+}
+
+#prod-search-input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #958f8f;
+}

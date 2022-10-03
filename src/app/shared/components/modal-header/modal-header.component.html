@@ -1,7 +1,7 @@
-<div [class]="'d-flex justify-content-between ' + classes">
+<div [class]="'d-flex align-items-center justify-content-between ' + classes">
   <div>
     <h3 class="m-0" *ngIf="title">{{ title }}</h3>
     <p class="m-0 mt-1" *ngIf="subtitle">{{ subtitle }}</p>
   </div>
-  <i (click)="onClick()" class="cursor fw-8 bi-x-lg"></i>
+  <span (click)="onClick()" class="cursor fs-5 fw-5">&times;</span>
 </div>

@@ -66,7 +66,7 @@ export class SellerSignupComponent implements OnInit, OnDestroy {
         shopEmail: new FormControl('', [Validators.required, Validators.email]),
         shopAddress: new FormGroup({
           full: new FormControl('', Validators.required),
-          city: new FormControl('', Validators.required),
+          city: new FormControl(''),
           state: new FormControl('', Validators.required),
           country: new FormControl('', Validators.required),
         }),

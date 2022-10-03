@@ -9,32 +9,27 @@
     <div class="flex-1 d-flex-col square-img">
       <div class="d-flex-col align-items-center justify-content-end">
         <i class="bi-shop-window text-white fs-8 mb-2"></i>
-        <app-button>Get a Shop</app-button>
+        <app-button (clicked)="onGetAShop()">Get a Shop</app-button>
       </div>
     </div>
   </div>
   <div class="p-1 bg-primary py-1 px-2 mt-2">
     <p class="m-0 text-white">Top products near you</p>
   </div>
-  <div id="products" class="row">
-    <div class="col-md-4 col-6 mt-2">
-      <app-buyer-product></app-buyer-product>
-    </div>
-    <div class="col-md-4 col-6 mt-2">
-      <app-buyer-product></app-buyer-product>
-    </div>
-    <div class="col-md-4 col-6 mt-2">
-      <app-buyer-product></app-buyer-product>
-    </div>
-    <div class="col-md-4 col-6 mt-2">
-      <app-buyer-product></app-buyer-product>
-    </div>
-    <div class="col-md-4 col-6 mt-2">
-      <app-buyer-product></app-buyer-product>
-    </div>
-    <div class="col-md-4 col-6 mt-2">
-      <app-buyer-product></app-buyer-product>
+  <div class="center mt-5" *ngIf="loading">
+    <app-spinner size="1rem"></app-spinner>
+    <p>Loading Products...</p>
+  </div>
+  <div class="center mt-5" *ngIf="!loading && products.length < 1">
+    <p>No product(s) found</p>
+  </div>
+  <div *ngIf="!loading && products.length" id="products" class="row">
+    <div *ngFor="let prod of products" class="col-md-4 col-6 mt-2">
+      <app-buyer-product [product]="prod"></app-buyer-product>
     </div>
   </div>
 </section>
 <app-footer></app-footer>
+<ng-template #locationPrompt>
+  <app-location-prompt></app-location-prompt>
+</ng-template>

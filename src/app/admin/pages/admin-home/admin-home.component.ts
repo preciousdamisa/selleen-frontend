@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-admin-home',
-  template: `<section>
+  template: `<main>
     <app-admin-nav></app-admin-nav>
     <router-outlet></router-outlet>
-  </section> `,
+  </main> `,
 })
 export class AdminHomeComponent {}
