@@ -8,6 +8,6 @@ import { TodoComponent } from './components/todo/todo.component';
 @NgModule({
   declarations: [UserLoginComponent, TodoComponent],
   imports: [SharedModule],
-  exports: [SharedModule, UserLoginComponent, TodoComponent],
+  exports: [UserLoginComponent, TodoComponent],
 })
 export class BuyerSellerSharedModule {}

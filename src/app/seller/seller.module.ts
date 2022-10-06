@@ -8,7 +8,6 @@ import { SellerSignupComponent } from './pages/seller-signup/seller-signup.compo
 import { SellerHomeComponent } from './pages/seller-home/seller-home.component';
 import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashboard.component';
 import { SellerSettingsComponent } from './pages/seller-settings/seller-settings.component';
-import { SalesComponent } from './pages/sales/sales.component';
 import { ShippingComponent } from './pages/shipping/shipping.component';
 import { WalletComponent } from './pages/wallet/wallet.component';
 import { SellerNavComponent } from './components/seller-nav/seller-nav.component';
@@ -22,6 +21,7 @@ import { AddEditProductComponent } from './pages/add-edit-product/add-edit-produ
 import { SellerPageHeaderComponent } from './components/seller-page-header/seller-page-header.component';
 import { SellerProductsComponent } from './pages/seller-products/seller-products.component';
 import { SellerProductsHomeComponent } from './pages/seller-products-home/seller-products-home.component';
+import { SellerOrdersComponent } from './pages/seller-orders/seller-orders.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,6 @@ import { SellerProductsHomeComponent } from './pages/seller-products-home/seller
     SellerHomeComponent,
     SellerDashboardComponent,
     SellerSettingsComponent,
-    SalesComponent,
     ShippingComponent,
     WalletComponent,
     SellerNavComponent,
@@ -43,6 +42,7 @@ import { SellerProductsHomeComponent } from './pages/seller-products-home/seller
     SellerPageHeaderComponent,
     SellerProductsComponent,
     SellerProductsHomeComponent,
+    SellerOrdersComponent,
   ],
   imports: [
     SellerRoutingModule,

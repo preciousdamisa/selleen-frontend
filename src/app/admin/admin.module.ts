@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminSellerSharedModule } from '../shared/admin-seller-shared.module';
-import { SharedModule } from '../shared/shared.module';
 
 import { AdminSignupComponent } from './pages/admin-signup/admin-signup.component';
 import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
@@ -46,6 +45,6 @@ import { ProductDataComponent } from './components/product-data/product-data.com
     ProductInfoComponent,
     ProductDataComponent,
   ],
-  imports: [AdminRoutingModule, AdminSellerSharedModule, SharedModule],
+  imports: [AdminRoutingModule, AdminSellerSharedModule],
 })
 export class AdminModule {}

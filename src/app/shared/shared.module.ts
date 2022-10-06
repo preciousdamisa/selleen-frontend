@@ -17,6 +17,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { ModalHeaderComponent } from './components/modal-header/modal-header.component';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { ListTileComponent } from './components/list-tile/list-tile.component';
+import { ViewOrderComponent } from './components/view-order/view-order.component';
 
 import { TooltipDirective } from './directives/tooltip.directive';
 import { OutsideClickDirective } from './directives/outside-click.directive';
@@ -44,6 +45,7 @@ import { LocationPromptComponent } from './components/location-prompt/location-p
     OutsideClickDirective,
     ListTileComponent,
     LocationPromptComponent,
+    ViewOrderComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -66,6 +68,7 @@ import { LocationPromptComponent } from './components/location-prompt/location-p
     OutsideClickDirective,
     SpacePipe,
     LocationPromptComponent,
+    ViewOrderComponent,
   ],
 })
 export class SharedModule {}

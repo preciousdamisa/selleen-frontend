@@ -6,7 +6,7 @@ import { UserLoginComponent } from '../shared/pages/user-login/user-login.compon
 import { SellerHomeComponent } from './pages/seller-home/seller-home.component';
 import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashboard.component';
 import { SellerSettingsComponent } from './pages/seller-settings/seller-settings.component';
-import { SalesComponent } from './pages/sales/sales.component';
+import { SellerOrdersComponent } from './pages/seller-orders/seller-orders.component';
 import { WalletComponent } from './pages/wallet/wallet.component';
 import { ShippingComponent } from './pages/shipping/shipping.component';
 import { AddEditProductComponent } from './pages/add-edit-product/add-edit-product.component';
@@ -39,8 +39,8 @@ const routes: Routes = [
             component: SellerDashboardComponent,
           },
           {
-            path: 'sales',
-            component: SalesComponent,
+            path: 'orders',
+            component: SellerOrdersComponent,
           },
           {
             path: 'products',

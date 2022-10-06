@@ -1,0 +1,80 @@
+<app-page-wrapper>
+  <app-seller-page-header
+    title="Orders"
+    subtitle="All Orders"
+  ></app-seller-page-header>
+  <div class="center mt-10" *ngIf="loading">
+    <app-spinner size="1rem"></app-spinner>
+    <p>Loading Orders...</p>
+  </div>
+  <table class="table mt-5" *ngIf="!loading && orders.length > 0">
+    <thead>
+      <tr>
+        <th class="text-align-left">Order ID</th>
+        <th class="text-align-center">Total Amount (₦)</th>
+        <th class="text-align-center">Date</th>
+        <th class="text-align-center">Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td class="text-align-left">{{ order.shortId }}</td>
+        <td class="text-align-center">
+          {{ order.totalAmount | number: "1.2-2" }}
+        </td>
+        <td class="text-align-center">{{ order.createdAt | date }}</td>
+        <td class="text-align-center">
+          <span
+            class="badge"
+            [ngClass]="{
+              'bg-warning': order.status === 'Processing',
+              'bg-success':
+                order.status === 'En Route' || order.status === 'Delivered'
+            }"
+            >{{ order.status | space }}</span
+          >
+        </td>
+        <td class="text-align-center">
+          <app-dropdown
+            [items]="dropdownItems"
+            (selected)="onSelectItem($event, order, viewOrder)"
+          ></app-dropdown>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="custom-table mt-5">
+    <app-list-tile *ngFor="let order of orders" classes="shadow mt-2 p-1">
+      <div class="d-flex align-items-center" top>
+        <h5 class="m-0 mr-2">#{{ order.shortId }}</h5>
+        <p class="m-0">₦ {{ order.totalAmount | number: "1.2-2" }}</p>
+      </div>
+      <div middle class="my-1 d-flex justify-content-between">
+        <span class="mr-2">{{ order.createdAt }}</span>
+        <span
+          class="badge"
+          [ngClass]="{
+            'bg-warning': order.status === 'Processing',
+            'bg-success':
+              order.status === 'En Route' || order.status === 'Delivered'
+          }"
+          >{{ order.status | space }}</span
+        >
+      </div>
+      <div bottom>
+        <app-text-button (clicked)="onActionButtonClicked('view')"
+          >View</app-text-button
+        >
+        <app-text-button
+          classes="ml-3"
+          (clicked)="onActionButtonClicked('update-status')"
+          >Update Status</app-text-button
+        >
+      </div>
+    </app-list-tile>
+  </div>
+</app-page-wrapper>
+<ng-template #viewOrder>
+  <app-view-order></app-view-order>
+</ng-template>

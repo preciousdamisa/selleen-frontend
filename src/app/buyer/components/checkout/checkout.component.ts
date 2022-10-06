@@ -91,8 +91,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.subs = this.checkoutService.placeOrder(data).subscribe({
       next: () => {
         this.loading = false;
-        this.cartService.clearCart();
         this.notifService.add('Order placed successfully', 'success');
+        this.cartService.clearCart();
         this.modalService.close();
       },
       error: () => {

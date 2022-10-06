@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { BuyerRoutingModule } from './buyer-routing.module';
 import { BuyerSellerSharedModule } from '../shared/buyer-seller-shared.module';
+import { SharedModule } from '../shared/shared.module';
 
 import { BuyerHomeComponent } from './pages/buyer-home/buyer-home.component';
 import { BuyerNavComponent } from './components/buyer-nav/buyer-nav.component';
@@ -25,6 +26,6 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     CartProductComponent,
     CheckoutComponent,
   ],
-  imports: [BuyerRoutingModule, BuyerSellerSharedModule],
+  imports: [SharedModule, BuyerRoutingModule, BuyerSellerSharedModule],
 })
 export class BuyerModule {}

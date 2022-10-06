@@ -14,7 +14,7 @@
       <tr>
         <th class="text-align-left">Name</th>
         <th class="text-align-center">Number In Stock</th>
-        <th class="text-align-center">Sales Price</th>
+        <th class="text-align-center">Sales Price (₦)</th>
         <th class="text-align-center">Created At</th>
         <th class="text-align-center">Status</th>
         <th></th>
@@ -60,8 +60,8 @@
           <span
             *ngIf="prod.price.original"
             class="line-through text-light mr-2"
-            >{{ prod.price.original | number: "1.2-2" }}</span
-          ><span>{{ prod.price.sales | number: "1.2-2" }}</span>
+            >₦ {{ prod.price.original | number: "1.2-2" }}</span
+          ><span> ₦{{ prod.price.sales | number: "1.2-2" }}</span>
         </p>
         <span
           class="badge"

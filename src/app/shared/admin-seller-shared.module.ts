@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { SharedModule } from './shared.module';
 
 import { PageWrapperComponent } from './components/page-wrapper/page-wrapper.component';
 import { StatisticComponent } from './components/statistic/statistic.component';
@@ -15,8 +16,9 @@ import { TabComponent } from './components/tab/tab.component';
     TabBarComponent,
     TabComponent,
   ],
-  imports: [CommonModule],
+  imports: [SharedModule],
   exports: [
+    SharedModule,
     PageWrapperComponent,
     StatisticComponent,
     FilePickerComponent,
