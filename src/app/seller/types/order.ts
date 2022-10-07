@@ -1,5 +1,7 @@
 import { Address, Name } from 'src/app/shared/types/shared';
 
+export type OrderStatus = 'Processing' | 'Processed' | 'En Route' | 'Delivered';
+
 export interface Shop {
   _id: string;
   name: string;
@@ -25,7 +27,7 @@ export interface Order {
     address: Address;
   };
   delivery: { method: string };
-  status: 'Processing' | 'En Route' | 'Delivered';
+  status: OrderStatus;
   products: Product[];
   totalAmount: number;
   createdAt: string;
@@ -34,4 +36,9 @@ export interface Order {
 export interface GetOrdersResBody {
   message: string;
   data: Order[];
+}
+
+export interface UpdateOrderStatusData {
+  orderId: string;
+  status: OrderStatus;
 }

@@ -38,7 +38,7 @@
         <td class="text-align-center">
           <app-dropdown
             [items]="dropdownItems"
-            (selected)="onSelectItem($event, order, viewOrder)"
+            (selected)="onClick($event, order, viewOrder)"
           ></app-dropdown>
         </td>
       </tr>
@@ -46,35 +46,37 @@
   </table>
   <div class="custom-table mt-5">
     <app-list-tile *ngFor="let order of orders" classes="shadow mt-2 p-1">
-      <div class="d-flex align-items-center" top>
-        <h5 class="m-0 mr-2">#{{ order.shortId }}</h5>
-        <p class="m-0">₦ {{ order.totalAmount | number: "1.2-2" }}</p>
+      <div top>
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="m-0 mb-1">Order ID: {{ order.shortId }}</h5>
+          <span
+            class="badge"
+            [ngClass]="{
+              'bg-warning': order.status === 'Processing',
+              'bg-success':
+                order.status === 'Processed' ||
+                order.status === 'En Route' ||
+                order.status === 'Delivered'
+            }"
+            >{{ order.status | space }}</span
+          >
+        </div>
+        <p class="m-0">
+          <span class="fw-5">Total: </span> ₦
+          {{ order.totalAmount | number: "1.2-2" }}
+        </p>
       </div>
-      <div middle class="my-1 d-flex justify-content-between">
+      <div middle class="my-1">
         <span class="mr-2">{{ order.createdAt }}</span>
-        <span
-          class="badge"
-          [ngClass]="{
-            'bg-warning': order.status === 'Processing',
-            'bg-success':
-              order.status === 'En Route' || order.status === 'Delivered'
-          }"
-          >{{ order.status | space }}</span
-        >
       </div>
-      <div bottom>
-        <app-text-button (clicked)="onActionButtonClicked('view')"
+      <div class="d-flex justify-content-end" bottom>
+        <app-text-button size="1rem" (clicked)="onClick('view', order, viewOrder)"
           >View</app-text-button
-        >
-        <app-text-button
-          classes="ml-3"
-          (clicked)="onActionButtonClicked('update-status')"
-          >Update Status</app-text-button
         >
       </div>
     </app-list-tile>
   </div>
 </app-page-wrapper>
 <ng-template #viewOrder>
-  <app-view-order></app-view-order>
+  <app-view-order [order]="selectedOrder"></app-view-order>
 </ng-template>

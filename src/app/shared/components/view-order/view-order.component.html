@@ -1,3 +1,95 @@
 <section class="p-2">
-  <app-modal-header title="Product Information"></app-modal-header>
+  <app-modal-header title="Order Information"></app-modal-header>
+  <div class="mt-3 d-flex">
+    <div class="mr-3">
+      <span class="d-block mb-1">Order ID</span>
+      <span class="badge bg-primary">{{ order.shortId }}</span>
+    </div>
+    <div>
+      <span class="d-block mb-1">Order Status</span>
+      <span
+        class="badge"
+        [ngClass]="{
+          'bg-warning': order.status === 'Processing',
+          'bg-success':
+            order.status === 'Processed' ||
+            order.status === 'En Route' ||
+            order.status === 'Delivered'
+        }"
+        >{{ order.status }}</span
+      >
+    </div>
+  </div>
+  <h3 class="mb-1">Customer</h3>
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <p class="mt-0">
+        <span class="fw-5">Name:</span>
+        {{ order.user.name.first + " " + order.user.name.last }}
+      </p>
+      <p><span class="fw-5">Phone Number:</span> {{ order.user.phone }}</p>
+      <p><span class="fw-5">Address</span>: {{ order.user.address.full }}</p>
+    </div>
+  </div>
+  <h3>Items</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="text-align-left">Name</th>
+        <th class="text-align-center">Quantity</th>
+        <th class="text-align-center">Total Amount (₦)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prod of order.products">
+        <td class="text-align-left">{{ prod.name }}</td>
+        <td class="text-align-center">{{ prod.quantity }}</td>
+        <td class="text-align-center">
+          {{ prod.amount | number: "1.2-2" }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="custom-table">
+    <app-list-tile
+      *ngFor="let prod of order.products"
+      classes="shadow mt-2 p-1"
+    >
+      <h5 class="m-0" top>{{ prod.name }}</h5>
+      <div middle>
+        <p class="m-0 my-1">
+          <span class="fw-5">Quantity: </span>{{ prod.quantity }}
+        </p>
+        <p class="m-0">Amount: ₦{{ prod.amount | number: "1.2-2" }}</p>
+      </div>
+    </app-list-tile>
+  </div>
+  <div>
+    <div>
+      <h4 class="mb-0">Payment Method</h4>
+      <p class="mt-1">Cash On Delivery</p>
+    </div>
+    <div>
+      <h4 class="mt-3 mb-1">Payment Details</h4>
+      <p class="mt-0">
+        <span class="fw-5">Items Total:</span> ₦
+        {{ productsTotal | number: "1.2-2" }}
+      </p>
+      <p><span class="fw-5">Shipping Fee:</span> ₦</p>
+      <p>
+        <span class="fw-5">Total:</span> ₦
+        {{ order.totalAmount | number: "1.2-2" }}
+      </p>
+    </div>
+  </div>
+  <hr class="divider" />
+  <app-button
+    backgroundColor="#00cb73"
+    classes="my-1"
+    (clicked)="onUpdateStatus()"
+    [disabled]="loading"
+    ><span *ngIf="!loading"
+      ><i class="bi-check-circle mr-1"></i>Mark as Processed</span
+    ><app-spinner color="#fff" *ngIf="loading"></app-spinner
+  ></app-button>
 </section>
