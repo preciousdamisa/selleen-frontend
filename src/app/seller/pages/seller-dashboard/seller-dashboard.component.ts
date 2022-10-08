@@ -48,7 +48,7 @@ export class SellerDashboardComponent implements OnInit, OnDestroy {
           this.todos = res.data.todos;
           this.fetchingTodos = false;
         },
-        error: (err) => {
+        error: () => {
           this.fetchingTodos = false;
         },
       });

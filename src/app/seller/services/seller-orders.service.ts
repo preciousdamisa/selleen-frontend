@@ -14,6 +14,7 @@ export class SellerOrdersService {
   private baseUrl = `${environment.apiUrl}`;
 
   constructor(private http: HttpClient, private shopService: ShopService) {}
+
   getOrders(data: SimpleReqQuery) {
     const params = new HttpParams({ fromObject: { ...data } });
 

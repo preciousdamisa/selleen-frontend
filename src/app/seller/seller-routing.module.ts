@@ -18,9 +18,8 @@ import { ShopResolverService } from './services/shop-resolver.service';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'shop',
     children: [
-      { path: '', redirectTo: '/seller/shop/dashboard', pathMatch: 'full' },
       { path: 'signup', component: SellerSignupComponent },
       {
         path: 'login',
@@ -28,7 +27,7 @@ const routes: Routes = [
         data: { forSeller: true },
       },
       {
-        path: 'shop',
+        path: '',
         component: SellerHomeComponent,
         canActivate: [SellerAuthGuard],
         resolve: [ShopResolverService],

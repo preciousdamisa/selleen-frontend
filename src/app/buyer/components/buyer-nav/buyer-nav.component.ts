@@ -77,7 +77,7 @@ export class BuyerNavComponent implements OnInit {
   }
 
   onStartSelling() {
-    this.router.navigateByUrl('/seller');
+    this.router.navigateByUrl('/seller/shop');
   }
 
   onLogout() {

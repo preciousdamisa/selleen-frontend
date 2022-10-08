@@ -54,7 +54,7 @@ export class UserService {
           localStorage.setItem('userData', JSON.stringify(user));
 
           this.user$.next(user);
-          this.router.navigate([user.hasShop ? '/seller' : '']);
+          this.router.navigate([user.hasShop ? '/seller/shop' : '']);
           this.currentUser = user;
 
           this.autoLogout(expDate);
@@ -87,7 +87,7 @@ export class UserService {
 
   logout() {
     this.router.navigate([
-      this.currentUser?.hasShop ? '/seller/login' : '/login',
+      this.currentUser?.hasShop ? '/seller/shop/login' : '/login',
     ]);
     this.user$.next(null);
     this.currentUser = null;

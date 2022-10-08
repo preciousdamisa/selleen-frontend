@@ -24,7 +24,7 @@ export class BuyerHomeComponent implements OnInit {
   }
 
   onGetAShop() {
-    this.router.navigateByUrl('/seller');
+    this.router.navigateByUrl('/seller/shop');
   }
 
   showLocationPrompt(view: TemplateRef<any>) {
