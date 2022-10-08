@@ -3,7 +3,11 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { GetBuyerProductsResBody, GetProductsReqQuery } from '../types/product';
+import { GetShopByAliasResBody } from '../types/buyer.types';
+import {
+  GetBuyerProductsResBody,
+  GetProductsReqQuery,
+} from '../types/product.types';
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +19,24 @@ export class BuyerService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts(data: GetProductsReqQuery) {
+  getProducts(
+    data: GetProductsReqQuery,
+    opts?: { forShop: boolean; shopId?: string }
+  ) {
     const params = new HttpParams({ fromObject: { ...data } });
-
-    return this.http.get<GetBuyerProductsResBody>(`${this.baseUrl}products`, {
+    const url = `${this.baseUrl}${
+      opts?.forShop ? 'products/shop/' + opts?.shopId : 'products'
+    }`;
+    return this.http.get<GetBuyerProductsResBody>(url, {
       params,
     });
+  }
+
+  getShopProducts() {}
+
+  getShop(alias: string) {
+    return this.http.get<GetShopByAliasResBody>(
+      `${this.baseUrl}shops/alias/${alias}`
+    );
   }
 }

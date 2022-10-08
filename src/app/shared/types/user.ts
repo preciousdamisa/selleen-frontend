@@ -1,4 +1,4 @@
-import { CartProduct } from 'src/app/buyer/types/product';
+import { CartProduct } from 'src/app/buyer/types/product.types';
 import { UserShop } from 'src/app/seller/types/shop';
 import { Name, Address } from './shared';
 

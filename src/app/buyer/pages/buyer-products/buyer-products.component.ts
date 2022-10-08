@@ -1,18 +1,9 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ModalService } from 'src/app/services/modal.service';
-import { LocationService } from 'src/app/shared/services/location.service';
 
 import { BuyerService } from '../../services/buyer.service';
-import { GetProductsReqQuery, BuyerProduct } from '../../types/product';
+import { GetProductsReqQuery, BuyerProduct } from '../../types/product.types';
 
 @Component({
   selector: 'app-buyer-products',
@@ -20,8 +11,8 @@ import { GetProductsReqQuery, BuyerProduct } from '../../types/product';
   styleUrls: ['./buyer-products.component.scss'],
 })
 export class BuyerProductsComponent implements OnInit, OnDestroy {
-  @ViewChild('locationPrompt', { static: true })
-  locationPrompt!: TemplateRef<any>;
+  @Input() forShop = false;
+  @Input() shopId?: string;
 
   subs$ = new Subject<void>();
 
@@ -33,17 +24,11 @@ export class BuyerProductsComponent implements OnInit, OnDestroy {
   products: BuyerProduct[] = [];
   loading = false;
 
-  constructor(
-    private router: Router,
-    private buyerService: BuyerService,
-    private modalService: ModalService,
-    private locService: LocationService
-  ) {}
+  constructor(private buyerService: BuyerService) {}
 
   ngOnInit(): void {
     this.fetchProducts();
     this.listenForSearch();
-    this.showLocationPrompt(this.locationPrompt);
   }
 
   listenForSearch() {
@@ -58,7 +43,10 @@ export class BuyerProductsComponent implements OnInit, OnDestroy {
   fetchProducts() {
     this.loading = true;
     this.buyerService
-      .getProducts(this.prodsQuery)
+      .getProducts(this.prodsQuery, {
+        forShop: this.forShop,
+        shopId: this.shopId,
+      })
       .pipe(takeUntil(this.subs$))
       .subscribe({
         next: (res) => {
@@ -69,15 +57,6 @@ export class BuyerProductsComponent implements OnInit, OnDestroy {
           this.loading = false;
         },
       });
-  }
-
-  onGetAShop() {
-    this.router.navigateByUrl('/seller');
-  }
-
-  showLocationPrompt(view: TemplateRef<any>) {
-    if (!this.locService.allowLocation)
-      this.modalService.open({ view, size: 'sm', centered: true });
   }
 
   ngOnDestroy(): void {

@@ -82,14 +82,16 @@
       </p>
     </div>
   </div>
-  <hr class="divider" />
-  <app-button
-    backgroundColor="#00cb73"
-    classes="my-1"
-    (clicked)="onUpdateStatus()"
-    [disabled]="loading"
-    ><span *ngIf="!loading"
-      ><i class="bi-check-circle mr-1"></i>Mark as Processed</span
-    ><app-spinner color="#fff" *ngIf="loading"></app-spinner
-  ></app-button>
+  <div *ngIf="order.status === 'Processing'">
+    <hr class="divider" />
+    <app-button
+      backgroundColor="#00cb73"
+      classes="my-1"
+      (clicked)="onUpdateStatus()"
+      [disabled]="loading"
+      ><span *ngIf="!loading"
+        ><i class="bi-check-circle mr-1"></i>Mark as Processed</span
+      ><app-spinner color="#fff" *ngIf="loading"></app-spinner
+    ></app-button>
+  </div>
 </section>

@@ -1,0 +1,20 @@
+<app-buyer-nav></app-buyer-nav>
+<div class="center mt-10" *ngIf="loading">
+  <app-spinner size="1rem"></app-spinner>
+  <p>Loading...</p>
+</div>
+<section class="container pt-10" *ngIf="!loading && shop">
+  <div class="row mt-5">
+    <div class="col-md-3">
+      <app-shop-profile-card [shop]="shop"></app-shop-profile-card>
+    </div>
+    <div class="col-md-9">
+      <div class="banner-img rounded-1"></div>
+      <app-buyer-products
+        [forShop]="true"
+        [shopId]="shop._id"
+      ></app-buyer-products>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

@@ -1,4 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { SellerOrdersService } from 'src/app/seller/services/seller-orders.service';
@@ -12,6 +19,7 @@ import { NotificationsService } from 'src/app/services/notification.service';
   styleUrls: ['./view-order.component.scss'],
 })
 export class ViewOrderComponent implements OnInit, OnDestroy {
+  @Output() refetchOrders = new EventEmitter();
   @Input() order!: Order;
 
   subs?: Subscription;
@@ -39,6 +47,7 @@ export class ViewOrderComponent implements OnInit, OnDestroy {
       .subscribe({
         next: () => {
           this.notifService.add('Order status updated successfully', 'success');
+          this.refetchOrders.emit();
           this.modalService.close();
           this.loading = false;
         },

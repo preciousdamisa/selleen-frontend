@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { NotificationsService } from 'src/app/services/notification.service';
 import { CartService } from '../../services/cart.service';
-import { BuyerProduct } from '../../types/product';
+import { BuyerProduct } from '../../types/product.types';
 
 @Component({
   selector: 'app-buyer-product',

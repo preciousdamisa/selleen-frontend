@@ -30,7 +30,9 @@
             [ngClass]="{
               'bg-warning': order.status === 'Processing',
               'bg-success':
-                order.status === 'En Route' || order.status === 'Delivered'
+                order.status === 'Processed' ||
+                order.status === 'En Route' ||
+                order.status === 'Delivered'
             }"
             >{{ order.status | space }}</span
           >
@@ -70,7 +72,9 @@
         <span class="mr-2">{{ order.createdAt }}</span>
       </div>
       <div class="d-flex justify-content-end" bottom>
-        <app-text-button size="1rem" (clicked)="onClick('view', order, viewOrder)"
+        <app-text-button
+          size="1rem"
+          (clicked)="onClick('view', order, viewOrder)"
           >View</app-text-button
         >
       </div>
@@ -78,5 +82,8 @@
   </div>
 </app-page-wrapper>
 <ng-template #viewOrder>
-  <app-view-order [order]="selectedOrder"></app-view-order>
+  <app-view-order
+    [order]="selectedOrder"
+    (refetchOrders)="getOrders()"
+  ></app-view-order>
 </ng-template>

@@ -13,6 +13,9 @@ import { BuyerProductSearchComponent } from './components/buyer-product-search/b
 import { CartComponent } from './components/cart/cart.component';
 import { CartProductComponent } from './components/cart-product/cart-product.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ShopComponent } from './pages/shop/shop.component';
+import { ShopProfileCardComponent } from './components/shop-profile-card/shop-profile-card.component';
+import { BuyerStartComponent } from './pages/buyer-start/buyer-start.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     CartComponent,
     CartProductComponent,
     CheckoutComponent,
+    ShopComponent,
+    ShopProfileCardComponent,
+    BuyerStartComponent,
   ],
   imports: [SharedModule, BuyerRoutingModule, BuyerSellerSharedModule],
 })

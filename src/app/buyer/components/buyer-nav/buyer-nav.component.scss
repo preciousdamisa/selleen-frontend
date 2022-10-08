@@ -4,6 +4,7 @@
   position: fixed;
   bottom: 0;
   background: #fff;
+  z-index: 100;
 }
 
 .nav-link {
@@ -34,7 +35,7 @@
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  padding: 0.1rem
+  padding: 0.1rem;
 }
 
 @media (min-width: 40rem) {

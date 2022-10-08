@@ -7,7 +7,7 @@ import {
   AddToCartReqBody,
   AddToCartResBody,
   BuyerProduct,
-} from '../types/product';
+} from '../types/product.types';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

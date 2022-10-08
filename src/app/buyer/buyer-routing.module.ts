@@ -3,18 +3,21 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { UserLoginComponent } from '../shared/pages/user-login/user-login.component';
 import { BuyerHomeComponent } from './pages/buyer-home/buyer-home.component';
-import { BuyerProductsComponent } from './pages/buyer-products/buyer-products.component';
+import { BuyerStartComponent } from './pages/buyer-start/buyer-start.component';
+import { ShopComponent } from './pages/shop/shop.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: BuyerHomeComponent,
-    children: [{ path: '', component: BuyerProductsComponent }],
+    pathMatch: 'full',
+    component: BuyerStartComponent,
+    children: [{ path: '', component: BuyerHomeComponent }],
   },
   {
     path: 'login',
     component: UserLoginComponent,
   },
+  { path: ':alias', component: ShopComponent },
 ];
 
 @NgModule({

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { CartService } from './cart.service';
 import { environment } from 'src/environments/environment';
-import { PlaceOrderReqBody } from '../types/product';
+import { PlaceOrderReqBody } from '../types/product.types';
 import { SimpleResBody } from 'src/app/shared/types/shared';
 
 @Injectable({

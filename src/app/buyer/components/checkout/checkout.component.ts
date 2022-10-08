@@ -9,7 +9,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 import { SelectOption } from 'src/app/shared/types/shared';
 import { CartService } from '../../services/cart.service';
 import { CheckoutService } from '../../services/checkout.service';
-import { PlaceOrderReqBody } from '../../types/product';
+import { PlaceOrderReqBody } from '../../types/product.types';
 
 @Component({
   selector: 'app-checkout',
