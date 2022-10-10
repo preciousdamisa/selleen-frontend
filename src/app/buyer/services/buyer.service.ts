@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { GetShopByAliasResBody } from '../types/buyer.types';
 import {
   GetBuyerProductsResBody,
-  GetProductsReqQuery,
-} from '../types/product.types';
+  GetShopByAliasResBody,
+  GetBuyerProductResBody,
+} from '../types/buyer.types';
+import { GetProductsReqQuery } from '../types/product.types';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +33,11 @@ export class BuyerService {
     });
   }
 
-  getShopProducts() {}
+  getProduct(id: string) {
+    return this.http.get<GetBuyerProductResBody>(
+      `${this.baseUrl}products/${id}`
+    );
+  }
 
   getShop(alias: string) {
     return this.http.get<GetShopByAliasResBody>(

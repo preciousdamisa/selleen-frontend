@@ -1,0 +1,32 @@
+.product-img {
+  background-color: green;
+  height: 220px;
+}
+
+.other-product-img {
+  background: red;
+  width: 40px;
+  height: 40px;
+}
+
+.qty-btn {
+  width: 35px;
+  height: 35px;
+}
+
+.qty {
+  width: 40px;
+  height: 35px;
+  border: 1px solid #958f8f;
+}
+
+.divider {
+  border: none;
+  border-top: 3px solid #8dd5f2;
+}
+
+@media (min-width: 40rem) {
+  .prod-ml {
+    margin-left: 1rem;
+  }
+}

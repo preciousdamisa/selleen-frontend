@@ -3,7 +3,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { BuyerService } from '../../services/buyer.service';
-import { GetProductsReqQuery, BuyerProduct } from '../../types/product.types';
+import { BuyerProduct } from '../../types/buyer.types';
+import { GetProductsReqQuery } from '../../types/product.types';
 
 @Component({
   selector: 'app-buyer-products',

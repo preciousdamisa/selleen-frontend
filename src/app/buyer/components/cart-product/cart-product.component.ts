@@ -18,7 +18,7 @@ export class CartProductComponent {
   }
 
   onDecreaseProdQty(id: string) {
-    this.cartService.modifyProductQty(id, 'Subtract');
+    this.cartService.modifyProductQty(id, 'sub');
   }
 
   onRemoveProd(id: string) {

@@ -1,6 +1,6 @@
 <div class="d-flex-col product">
-  <div class="product-image"></div>
-  <p class="product-name m-0 mt-1">
+  <div class="product-image cursor" (click)="onViewDetails()"></div>
+  <p class="product-name m-0 mt-1 cursor" (click)="onViewDetails()">
     {{ product.name }}
   </p>
   <p class="price m-0">
@@ -11,7 +11,8 @@
     ><span class="fw-5">₦ {{ product.price.sales | number }}</span>
   </p>
   <p class="m-0 my-2 fs-2">
-    Sold By: <a [routerLink]="product.shop.alias">{{ product.shop.alias }}</a>
+    Sold By:
+    <a [routerLink]="['/', product.shop.alias]">{{ product.shop.alias }}</a>
   </p>
   <app-button [fullWidth]="true" (clicked)="onAddToCart()"
     >Add to Cart</app-button

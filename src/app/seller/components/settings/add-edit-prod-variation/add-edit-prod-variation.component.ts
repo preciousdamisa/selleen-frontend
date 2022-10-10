@@ -29,7 +29,5 @@ export class AddEditProdVariationComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    console.log(this.prodVariationForm.value);
-  }
+  onSubmit() {}
 }

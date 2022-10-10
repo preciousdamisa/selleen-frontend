@@ -1,4 +1,4 @@
-import { Address, Coords, Name, Price } from 'src/app/shared/types/shared';
+import { Address, Coords, Name } from 'src/app/shared/types/shared';
 
 export interface CartProduct {
   name: string;
@@ -24,18 +24,6 @@ export interface GetProductsReqQuery {
   pageSize: number;
   lat?: number;
   lng?: number;
-}
-
-export interface BuyerProduct {
-  _id: string;
-  name: string;
-  price: Price;
-  shop: { id: string; name: string; alias: string };
-}
-
-export interface GetBuyerProductsResBody {
-  message: string;
-  data: BuyerProduct[];
 }
 
 export interface PlaceOrderReqBody {

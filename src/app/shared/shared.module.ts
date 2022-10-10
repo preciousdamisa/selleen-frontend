@@ -18,6 +18,8 @@ import { ModalHeaderComponent } from './components/modal-header/modal-header.com
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { ListTileComponent } from './components/list-tile/list-tile.component';
 import { ViewOrderComponent } from './components/view-order/view-order.component';
+import { TabBarComponent } from './components/tab-bar/tab-bar.component';
+import { TabComponent } from './components/tab/tab.component';
 
 import { TooltipDirective } from './directives/tooltip.directive';
 import { OutsideClickDirective } from './directives/outside-click.directive';
@@ -46,6 +48,8 @@ import { LocationPromptComponent } from './components/location-prompt/location-p
     ListTileComponent,
     LocationPromptComponent,
     ViewOrderComponent,
+    TabBarComponent,
+    TabComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -69,6 +73,8 @@ import { LocationPromptComponent } from './components/location-prompt/location-p
     SpacePipe,
     LocationPromptComponent,
     ViewOrderComponent,
+    TabBarComponent,
+    TabComponent,
   ],
 })
 export class SharedModule {}

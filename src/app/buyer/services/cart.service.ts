@@ -1,39 +1,29 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
-import {
-  CartProduct,
-  AddToCartReqBody,
-  AddToCartResBody,
-  BuyerProduct,
-} from '../types/product.types';
-import { environment } from 'src/environments/environment';
+import { CartProduct } from '../types/product.types';
+import { BuyerProduct } from '../types/buyer.types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private baseUrl = `${environment.apiUrl}`;
-
   cart: CartProduct[] = [];
   cartUpdated$ = new BehaviorSubject<number>(0);
 
-  constructor(private http: HttpClient) {}
-
-  addToCart(data: BuyerProduct) {
+  addToCart(data: BuyerProduct, qty = 1) {
     const newProd: CartProduct = {
       name: data.name,
       price: data.price.sales,
       productId: data._id,
-      quantity: 1,
+      quantity: qty,
       shopId: data.shop.id,
     };
 
     const modifiedProds = [...this.cart];
     const prod = modifiedProds.find((p) => p.productId === newProd.productId);
     if (prod) {
-      this.modifyProductQty(prod.productId, 'Add');
+      this.modifyProductQty(prod.productId, 'Add', qty);
       return;
     }
 
@@ -60,13 +50,13 @@ export class CartService {
     this.cartUpdated$.next(totalQty);
   }
 
-  modifyProductQty(id: string, operation: 'Add' | 'Subtract') {
+  modifyProductQty(id: string, opr: 'Add' | 'sub', qty = 1) {
     const modifiedProds = [...this.cart];
     const prodIndex = modifiedProds.findIndex((p) => p.productId === id);
     const prod = modifiedProds.find((p) => p.productId === id)!;
     let modifiedProd;
-    if (operation === 'Add') {
-      modifiedProd = { ...prod, quantity: prod.quantity + 1 };
+    if (opr === 'Add') {
+      modifiedProd = { ...prod, quantity: prod.quantity + qty };
     } else {
       modifiedProd = { ...prod, quantity: prod.quantity - 1 };
     }
