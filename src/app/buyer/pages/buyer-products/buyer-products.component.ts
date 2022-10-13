@@ -50,8 +50,8 @@ export class BuyerProductsComponent implements OnInit, OnDestroy {
       })
       .pipe(takeUntil(this.subs$))
       .subscribe({
-        next: (res) => {
-          this.products = res.data;
+        next: (prods) => {
+          this.products = prods;
           this.loading = false;
         },
         error: () => {

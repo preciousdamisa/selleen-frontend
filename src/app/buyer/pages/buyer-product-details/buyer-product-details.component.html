@@ -5,16 +5,20 @@
 </div>
 <section *ngIf="!loading && product">
   <section class="container pt-10 mt-5">
-    <div class="row">
-      <div class="col-md-4 col-12">
-        <div class="product-img"></div>
+    <div class="top-section">
+      <div>
+        <img
+          class="product-img"
+          [src]="product.images[0].url"
+          [alt]="product.name"
+        />
         <div class="d-flex my-2">
           <div class="other-product-img"></div>
           <div class="other-product-img mx-2"></div>
           <div class="other-product-img"></div>
         </div>
       </div>
-      <div class="col-md-8 col-12">
+      <div>
         <div class="prod-ml">
           <h3 class="mt-0 mb-1 fw-5">{{ product.name }}</h3>
           <p class="price m-0">

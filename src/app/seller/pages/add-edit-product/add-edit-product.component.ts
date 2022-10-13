@@ -3,6 +3,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 
+import { ErrorModalService } from 'src/app/services/error-modal.service';
 import { NotificationsService } from 'src/app/services/notification.service';
 import { SimpleResBody } from 'src/app/shared/types/shared';
 import { SellerProductsService } from '../../services/seller-products.service';
@@ -16,8 +17,11 @@ import { Product, ProductFeature } from '../../types/product';
 })
 export class AddEditProductComponent implements OnInit, OnDestroy {
   subs?: Subscription;
+
   form!: FormGroup;
   editMode = false;
+  productImages: File[] = [];
+  imagesPreviewURLs: any[] = [];
   product: Product | null = null;
   loading = false;
 
@@ -26,7 +30,8 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private prodService: SellerProductsService,
     private shopService: ShopService,
-    private notifService: NotificationsService
+    private notifService: NotificationsService,
+    private errModal: ErrorModalService
   ) {}
 
   ngOnInit(): void {
@@ -92,6 +97,24 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
     this.features.removeAt(i);
   }
 
+  onSelectImages(images: FileList) {
+    this.productImages = [];
+
+    if (images.length > 3) {
+      this.errModal.open('Maximum of three (3) images can be provided.');
+      return;
+    }
+
+    for (let i = 0; i < images.length; i++) {
+      const file = images.item(i)!;
+      this.productImages.push(file);
+
+      const reader = new FileReader();
+      reader.onload = () => (this.imagesPreviewURLs[i] = reader.result);
+      reader.readAsDataURL(file);
+    }
+  }
+
   onSubmit() {
     this.loading = true;
     const data = this.form.value;
@@ -104,7 +127,7 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
       req = this.prodService.editProduct(data, this.product?._id!);
       phrase = 'edited';
     } else {
-      req = this.prodService.addProduct(data);
+      req = this.prodService.addProduct(data, this.productImages);
       phrase = 'added';
     }
 

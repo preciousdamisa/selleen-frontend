@@ -24,6 +24,7 @@ export interface BuyerProduct {
   _id: string;
   name: string;
   price: Price;
+  images: Image[];
   shop: { id: string; name: string; alias: string };
 }
 

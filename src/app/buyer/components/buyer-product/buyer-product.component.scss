@@ -1,6 +1,8 @@
 .product-image {
   height: 200px;
-  background: red;
+  object-fit: cover;
+  transform: scale(1);
+  transition-duration: 0.4s;
 }
 
 .product-name {

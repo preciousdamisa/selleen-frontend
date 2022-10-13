@@ -42,7 +42,7 @@ export class BuyerProductDetailsComponent implements OnInit, OnDestroy {
         this.fetchProduct();
       },
     });
-    
+
     this.listenForTabChange();
   }
 
@@ -60,8 +60,8 @@ export class BuyerProductDetailsComponent implements OnInit, OnDestroy {
       .getProduct(this.productId)
       .pipe(takeUntil(this.subs$))
       .subscribe({
-        next: (res) => {
-          this.product = res.data;
+        next: (prod) => {
+          this.product = prod;
           this.loading = false;
         },
         error: () => {
@@ -81,6 +81,7 @@ export class BuyerProductDetailsComponent implements OnInit, OnDestroy {
     const prod: BuyerProduct = {
       name: this.product.name,
       price: this.product.price,
+      images: this.product.images,
       _id: this.product._id,
       shop: this.product.shop,
     };

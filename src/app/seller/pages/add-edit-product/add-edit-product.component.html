@@ -8,9 +8,9 @@
     >
   </div>
   <app-card classes="p-2 mb-10">
-    <div class="row">
-      <div class="col-md-6">
-        <form [formGroup]="form" (submit)="onSubmit()">
+    <form [formGroup]="form" (submit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6">
           <div class="form-group">
             <label for="prod-name"
               >Product Name <small class="text-danger">*</small></label
@@ -144,19 +144,39 @@
               </ng-container>
             </ng-container>
           </ng-container>
-          <app-text-button (clicked)="onAddFeature()"
-            ><span class="d-flex align-items-center"
-              ><i class="bi-plus fs-3"></i> <span>Add Key Feature</span></span
-            ></app-text-button
-          >
-          <app-button classes="mt-5" paddingX="3rem" [disabled]="form.invalid"
-            ><span *ngIf="!loading">{{
-              editMode ? "Edit Product" : "Add Product"
-            }}</span>
-            <app-spinner *ngIf="loading"></app-spinner
-          ></app-button>
-        </form>
+          <div class="mb-3">
+            <app-text-button (clicked)="onAddFeature()"
+              ><span class="d-flex align-items-center"
+                ><i class="bi-plus fs-3"></i> <span>Add Key Feature</span></span
+              ></app-text-button
+            >
+          </div>
+        </div>
+        <div class="col-md-6">
+          <app-file-picker
+            (filesSelected)="onSelectImages($event)"
+            [multiple]="true"
+            accept="image/x-png,image/jpeg"
+            label="Product Image(s)"
+          ></app-file-picker>
+          <div class="mt-2" *ngIf="imagesPreviewURLs.length">
+            <div class="w-100 d-flex justify-content-between">
+              <img
+                *ngFor="let url of imagesPreviewURLs"
+                class="preview-img"
+                [src]="url"
+                alt="Product Image"
+              />
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+      <app-button classes="mt-5" paddingX="3rem" [disabled]="form.invalid"
+        ><span *ngIf="!loading">{{
+          editMode ? "Edit Product" : "Add Product"
+        }}</span>
+        <app-spinner *ngIf="loading" color="#fff"></app-spinner
+      ></app-button>
+    </form>
   </app-card>
 </app-page-wrapper>

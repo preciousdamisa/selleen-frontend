@@ -1,6 +1,11 @@
+.top-section {
+  display: flex;
+  flex-direction: column;
+}
+
 .product-img {
-  background-color: green;
-  height: 220px;
+  height: 300px;
+  object-fit: cover;
 }
 
 .other-product-img {
@@ -26,7 +31,12 @@
 }
 
 @media (min-width: 40rem) {
+  .top-section {
+    display: flex;
+    flex-direction: row;
+  }
+
   .prod-ml {
-    margin-left: 1rem;
+    margin-left: 1.5rem;
   }
 }

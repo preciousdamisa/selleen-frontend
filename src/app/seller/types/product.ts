@@ -13,6 +13,7 @@ export interface AddOrEditProductReqBody {
   price: Price;
   shopId: string;
   numberInStock: number;
+  images: Image[];
   features: ProductFeature[];
   variation?: ProductVariation;
 }

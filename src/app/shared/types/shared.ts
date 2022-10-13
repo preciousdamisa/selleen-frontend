@@ -52,14 +52,7 @@ export interface ApproveEntityReqBody {
 }
 
 export interface Image {
-  thumbnail: { url: string; dUrl: string };
-  original: { url: string; dUrl: string };
-  metadata: Metadata;
-}
-
-export interface Metadata {
-  width: number;
-  height: number;
+  url: string;
 }
 
 export interface Coords {
@@ -95,4 +88,16 @@ export interface Tab {
 export interface Price {
   original: number;
   sales: number;
+}
+
+export interface GetImageUploadURLQueryParams {
+  fileType: string;
+}
+
+export interface GetImageUploadURLResBody {
+  message: string;
+  data: {
+    url: string;
+    key: string;
+  };
 }
