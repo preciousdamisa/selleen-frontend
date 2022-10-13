@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { concat, Observable, of, pipe } from 'rxjs';
+import { concat, forkJoin, Observable, of, pipe } from 'rxjs';
 import { concatAll, exhaustMap, map, take, tap } from 'rxjs/operators';
 
 import {
@@ -24,7 +24,7 @@ export class SellerProductsService {
   private baseUrl = `${environment.apiUrl}`;
 
   private _selectedProduct: Product | null = null;
-  private image!: Image;
+  private images: Image[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -36,29 +36,47 @@ export class SellerProductsService {
     this._selectedProduct = p;
   }
 
-  getProductImageUploadURLs(image: File): Observable<GetImageUploadURLResBody> {
-    return this.http.get<GetImageUploadURLResBody>(
-      `${this.baseUrl}shop/products/image-upload-url?fileType=${image.type}`
-    );
+  getProductImageUploadURL(
+    images: File[]
+  ): Observable<GetImageUploadURLResBody[]> {
+    const requests: Observable<GetImageUploadURLResBody>[] = [];
+
+    images.forEach((img) => {
+      const req = this.http.get<GetImageUploadURLResBody>(
+        `${this.baseUrl}shop/products/image-upload-url?fileType=${img.type}`
+      );
+
+      requests.push(req);
+    });
+
+    return forkJoin(requests);
   }
 
-  uploadProductImages(image: File): Observable<any> {
-    return this.getProductImageUploadURLs(image).pipe(
+  uploadProductImages(images: File[]): Observable<any> {
+    return this.getProductImageUploadURL(images).pipe(
       take(1),
       exhaustMap((res) => {
-        this.image = { url: res.data.key };
-        return this.http.put(res.data.url, image);
+        res.forEach((data) => {
+          this.images.push({ url: data.data.key });
+        });
+        
+        const requests: Observable<any>[] = [];
+
+        images.forEach((img, i) => {
+          const req = this.http.put(res[i].data.url, img);
+          requests.push(req);
+        });
+
+        return forkJoin(requests);
       })
     );
   }
 
   addProduct(data: AddOrEditProductReqBody, images: File[]) {
-    return this.uploadProductImages(images[0]).pipe(
+    return this.uploadProductImages(images).pipe(
       take(1),
       exhaustMap(() => {
-        console.log(this.image);
-
-        const images = [this.image];
+        const images = [...this.images];
         const updatedData = { ...data, images };
 
         return this.http.post<SimpleResBody>(

@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { TabBarService } from 'src/app/shared/services/tab-bar.service';
-import { Tab } from 'src/app/shared/types/shared';
+import { Image, Tab } from 'src/app/shared/types/shared';
 import { BuyerService } from '../../services/buyer.service';
 import { CartService } from '../../services/cart.service';
 import { BuyerProduct, BuyerProductDetails } from '../../types/buyer.types';
@@ -21,6 +21,7 @@ export class BuyerProductDetailsComponent implements OnInit, OnDestroy {
   product!: BuyerProductDetails;
   loading = false;
   quantity = 0;
+  selectedImage!: Image;
 
   tabs: Tab[] = [
     { name: 'Description', id: 'description' },
@@ -62,6 +63,7 @@ export class BuyerProductDetailsComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (prod) => {
           this.product = prod;
+          this.selectedImage = this.product.images[0];
           this.loading = false;
         },
         error: () => {
