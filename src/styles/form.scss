@@ -28,6 +28,21 @@
   color: #958f8f;
 }
 
+.radio-group {
+  margin-bottom: 1rem;
+}
+
+.radio-group label {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.radio-group input {
+  width: 16px;
+  height: 16px;
+}
+
 .input-error-text {
   color: red;
   font-size: 0.8rem;

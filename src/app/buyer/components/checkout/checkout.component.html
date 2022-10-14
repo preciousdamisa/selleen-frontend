@@ -112,7 +112,41 @@
         ></app-input-errors>
       </div>
     </div>
-    <div class="form-group">
+    <h4>Delivery</h4>
+    <ng-container formGroupName="delivery">
+      <div class="radio-group">
+        <label for="pickup"
+          ><input
+            class="mr-1"
+            type="radio"
+            value="Pickup"
+            formControlName="medium"
+            id="pickup"
+          />I want to pickup in shop</label
+        >
+      </div>
+      <div class="radio-group">
+        <label for="rider"
+          ><input
+            class="mr-1"
+            type="radio"
+            value="Rider"
+            formControlName="medium"
+            id="rider"
+          />I want it delivered to me</label
+        >
+      </div>
+    </ng-container>
+    <div
+      class="delivery-info-card p-1"
+      *ngIf="form.get('delivery.medium')?.value === 'Rider'"
+    >
+      <p class="lh-1 m-0">
+        You will be contacted by the shop for the delivery fee. Please verify
+        the address above is where you want the item(s) delivered to.
+      </p>
+    </div>
+    <div class="form-group mt-4">
       <label for="note">Note</label>
       <textarea
         id="note"
@@ -137,7 +171,7 @@
     </p>
     <app-button
       [disabled]="form.invalid"
-      (clicked)="onPlaceOrder()"
+      (clicked)="onSubmit()"
       [fullWidth]="true"
     >
       <app-spinner color="#fff" *ngIf="loading"></app-spinner

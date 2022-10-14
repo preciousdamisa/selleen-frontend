@@ -69,6 +69,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         state: new FormControl(user?.address?.state, Validators.required),
         country: new FormControl(user?.address?.country, Validators.required),
       }),
+      delivery: new FormGroup({
+        medium: new FormControl('', Validators.required),
+      }),
       note: new FormControl('', Validators.maxLength(500)),
     });
   }
@@ -77,7 +80,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.totalAmt = this.checkoutService.getTotalAmt();
   }
 
-  onPlaceOrder() {
+  onSubmit() {
     this.loading = true;
     const products = this.cartService.cart;
     const loc = this.locService.currentLocation;
