@@ -8,6 +8,7 @@ import { Image, Tab } from 'src/app/shared/types/shared';
 import { BuyerService } from '../../services/buyer.service';
 import { CartService } from '../../services/cart.service';
 import { BuyerProduct, BuyerProductDetails } from '../../types/buyer.types';
+import { NotificationsService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-buyer-product-details',
@@ -33,7 +34,8 @@ export class BuyerProductDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private buyerService: BuyerService,
     private cartService: CartService,
-    private tabBarService: TabBarService
+    private tabBarService: TabBarService,
+    private notifService: NotificationsService
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +66,7 @@ export class BuyerProductDetailsComponent implements OnInit, OnDestroy {
         next: (prod) => {
           this.product = prod;
           this.selectedImage = this.product.images[0];
+          this.quantity = 0;
           this.loading = false;
         },
         error: () => {
@@ -89,6 +92,11 @@ export class BuyerProductDetailsComponent implements OnInit, OnDestroy {
     };
 
     this.cartService.addToCart(prod, this.quantity);
+    if (this.quantity > 0) {
+      this.notifService.add('Added to cart successfully', 'success', {
+        duration: 1000,
+      });
+    }
   }
 
   ngOnDestroy(): void {
