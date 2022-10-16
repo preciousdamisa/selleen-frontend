@@ -1,5 +1,3 @@
-import { Address, Coords, Name } from 'src/app/shared/types/shared';
-
 export interface CartProduct {
   name: string;
   productId: string;
@@ -24,13 +22,4 @@ export interface GetProductsReqQuery {
   pageSize: number;
   lat?: number;
   lng?: number;
-}
-
-export interface PlaceOrderReqBody {
-  name: Name;
-  phone: string;
-  address: Address;
-  note?: string;
-  coords: Coords;
-  products: CartProduct[];
 }

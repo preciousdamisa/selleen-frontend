@@ -1,0 +1,30 @@
+<section class="px-2">
+  <div class="pt-1 pb-2">
+    <div class="mb-3">
+      <app-modal-header title="Bank Account Details"></app-modal-header>
+    </div>
+  </div>
+  <p>
+    To complete your order, transfer
+    <span class="fw-6">₦ {{ data.transfer_amount | number }}</span> into the
+    bank account below:
+  </p>
+  <div class="acc-details-card p-1 mb-3">
+    <p>
+      <span class="fw-5 mr-1">Bank Name:</span>
+      <span>{{ data.transfer_bank }}</span>
+    </p>
+    <p>
+      <span class="fw-5 mr-1">Account Number:</span>
+      <span>{{ data.transfer_account }}</span>
+    </p>
+    <app-text-button (clicked)="onCopyAccNo(data.transfer_account)"
+      >Copy Account Number</app-text-button
+    >
+  </div>
+  <h4 class="mb-0">Transfer Note</h4>
+  <p class="lh-1 mt-0">
+    Our system automatically detects your transfer into the account above and
+    sends your order to be processed.
+  </p>
+</section>

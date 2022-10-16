@@ -170,12 +170,17 @@
       <span>Total</span><span class="fw-6">₦ {{ totalAmt | number }}</span>
     </p>
     <app-button
-      [disabled]="form.invalid"
+      [disabled]="form.invalid || loading"
       (clicked)="onSubmit()"
       [fullWidth]="true"
     >
       <app-spinner color="#fff" *ngIf="loading"></app-spinner
-      ><span *ngIf="!loading">Place Order</span></app-button
+      ><span *ngIf="!loading">Proceed</span></app-button
     >
   </div>
 </section>
+<ng-template #bankAccDetails>
+  <app-bank-account-details
+    [transferAuthorizationData]="transferAuthorizationData"
+  ></app-bank-account-details>
+</ng-template>

@@ -52,10 +52,11 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   onContinue(checkoutView: TemplateRef<any>) {
-    // if (!this.userService.currentUser) {
-    //   // this.router.navigateByUrl('/login');
-    //   return;
-    // }
+    if (!this.userService.currentUser) {
+      this.modalService.close();
+      this.router.navigateByUrl('/login');
+      return;
+    }
     this.modalService.close();
     this.modalService.open({ view: checkoutView });
   }
