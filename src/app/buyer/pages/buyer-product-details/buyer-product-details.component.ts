@@ -96,6 +96,10 @@ export class BuyerProductDetailsComponent implements OnInit, OnDestroy {
       this.notifService.add('Added to cart successfully', 'success', {
         duration: 1000,
       });
+    } else {
+      this.notifService.add("Quantity can't be zero (0)", 'error', {
+        duration: 1500,
+      });
     }
   }
 
