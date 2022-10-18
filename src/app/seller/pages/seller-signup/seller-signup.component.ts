@@ -6,6 +6,7 @@ import { SelectOption } from 'src/app/shared/types/shared';
 import CustomValidators from 'src/app/shared/utils/custom-validators';
 import { SellerService } from '../../services/seller.service';
 import { NotificationsService } from 'src/app/services/notification.service';
+import { LocationService } from 'src/app/shared/services/location.service';
 
 @Component({
   selector: 'app-seller-signup',
@@ -41,7 +42,8 @@ export class SellerSignupComponent implements OnInit, OnDestroy {
 
   constructor(
     private sellerService: SellerService,
-    private notifService: NotificationsService
+    private notifService: NotificationsService,
+    private locService: LocationService
   ) {}
 
   ngOnInit(): void {
@@ -104,8 +106,15 @@ export class SellerSignupComponent implements OnInit, OnDestroy {
     delete this.signupForm.value.confirmPassword;
     delete this.signupForm.value.agreedToTerms;
 
+    const loc = this.locService.currentLocation;
+
+    const data = {
+      ...this.signupForm.value,
+      coords: { lat: loc?.latitude, lng: loc?.longitude },
+    };
+
     this.loading = true;
-    this.subs = this.sellerService.signup(this.signupForm.value).subscribe({
+    this.subs = this.sellerService.signup(data).subscribe({
       next: () => {
         this.notifService.add('Signed up successfully!', 'success');
         this.loading = false;
