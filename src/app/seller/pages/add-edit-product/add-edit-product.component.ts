@@ -52,12 +52,10 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
       price: new FormGroup({
         original: new FormControl(this.product?.price.original || '', [
           Validators.min(100),
-          Validators.max(1000000),
         ]),
         sales: new FormControl(this.product?.price.sales || '', [
           Validators.required,
           Validators.min(100),
-          Validators.max(1000000),
         ]),
       }),
       numberInStock: new FormControl(this.product?.numberInStock || ''),
