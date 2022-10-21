@@ -90,14 +90,15 @@ export interface Price {
   sales: number;
 }
 
-export interface GetImageUploadURLQueryParams {
-  fileType: string;
-}
-
-export interface GetImageUploadURLResBody {
+export interface GetFileUploadURLResBody {
   message: string;
   data: {
     url: string;
     key: string;
   };
+}
+
+export interface GetFileUploadURLQueryParams {
+  fileType: string;
+  folderName: string;
 }

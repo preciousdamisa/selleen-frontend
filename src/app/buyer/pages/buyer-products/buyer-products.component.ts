@@ -5,6 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { BuyerService } from '../../services/buyer.service';
 import { BuyerProduct } from '../../types/buyer.types';
 import { GetProductsReqQuery } from '../../types/product.types';
+import { LocationService } from 'src/app/shared/services/location.service';
 
 @Component({
   selector: 'app-buyer-products',
@@ -25,7 +26,10 @@ export class BuyerProductsComponent implements OnInit, OnDestroy {
   products: BuyerProduct[] = [];
   loading = false;
 
-  constructor(private buyerService: BuyerService) {}
+  constructor(
+    private buyerService: BuyerService,
+    private locService: LocationService
+  ) {}
 
   ngOnInit(): void {
     this.fetchProducts();
@@ -42,6 +46,12 @@ export class BuyerProductsComponent implements OnInit, OnDestroy {
   }
 
   fetchProducts() {
+    const loc = this.locService.currentLocation;
+    this.prodsQuery.lat = loc?.latitude;
+    this.prodsQuery.lng = loc?.longitude;
+
+    console.log(this.prodsQuery);
+
     this.loading = true;
     this.buyerService
       .getProducts(this.prodsQuery, {

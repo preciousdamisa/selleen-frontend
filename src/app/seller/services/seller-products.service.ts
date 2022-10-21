@@ -1,15 +1,15 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { concat, forkJoin, Observable, of, pipe } from 'rxjs';
-import { concatAll, exhaustMap, map, take, tap } from 'rxjs/operators';
+import { forkJoin, Observable } from 'rxjs';
+import { exhaustMap, take } from 'rxjs/operators';
 
 import {
-  GetImageUploadURLQueryParams,
-  GetImageUploadURLResBody,
+  GetFileUploadURLResBody,
   Image,
   SimpleReqQuery,
   SimpleResBody,
 } from 'src/app/shared/types/shared';
+import { getFileType } from 'src/app/shared/utils/file';
 import { environment } from 'src/environments/environment';
 import {
   AddOrEditProductReqBody,
@@ -38,12 +38,14 @@ export class SellerProductsService {
 
   getProductImageUploadURL(
     images: File[]
-  ): Observable<GetImageUploadURLResBody[]> {
-    const requests: Observable<GetImageUploadURLResBody>[] = [];
+  ): Observable<GetFileUploadURLResBody[]> {
+    const requests: Observable<GetFileUploadURLResBody>[] = [];
 
     images.forEach((img) => {
-      const req = this.http.get<GetImageUploadURLResBody>(
-        `${this.baseUrl}shop/products/image-upload-url?fileType=${img.type}`
+      const req = this.http.get<GetFileUploadURLResBody>(
+        `${this.baseUrl}files/upload-url?fileType=${getFileType(
+          img
+        )}&folderName=products`
       );
 
       requests.push(req);
@@ -59,7 +61,7 @@ export class SellerProductsService {
         res.forEach((data) => {
           this.images.push({ url: data.data.key });
         });
-        
+
         const requests: Observable<any>[] = [];
 
         images.forEach((img, i) => {
