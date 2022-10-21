@@ -7,7 +7,8 @@ export interface ShopByAlias {
   name: string;
   alias: string;
   description: string;
-  image: Image;
+  logo: Image;
+  banners: Image[];
   contactLines: string[];
   address: Address;
   rating: number;

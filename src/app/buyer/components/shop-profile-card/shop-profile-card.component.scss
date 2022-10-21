@@ -7,7 +7,10 @@ section {
   position: absolute;
   left: 38%;
   top: -13%;
-  width: 70px
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 section hr {

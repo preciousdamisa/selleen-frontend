@@ -9,7 +9,7 @@
       <app-shop-profile-card [shop]="shop"></app-shop-profile-card>
     </div>
     <div class="col-md-9">
-      <div class="banner-img rounded-1"></div>
+      <img class="banner-img rounded-1" [src]="banner" alt="Shop Banner" />
       <app-buyer-products
         [forShop]="true"
         [shopId]="shop._id"

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { environment } from 'src/environments/environment';
 import { ShopByAlias } from '../../types/buyer.types';
 
 @Component({
@@ -10,7 +11,9 @@ import { ShopByAlias } from '../../types/buyer.types';
 export class ShopProfileCardComponent implements OnInit {
   @Input() shop!: ShopByAlias;
 
-  constructor() {}
+  shopLogo!: string;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.shopLogo = environment.sellenAwsBucketUrl + this.shop.logo.url;
+  }
 }

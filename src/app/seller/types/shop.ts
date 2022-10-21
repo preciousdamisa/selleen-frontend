@@ -11,7 +11,7 @@ export interface Shop {
   email: string;
   balance: number;
   logo: Image;
-  bannerImages: Image[];
+  banners: Image[];
   creator: Creator;
   owners: ShopRelation[];
   managers: ShopRelation[];

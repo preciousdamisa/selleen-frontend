@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 import { BuyerService } from '../../services/buyer.service';
 import { ShopByAlias } from '../../types/buyer.types';
@@ -16,6 +17,8 @@ export class ShopComponent implements OnInit, OnDestroy {
   shop!: ShopByAlias;
   alias!: string;
   loading = false;
+
+  banner!: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -51,6 +54,7 @@ export class ShopComponent implements OnInit, OnDestroy {
     this.subs = this.buyerService.getShop(this.alias).subscribe({
       next: (res) => {
         this.shop = res.data;
+        this.banner = environment.sellenAwsBucketUrl + this.shop.banners[0].url;
         this.loading = false;
       },
       error: () => {

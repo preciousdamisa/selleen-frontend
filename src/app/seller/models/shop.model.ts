@@ -15,7 +15,7 @@ export class Shop {
     public description: string,
     public email: string,
     public logo: Image,
-    public bannerImages: Image[],
+    public banners: Image[],
     public creator: Creator,
     public owners: ShopRelation[],
     public supportStaff: ShopRelation[],
