@@ -23,8 +23,4 @@ export class SellerService {
         exhaustMap((res) => this.userService.handleGetUser(res))
       );
   }
-
-  uploadLogo(file: File) {}
-
-  uploadBanner(file: File) {}
 }

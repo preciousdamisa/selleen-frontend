@@ -14,9 +14,13 @@
       (fileSelected)="onSelectLogo($event)"
       accept="image/x-png,image/jpeg"
     ></app-file-picker>
-    <app-button [disabled]="logo !== null" classes="mt-1"
-      >Update Logo</app-button
-    >
+    <app-button
+      [disabled]="logo == null"
+      classes="mt-1"
+      (clicked)="onUpdateLogo()"
+      ><span *ngIf="!updatingLogo">Update Logo</span>
+      <app-spinner *ngIf="updatingLogo" color="#fff"></app-spinner>
+    </app-button>
   </div>
   <div class="d-flex-col align-items-center ml-2">
     <div
@@ -33,8 +37,12 @@
       (fileSelected)="onSelectBanner($event)"
       accept="image/x-png,image/jpeg"
     ></app-file-picker>
-    <app-button [disabled]="banner !== null" classes="mt-1"
-      >Update Banner</app-button
-    >
+    <app-button
+      [disabled]="banner == null"
+      classes="mt-1"
+      (clicked)="onUpdateBanner()"
+      ><span *ngIf="!updatingBanner">Update Banner</span>
+      <app-spinner *ngIf="updatingBanner" color="#fff"></app-spinner
+    ></app-button>
   </div>
 </div>

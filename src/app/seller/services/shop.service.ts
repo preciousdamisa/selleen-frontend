@@ -4,7 +4,11 @@ import { Observable } from 'rxjs';
 import { exhaustMap, map, take, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { SimpleResBody } from 'src/app/shared/types/shared';
+import {
+  GetFileUploadURLResBody,
+  Image,
+  SimpleResBody,
+} from 'src/app/shared/types/shared';
 import {
   BankAccountDetails,
   GetShopByIdResBody,
@@ -12,15 +16,18 @@ import {
   UpdateShopReqBody,
   UpdateSMLinksReqBody,
 } from '../types/shop';
+import { getFileType } from 'src/app/shared/utils/file';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShopService {
   private baseUrl = `${environment.apiUrl}`;
-  // shop$ = new BehaviorSubject<Shop | null>(null);
   currentShop?: Shop;
   shopUpdated = false;
+
+  private logo?: Image;
+  private banner?: Image;
 
   constructor(private http: HttpClient) {}
 
@@ -91,6 +98,48 @@ export class ShopService {
         tap(() => (this.shopUpdated = true)),
         exhaustMap(() => this.getShop(shopId))
       );
+  }
+
+  updateLogo(img: File, shopId: string) {
+    return this.uploadImage(img, 'logos').pipe(
+      take(1),
+      exhaustMap(() => {
+        return this.http.patch(`${this.baseUrl}shops/${shopId}/logo`, {
+          url: this.logo!.url,
+        });
+      })
+    );
+  }
+
+  updateBanner(img: File, shopId: string) {
+    return this.uploadImage(img, 'banners').pipe(
+      take(1),
+      exhaustMap(() => {
+        return this.http.patch(`${this.baseUrl}shops/${shopId}/banners`, {
+          url: this.banner!.url,
+        });
+      })
+    );
+  }
+
+  uploadImage(img: File, folderName: 'logos' | 'banners') {
+    return this.getUploadUrl(img, folderName).pipe(
+      take(1),
+      exhaustMap((res) => {
+        if (folderName === 'logos') this.logo = { url: res.data.key };
+        else this.banner = { url: res.data.key };
+
+        return this.http.put(res.data.url, img);
+      })
+    );
+  }
+
+  getUploadUrl(file: File, folderName: 'logos' | 'banners') {
+    return this.http.get<GetFileUploadURLResBody>(
+      `${this.baseUrl}files/upload-url?fileType=${getFileType(
+        file
+      )}&folderName=${folderName}`
+    );
   }
 
   updateBankAccDetails(data: BankAccountDetails, shopId: string) {
