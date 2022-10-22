@@ -3,15 +3,27 @@
     <span
       *ngIf="showShopStatus"
       id="approval-badge"
-      class="badge bg-success text-align-center"
-      >Approved</span
+      class="badge text-align-center"
+      [ngClass]="{
+        'bg-success': shop?.status === 'Approved',
+        'bg-warning': shop?.status === 'InReview'
+      }"
+      >{{ shop?.status }}</span
     >
     <h3 class="m-0 mt-1">{{ title }}</h3>
     <p class="mb-0" *ngIf="subtitle">{{ subtitle }}</p>
   </div>
   <div id="img-container" class="d-flex align-items-center">
-    <span class="badge bg-success" *ngIf="showShopStatus">Approved</span>
-    <i class="bi-bell fs-3 mx-2"></i>
-    <img class="logo" [src]="shopLogo" alt="Shop Logo" />
+    <span
+      class="badge"
+      [ngClass]="{
+        'bg-success': shop?.status === 'Approved',
+        'bg-warning': shop?.status === 'InReview'
+      }"
+      *ngIf="showShopStatus"
+      >{{ shop?.status }}</span
+    >
+    <i class="bi-bell fs-3 ml-2"></i>
+    <img *ngIf="shopLogo" class="logo ml-2" [src]="shopLogo" alt="Shop Logo" />
   </div>
 </div>

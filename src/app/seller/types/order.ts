@@ -28,6 +28,7 @@ export interface Order {
   };
   delivery: { method: string };
   status: OrderStatus;
+  note: string;
   products: Product[];
   totalAmount: number;
   createdAt: string;

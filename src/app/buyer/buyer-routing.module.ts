@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserLoginComponent } from '../shared/pages/user-login/user-login.component';
 import { BuyerHomeComponent } from './pages/buyer-home/buyer-home.component';
 import { BuyerProductDetailsComponent } from './pages/buyer-product-details/buyer-product-details.component';
+import { BuyerSignupComponent } from './pages/buyer-signup/buyer-signup.component';
 import { BuyerStartComponent } from './pages/buyer-start/buyer-start.component';
 import { ShopComponent } from './pages/shop/shop.component';
 
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: UserLoginComponent,
+  },
+  {
+    path: 'signup',
+    component: BuyerSignupComponent,
   },
   {
     path: ':alias/products/:productName/:productId',

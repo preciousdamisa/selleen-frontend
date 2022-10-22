@@ -50,8 +50,6 @@ export class BuyerProductsComponent implements OnInit, OnDestroy {
     this.prodsQuery.lat = loc?.latitude;
     this.prodsQuery.lng = loc?.longitude;
 
-    console.log(this.prodsQuery);
-
     this.loading = true;
     this.buyerService
       .getProducts(this.prodsQuery, {

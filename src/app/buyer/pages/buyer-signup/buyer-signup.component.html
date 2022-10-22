@@ -1,0 +1,115 @@
+<section class="mt-10">
+  <app-logo></app-logo>
+  <div class="form-container center pt-3 mx-2">
+    <app-card classes="p-2">
+      <h2 class="text-align-center">
+        Let's get you started with your Selleen Account
+      </h2>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="signup-form">
+        <div formGroupName="name" class="d-flex">
+          <div class="form-group pr-1 col">
+            <label for="f-name"
+              >First Name <small class="text-danger">*</small></label
+            >
+            <input
+              id="f-name"
+              class="form-control"
+              placeholder="Enter first name"
+              formControlName="first"
+            />
+            <app-input-errors
+              [control]="form.get('name.first')"
+              label="First name"
+            ></app-input-errors>
+          </div>
+          <div class="form-group pl-1 col">
+            <label for="l-name"
+              >Last Name <small class="text-danger">*</small></label
+            >
+            <input
+              id="l-name"
+              class="form-control"
+              placeholder="Enter last name"
+              formControlName="last"
+            />
+            <app-input-errors
+              [control]="form.get('name.last')"
+              label="Last name"
+            ></app-input-errors>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email"
+            >Email Address <small class="text-danger">*</small></label
+          >
+          <input
+            id="email"
+            class="form-control"
+            placeholder="e.g. mail@abc.com"
+            formControlName="email"
+          />
+          <app-input-errors
+            [control]="form.get('email')"
+            label="Email address"
+          ></app-input-errors>
+        </div>
+        <div class="form-group">
+          <label for="phone"
+            >Phone Number <small class="text-danger">*</small></label
+          >
+          <input
+            id="phone"
+            class="form-control"
+            placeholder="e.g. 09066666666"
+            formControlName="phone"
+          />
+          <app-input-errors
+            [control]="form.get('phone')"
+            label="Phone number"
+          ></app-input-errors>
+        </div>
+        <div class="form-group">
+          <label for="pw">Password <small class="text-danger">*</small></label>
+          <input
+            id="pw"
+            class="form-control"
+            placeholder="Enter password"
+            type="password"
+            formControlName="password"
+          />
+          <app-input-errors
+            [control]="form.get('password')"
+            label="Password"
+          ></app-input-errors>
+        </div>
+        <div class="form-group">
+          <label for="confirm-pw"
+            >Confirm Password <small class="text-danger">*</small></label
+          >
+          <input
+            id="confirm-pw"
+            class="form-control"
+            placeholder="Repeat password"
+            type="password"
+            formControlName="confirmPassword"
+          />
+          <app-input-errors
+            [control]="form.get('confirmPassword')"
+            label="Confirm password"
+            [custom]="{ key: 'mustMatch', message: 'Passwords do not match' }"
+          ></app-input-errors>
+        </div>
+        <app-button classes="mt-2" [fullWidth]="true" [disabled]="form.invalid">
+          <app-spinner color="#fff" *ngIf="loading"></app-spinner
+          ><span *ngIf="!loading">Sign Up</span>
+        </app-button>
+        <div class="d-flex justify-content-center my-5">
+          <app-text classes="mr-1" size="0.8rem"
+            >Already have an account?</app-text
+          >
+          <app-link size="0.8rem" color="#000" url="/login">Login</app-link>
+        </div>
+      </form>
+    </app-card>
+  </div>
+</section>

@@ -1,6 +1,13 @@
 import { ProductFeature, ProductVariation } from 'src/app/seller/types/product';
 import { SocialMediaLink } from 'src/app/seller/types/shop';
-import { Address, Image, Price } from 'src/app/shared/types/shared';
+import { Address, Image, Name, Price } from 'src/app/shared/types/shared';
+
+export interface BuyerSignupReqBody {
+  name: Name;
+  email: string;
+  phone: string;
+  password: string;
+}
 
 export interface ShopByAlias {
   _id: string;

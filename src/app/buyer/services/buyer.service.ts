@@ -1,16 +1,18 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take, exhaustMap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import {
   GetBuyerProductsResBody,
   GetShopByAliasResBody,
   GetBuyerProductResBody,
+  BuyerSignupReqBody,
 } from '../types/buyer.types';
 import { GetProductsReqQuery } from '../types/product.types';
-import { Image } from 'src/app/shared/types/shared';
+import { AuthResBody, Image } from 'src/app/shared/types/shared';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +22,16 @@ export class BuyerService {
 
   fetchingProducts = new Subject<string>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService) {}
+
+  signup(data: BuyerSignupReqBody) {
+    return this.http
+      .post<AuthResBody>(`${this.baseUrl}users/buyers/signup`, data)
+      .pipe(
+        take(1),
+        exhaustMap((res) => this.userService.handleGetUser(res))
+      );
+  }
 
   getProducts(
     data: GetProductsReqQuery,

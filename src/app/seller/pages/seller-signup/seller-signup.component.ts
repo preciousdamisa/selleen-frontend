@@ -84,18 +84,6 @@ export class SellerSignupComponent implements OnInit, OnDestroy {
     );
   }
 
-  get firstNameHasError() {
-    const { touched, errors } = this.signupForm.get(
-      'name.first'
-    ) as FormControl;
-    return touched && errors;
-  }
-
-  get lastNameHasError() {
-    const { touched, errors } = this.signupForm.get('name.last') as FormControl;
-    return touched && errors;
-  }
-
   onSubmit() {
     if (
       this.signupForm.invalid ||

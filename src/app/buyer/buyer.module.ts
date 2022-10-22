@@ -18,6 +18,7 @@ import { ShopProfileCardComponent } from './components/shop-profile-card/shop-pr
 import { BuyerStartComponent } from './pages/buyer-start/buyer-start.component';
 import { BuyerProductDetailsComponent } from './pages/buyer-product-details/buyer-product-details.component';
 import { BankAccountDetailsComponent } from './components/bank-account-details/bank-account-details.component';
+import { BuyerSignupComponent } from './pages/buyer-signup/buyer-signup.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { BankAccountDetailsComponent } from './components/bank-account-details/b
     BuyerStartComponent,
     BuyerProductDetailsComponent,
     BankAccountDetailsComponent,
+    BuyerSignupComponent,
   ],
   imports: [SharedModule, BuyerRoutingModule, BuyerSellerSharedModule],
 })

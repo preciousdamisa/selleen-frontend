@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ShopService } from '../../services/shop.service';
+import { Shop } from '../../types/shop';
 
 @Component({
   selector: 'app-seller-page-header',
@@ -12,12 +13,17 @@ export class SellerPageHeaderComponent implements OnInit {
   @Input() subtitle?: string;
   @Input() showShopStatus = false;
 
-  shopLogo!: string;
+  shop?: Shop;
+  shopLogo?: string;
 
   constructor(private shopService: ShopService) {}
 
   ngOnInit(): void {
-    this.shopLogo =
-      environment.sellenAwsBucketUrl + this.shopService.currentShop!.logo.url;
+    this.shop = this.shopService.currentShop;
+    
+    const url = this.shop?.logo?.url;
+    if (url) {
+      this.shopLogo = environment.sellenAwsBucketUrl + url;
+    }
   }
 }
