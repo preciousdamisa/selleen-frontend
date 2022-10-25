@@ -28,7 +28,7 @@ export class SellerAuthGuard implements CanActivate {
     return this.userService.user$.pipe(
       take(1),
       map((user) => {
-        const isAuth = !!user;
+        const isAuth = !!user && user.hasShop;
         if (isAuth) return true;
         return this.router.createUrlTree(['/seller/shop/login']);
       })

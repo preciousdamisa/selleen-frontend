@@ -4,7 +4,7 @@
   <div class="d-flex justify-content-end mt-5">
     <app-button (clicked)="onAddProduct()"
       ><span class="d-flex align-items-center"
-        ><i class="bi-plus fs-3"></i> <span>Add a Product</span></span
+        ><i class="bi-plus fs-3"></i><span>Add a Product</span></span
       ></app-button
     >
   </div>
@@ -46,6 +46,7 @@
           <app-dropdown
             [items]="dropdownItems"
             (selected)="onSelectProduct(prod); onSelectItem($event)"
+            ><i class="dropdown-btn bi-three-dots-vertical cursor"></i
           ></app-dropdown>
         </td>
       </tr>

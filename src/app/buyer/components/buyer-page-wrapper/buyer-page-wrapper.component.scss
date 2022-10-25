@@ -1,0 +1,11 @@
+.page-wrapper {
+  border: 1px solid #958f8f;
+  width: 100%;
+}
+
+@media (min-width: 40rem) {
+  .page-wrapper {
+    width: 60vw;
+    margin-left: 2rem;
+  }
+}

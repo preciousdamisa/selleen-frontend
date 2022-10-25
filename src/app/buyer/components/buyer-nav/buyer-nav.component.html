@@ -1,5 +1,5 @@
-<ng-container *ngIf="open">
-  <nav id="nav-sm" class="shadow px-2 py-2" *ngIf="showNav">
+<ng-container *ngIf="showNav">
+  <nav id="nav-sm" class="shadow px-2 py-2" *ngIf="!isDesktop">
     <ul
       id="nav-items"
       class="d-flex justify-content-between list-style-none p-0 m-0"
@@ -9,13 +9,14 @@
           class="nav-link d-flex-col fs-2 align-items-center"
           routerLink=""
           routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
           ><i class="nav-link-icon bi-house-door"></i><span>Home</span></a
         >
       </li>
       <li>
         <a
           class="nav-link d-flex-col fs-2 align-items-center cursor"
-          (click)="onViewCart(cart)"
+          (click)="onOpenView(cartView)"
           routerLinkActive="active"
           ><i class="cart-icon nav-link-icon bi-cart4"
             ><span *ngIf="totalCartItems > 0" class="cart-item-count">{{
@@ -33,18 +34,18 @@
       </li>
       <li>
         <a
-          routerLink="/seller/shop"
           class="nav-link d-flex-col fs-2 align-items-center"
+          routerLink="/orders"
           routerLinkActive="active"
-          ><i class="nav-link-icon bi-shop-window"></i><span>Shop</span></a
+          ><i class="nav-link-icon bi-bag"></i><span>Orders</span></a
         >
       </li>
       <li>
         <a
+          routerLink="/seller/shop"
           class="nav-link d-flex-col fs-2 align-items-center"
           routerLinkActive="active"
-          ><i class="nav-link-icon bi-person-circle"></i
-          ><span>My Account</span></a
+          ><i class="nav-link-icon bi-shop-window"></i><span>Shop</span></a
         >
       </li>
     </ul>
@@ -52,27 +53,48 @@
 </ng-container>
 <div id="nav-md-top" class="shadow">
   <div class="container d-flex align-items-center justify-content-between">
-    <div id="logo"><app-logo size="8rem"></app-logo></div>
-    <div class="flex-1 px-5">
+    <a routerLink="/">
+      <app-logo size="8rem"></app-logo>
+    </a>
+    <div class="flex-1 px-5" *ngIf="isDesktop">
       <app-buyer-product-search></app-buyer-product-search>
     </div>
     <div class="d-flex align-items-center">
-      <a class="d-flex align-items-center"
-        ><i class="bi-person-circle nav-link-icon text-primary mr-1"></i>
-        <span>My Account</span></a
-      >
-      <a class="mx-2 cursor" (click)="onViewCart(cart)"
+      <a class="cursor mr-2" (click)="onOpenView(cartView)"
         ><i class="cart-icon bi-cart4 nav-link-icon text-primary mr-1"
           ><span *ngIf="totalCartItems > 0" class="cart-item-count">{{
             totalCartItems
           }}</span></i
         >
-        <span>Cart</span>
+        <span *ngIf="isDesktop">Cart</span>
       </a>
-      <app-button (clicked)="onStartSelling()">Start Selling</app-button>
+      <a
+        *ngIf="!isDesktop"
+        class="d-flex align-items-center cursor"
+        (click)="onOpenView(accountView)"
+        ><i class="bi-list nav-link-icon text-primary mr-1"></i>
+      </a>
+      <app-dropdown
+        menuBackgroundColor="#fff"
+        itemColor="#000"
+        [items]="dropdownItems"
+        itemClasses="fs-3"
+        (selected)="onSelectDropdownItem($event)"
+      >
+        <a *ngIf="isDesktop" class="d-flex align-items-center cursor"
+          ><i class="bi-person-circle nav-link-icon text-primary mr-1"></i>
+          <span>My Account</span></a
+        >
+      </app-dropdown>
+      <app-button classes="ml-2" *ngIf="isDesktop" (clicked)="onStartSelling()"
+        >Start Selling</app-button
+      >
     </div>
   </div>
 </div>
-<ng-template #cart>
+<ng-template #cartView>
   <app-cart></app-cart>
+</ng-template>
+<ng-template #accountView>
+  <app-buyer-side-nav></app-buyer-side-nav>
 </ng-template>

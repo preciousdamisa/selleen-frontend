@@ -1,0 +1,37 @@
+<div class="container pt-10 mt-2" [ngClass]="{ 'd-flex': isDesktop }">
+  <app-buyer-side-nav *ngIf="isDesktop"></app-buyer-side-nav>
+  <app-buyer-page-wrapper>
+    <h3 class="fw-6 mt-0">
+      <i class="bi-person-check mr-1"></i><span>Account Overview</span>
+    </h3>
+    <div class="acc-overview d-flex flex-wrap">
+      <div class="flex-1 p-2 border rounded-1 acc-details mb-2">
+        <div class="d-flex align-items-center justify-content-between">
+          <h5 class="fw-5 m-0">
+            <i class="bi-person-check mr-1"></i> <span>Account Details</span>
+          </h5>
+          <i class="bi-pencil-square text-primary"></i>
+        </div>
+        <hr />
+        <p>{{ user.name.first + " " + user.name.last }}</p>
+        <p>{{ user.email }}</p>
+        <p>{{ user.phone }}</p>
+      </div>
+      <div class="flex-1 p-2 border rounded-1 mb-2">
+        <div class="d-flex align-items-center justify-content-between">
+          <h5 class="fw-5 m-0">
+            <i class="bi-geo-alt mr-1"></i> <span>Address</span>
+          </h5>
+          <i class="bi-pencil-square text-primary"></i>
+        </div>
+        <hr />
+        <h4 class="mb-1 fw-6">Your Default Shipping Address</h4>
+        <p class="mt-0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, est
+          culpa quam voluptate sint blanditiis praesentium eligendi voluptas
+          animi molestiae?
+        </p>
+      </div>
+    </div>
+  </app-buyer-page-wrapper>
+</div>

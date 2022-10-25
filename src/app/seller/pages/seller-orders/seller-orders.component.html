@@ -43,7 +43,9 @@
           <app-dropdown
             [items]="dropdownItems"
             (selected)="onClick($event, order, viewOrder)"
-          ></app-dropdown>
+          >
+            <i class="dropdown-btn bi-three-dots-vertical cursor"></i>
+          </app-dropdown>
         </td>
       </tr>
     </tbody>

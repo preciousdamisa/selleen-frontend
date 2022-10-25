@@ -20,6 +20,7 @@ import { ListTileComponent } from './components/list-tile/list-tile.component';
 import { ViewOrderComponent } from './components/view-order/view-order.component';
 import { TabBarComponent } from './components/tab-bar/tab-bar.component';
 import { TabComponent } from './components/tab/tab.component';
+import { PageWrapperComponent } from './components/page-wrapper/page-wrapper.component';
 
 import { TooltipDirective } from './directives/tooltip.directive';
 import { OutsideClickDirective } from './directives/outside-click.directive';
@@ -50,6 +51,7 @@ import { LocationPromptComponent } from './components/location-prompt/location-p
     ViewOrderComponent,
     TabBarComponent,
     TabComponent,
+    PageWrapperComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -75,6 +77,7 @@ import { LocationPromptComponent } from './components/location-prompt/location-p
     ViewOrderComponent,
     TabBarComponent,
     TabComponent,
+    PageWrapperComponent,
   ],
 })
 export class SharedModule {}

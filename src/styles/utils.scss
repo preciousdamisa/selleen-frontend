@@ -116,3 +116,12 @@
 .lh-1 {
   line-height: 2;
 }
+
+.dropdown-btn {
+  padding: 0.4rem;
+  border-radius: 50%;
+}
+
+.dropdown-btn:active {
+  background: #ddd;
+}

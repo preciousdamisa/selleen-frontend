@@ -1,0 +1,51 @@
+<nav class="nav-md">
+  <ul class="list-style-none">
+    <li class="nav-item">
+      <a routerLink="/account" routerLinkActive="active"
+        ><i class="bi-person-check mr-1"></i><span>My Selleen Account</span></a
+      >
+    </li>
+    <li class="nav-item">
+      <a routerLink="/orders" routerLinkActive="active"
+        ><i class="bi-cart4 mr-1"></i><span>Orders</span></a
+      >
+    </li>
+    <hr />
+    <li class="mt-8 mb-2 px-4">
+      <a class="text-primary cursor" (click)="onLogout()"
+        ><i class="nav-link-icon bi-box-arrow-left mr-1"></i
+        ><span class="nav-link-text">Logout</span></a
+      >
+    </li>
+  </ul>
+</nav>
+<nav class="nav-sm">
+  <app-modal-header classes="mb-2 px-2"></app-modal-header>
+  <div class="d-flex-col justify-content-between">
+    <ul class="list-style-none">
+      <li class="nav-item">
+        <a
+          routerLink="/account"
+          routerLinkActive="active"
+          (click)="onCloseNav()"
+          ><i class="bi-person-check mr-1"></i
+          ><span>My Selleen Account</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a routerLink="/orders" routerLinkActive="active" (click)="onCloseNav()"
+          ><i class="bi-cart4 mr-1"></i><span>Orders</span></a
+        >
+      </li>
+    </ul>
+    <div>
+      <hr />
+      <a
+        class="text-primary logout-btn mr-2 mt-2 cursor"
+        (click)="onCloseNav(); onLogout()"
+        ><i class="nav-link-icon bi-box-arrow-left mr-1"></i
+        ><span class="nav-link-text">Logout</span></a
+      >
+    </div>
+  </div>
+</nav>

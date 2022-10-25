@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { UserLoginComponent } from '../shared/pages/user-login/user-login.component';
+import { BuyerAccountComponent } from './pages/buyer-account/buyer-account.component';
 import { BuyerHomeComponent } from './pages/buyer-home/buyer-home.component';
+import { BuyerOrdersComponent } from './pages/buyer-orders/buyer-orders.component';
 import { BuyerProductDetailsComponent } from './pages/buyer-product-details/buyer-product-details.component';
 import { BuyerSignupComponent } from './pages/buyer-signup/buyer-signup.component';
 import { BuyerStartComponent } from './pages/buyer-start/buyer-start.component';
@@ -11,9 +13,18 @@ import { ShopComponent } from './pages/shop/shop.component';
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    component: BuyerStartComponent,
-    children: [{ path: '', component: BuyerHomeComponent }],
+    component: BuyerHomeComponent,
+    children: [
+      { path: '', component: BuyerStartComponent, pathMatch: 'full' },
+      {
+        path: 'account',
+        component: BuyerAccountComponent,
+      },
+      {
+        path: 'orders',
+        component: BuyerOrdersComponent,
+      },
+    ],
   },
   {
     path: 'login',

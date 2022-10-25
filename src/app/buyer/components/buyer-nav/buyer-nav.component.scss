@@ -17,7 +17,15 @@
 }
 
 #nav-md-top {
-  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0;
+  padding: 1rem 0;
+  display: block;
+  z-index: 100;
+  background: #fff;
 }
 
 .cart-icon {
@@ -39,22 +47,6 @@
 }
 
 @media (min-width: 40rem) {
-  #nav-sm {
-    display: none;
-  }
-
-  #nav-md-top {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 0;
-    padding: 1rem 0;
-    display: block;
-    z-index: 100;
-    background: #fff;
-  }
-
   #nav-items {
     flex-direction: column;
   }

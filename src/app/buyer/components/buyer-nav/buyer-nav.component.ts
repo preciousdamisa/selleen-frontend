@@ -1,13 +1,13 @@
 import { Component, HostListener, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { UserService } from 'src/app/shared/services/user.service';
-import { BuyerNavService } from '../../services/buyer-nav.service';
 import { User } from 'src/app/shared/models/user.model';
 import { CartService } from '../../services/cart.service';
 import { ModalService } from 'src/app/services/modal.service';
+import { DropdownItem } from 'src/app/shared/types/shared';
 
 @Component({
   selector: 'app-buyer-nav',
@@ -21,21 +21,27 @@ export class BuyerNavComponent implements OnInit {
   showNav = true;
   previousScrollY = 0;
 
+  isDesktop = false;
+
   user?: User | null;
   totalCartItems = 0;
 
+  dropdownItems: DropdownItem[] = [
+    { id: 'my-acc', name: 'My Selleen Account', iconName: 'bi-person-check' },
+    { id: 'orders', name: 'Orders', iconName: 'bi-cart4' },
+  ];
+
   constructor(
     private router: Router,
-    private buyerNavService: BuyerNavService,
     private userService: UserService,
     private cartService: CartService,
     private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
-    this.listenForNavStatusChange();
     this.getUser();
     this.listenForCartChange();
+    this.listenToWindowchange();
   }
 
   @HostListener('window:scroll') getScrollHeight() {
@@ -48,12 +54,31 @@ export class BuyerNavComponent implements OnInit {
     }
   }
 
-  listenForNavStatusChange() {
-    this.buyerNavService.show.pipe(takeUntil(this.subs$)).subscribe({
-      next: (show) => {
-        this.open = show;
-      },
-    });
+  listenToWindowchange() {
+    this.checkWidth(window.innerWidth);
+
+    fromEvent(window, 'resize')
+      .pipe(takeUntil(this.subs$))
+      .subscribe({
+        next: (evt: any) => {
+          this.checkWidth(evt.target.innerWidth);
+        },
+      });
+  }
+
+  checkWidth(width: number) {
+    this.isDesktop = width > 640;
+  }
+
+  onSelectDropdownItem(id: string) {
+    switch (id) {
+      case 'my-acc':
+        this.router.navigateByUrl('/account');
+        break;
+      case 'orders':
+        this.router.navigateByUrl('/orders');
+        break;
+    }
   }
 
   getUser() {
@@ -72,7 +97,7 @@ export class BuyerNavComponent implements OnInit {
     });
   }
 
-  onViewCart(view: TemplateRef<any>) {
+  onOpenView(view: TemplateRef<any>) {
     this.modalService.open({ view, side: true });
   }
 

@@ -1,0 +1,56 @@
+.nav-sm {
+  display: block;
+  height: 100%;
+}
+
+.nav-md {
+  display: none;
+}
+
+.nav-item a {
+  text-decoration: none;
+  display: block;
+  padding: 0.7rem 1rem 0.7rem;
+  text-align: end;
+  font-size: 1.2rem;
+}
+
+.active {
+  background: #36abd9;
+  color: white;
+}
+
+.logout-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.d-flex-col {
+  height: 80%;
+}
+
+@media (min-width: 40rem) {
+  .nav-md {
+    display: block;
+    width: 20vw;
+    border: 1px solid #958f8f;
+    box-shadow: 0 0 5px 5px rgb(0 0 0 / 3%);
+    border-radius: 4px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .nav-sm {
+    display: none;
+  }
+
+  .nav-item a {
+    padding: 0.5rem 2rem;
+    text-align: start;
+    font-size: 1rem;
+  }
+
+  .logout-btn {
+    text-align: start;
+  }
+}

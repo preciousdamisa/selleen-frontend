@@ -23,10 +23,10 @@ export class ButtonComponent implements OnInit {
   subs?: Subscription;
   colorTheme?: ColorTheme;
 
-  constructor(private colorThemeService: ColorThemeService) {}
+  constructor(private themeService: ColorThemeService) {}
 
   ngOnInit(): void {
-    this.subs = this.colorThemeService.getTheme().subscribe({
+    this.subs = this.themeService.getTheme().subscribe({
       next: (theme) => {
         this.colorTheme = theme;
       },

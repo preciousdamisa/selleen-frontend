@@ -1,0 +1,23 @@
+.border {
+  border: 1px solid #958f8f;
+}
+
+.acc-overview {
+  display: flex;
+  flex-direction: column;
+}
+
+.acc-details {
+  margin-right: 0;
+}
+
+@media (min-width: 40rem) {
+  .acc-overview {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .acc-details {
+    margin-right: 1.5rem;
+  }
+}

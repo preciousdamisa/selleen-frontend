@@ -19,6 +19,10 @@ import { BuyerStartComponent } from './pages/buyer-start/buyer-start.component';
 import { BuyerProductDetailsComponent } from './pages/buyer-product-details/buyer-product-details.component';
 import { BankAccountDetailsComponent } from './components/bank-account-details/bank-account-details.component';
 import { BuyerSignupComponent } from './pages/buyer-signup/buyer-signup.component';
+import { BuyerSideNavComponent } from './components/buyer-side-nav/buyer-side-nav.component';
+import { BuyerOrdersComponent } from './pages/buyer-orders/buyer-orders.component';
+import { BuyerAccountComponent } from './pages/buyer-account/buyer-account.component';
+import { BuyerPageWrapperComponent } from './components/buyer-page-wrapper/buyer-page-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,10 @@ import { BuyerSignupComponent } from './pages/buyer-signup/buyer-signup.componen
     BuyerProductDetailsComponent,
     BankAccountDetailsComponent,
     BuyerSignupComponent,
+    BuyerSideNavComponent,
+    BuyerOrdersComponent,
+    BuyerAccountComponent,
+    BuyerPageWrapperComponent,
   ],
   imports: [SharedModule, BuyerRoutingModule, BuyerSellerSharedModule],
 })

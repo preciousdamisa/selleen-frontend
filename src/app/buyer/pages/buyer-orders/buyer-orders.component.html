@@ -1,0 +1,8 @@
+<div class="container pt-10 mt-2" [ngClass]="{ 'd-flex': isDesktop }">
+  <app-buyer-side-nav *ngIf="isDesktop"></app-buyer-side-nav>
+  <app-buyer-page-wrapper>
+    <h3 class="fw-6 mt-0">
+      <i class="bi-person-check mr-1"></i><span>Order Details</span>
+    </h3>
+  </app-buyer-page-wrapper>
+</div>

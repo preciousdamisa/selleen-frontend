@@ -1,13 +1,17 @@
 <div class="dropdown" outsideClick (outsideClick)="onClose()">
-  <i
-    class="dropdown-btn bi-three-dots-vertical cursor"
-    (click)="onToggle()"
-  ></i>
-  <div *ngIf="opened" class="dropdown-menu shadow">
+  <div (click)="onToggle()">
+    <ng-content></ng-content>
+  </div>
+  <div
+    *ngIf="opened"
+    class="dropdown-menu shadow"
+    [style.background]="menuBackgroundColor"
+  >
     <a
       *ngFor="let item of items"
-      class="dropdown-item d-flex cursor"
+      [class]="'dropdown-item d-flex cursor ' + itemClasses"
       (click)="onSelect(item.id); onClose()"
+      [style.color]="itemColor"
       ><i class="mr-1" *ngIf="item.iconName" [class]="item.iconName"></i
       ><span>{{ item.name }}</span></a
     >
