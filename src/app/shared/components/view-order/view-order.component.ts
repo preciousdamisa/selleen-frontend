@@ -21,6 +21,7 @@ import { NotificationsService } from 'src/app/services/notification.service';
 export class ViewOrderComponent implements OnInit, OnDestroy {
   @Output() refetchOrders = new EventEmitter();
   @Input() order!: Order;
+  @Input() sellerView = true;
 
   subs?: Subscription;
   loading = false;

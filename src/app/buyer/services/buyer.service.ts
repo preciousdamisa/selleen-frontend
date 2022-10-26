@@ -11,8 +11,13 @@ import {
   BuyerSignupReqBody,
 } from '../types/buyer.types';
 import { GetProductsReqQuery } from '../types/product.types';
-import { AuthResBody, Image } from 'src/app/shared/types/shared';
+import {
+  AuthResBody,
+  Image,
+  SimpleReqQuery,
+} from 'src/app/shared/types/shared';
 import { UserService } from 'src/app/shared/services/user.service';
+import { GetOrdersResBody } from 'src/app/seller/types/order';
 
 @Injectable({
   providedIn: 'root',
@@ -79,5 +84,13 @@ export class BuyerService {
     return this.http.get<GetShopByAliasResBody>(
       `${this.baseUrl}shops/alias/${alias}`
     );
+  }
+
+  getOrders(data: SimpleReqQuery) {
+    const params = new HttpParams({ fromObject: { ...data } });
+
+    return this.http.get<GetOrdersResBody>(`${this.baseUrl}orders/me`, {
+      params,
+    });
   }
 }

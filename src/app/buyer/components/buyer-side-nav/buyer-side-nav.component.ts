@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 
 import { ModalService } from 'src/app/services/modal.service';
@@ -9,7 +9,7 @@ import { UserService } from 'src/app/shared/services/user.service';
   templateUrl: './buyer-side-nav.component.html',
   styleUrls: ['./buyer-side-nav.component.scss'],
 })
-export class BuyerSideNavComponent implements OnInit {
+export class BuyerSideNavComponent implements OnInit, OnDestroy {
   subs?: Subscription;
 
   constructor(
@@ -36,5 +36,9 @@ export class BuyerSideNavComponent implements OnInit {
 
   onLogout() {
     this.userService.logout();
+  }
+
+  ngOnDestroy(): void {
+    this.subs?.unsubscribe();
   }
 }

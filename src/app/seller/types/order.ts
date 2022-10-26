@@ -26,7 +26,7 @@ export interface Order {
     phone: string;
     address: Address;
   };
-  delivery: { method: string };
+  delivery: { medium: string };
   status: OrderStatus;
   note: string;
   products: Product[];

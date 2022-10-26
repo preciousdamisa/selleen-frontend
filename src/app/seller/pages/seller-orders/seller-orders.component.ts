@@ -46,12 +46,9 @@ export class SellerOrdersComponent implements OnInit, OnDestroy {
       });
   }
 
-  onClick(id: string, order: Order, view: TemplateRef<any>) {
+  onViewOrder(order: Order, view: TemplateRef<any>) {
     this.selectedOrder = order;
-
-    if (id === 'view') {
-      this.modalService.open({ view });
-    }
+    this.modalService.open({ view });
   }
 
   ngOnDestroy(): void {

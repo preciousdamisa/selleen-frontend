@@ -1,5 +1,5 @@
 <section class="p-2">
-  <app-modal-header title="Order Information"></app-modal-header>
+  <app-modal-header title="Order Details"></app-modal-header>
   <div class="mt-3 d-flex">
     <div class="mr-3">
       <span class="d-block mb-1">Order ID</span>
@@ -68,8 +68,8 @@
     <h4 class="mb-1">Note</h4>
     <p class="m-0">{{ order.note }}</p>
     <div>
-      <h4 class="mb-0">Payment Method</h4>
-      <p class="mt-1">Cash On Delivery</p>
+      <h4 class="mb-0">Delivery</h4>
+      <p class="mt-1">{{ order.delivery.medium }}</p>
     </div>
     <div>
       <h4 class="mt-3 mb-1">Payment Details</h4>
@@ -77,14 +77,14 @@
         <span class="fw-5">Items Total:</span> ₦
         {{ productsTotal | number: "1.2-2" }}
       </p>
-      <p><span class="fw-5">Shipping Fee:</span> ₦</p>
+      <!-- <p><span class="fw-5">Shipping Fee:</span> ₦</p> -->
       <p>
         <span class="fw-5">Total:</span> ₦
         {{ order.totalAmount | number: "1.2-2" }}
       </p>
     </div>
   </div>
-  <div *ngIf="order.status === 'Processing'">
+  <div *ngIf="order.status === 'Processing' && sellerView">
     <hr class="divider" />
     <app-button
       backgroundColor="#00cb73"
