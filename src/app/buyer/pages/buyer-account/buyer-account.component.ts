@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 
+import { ModalService } from 'src/app/services/modal.service';
 import { User } from 'src/app/shared/models/user.model';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 
 @Component({
   selector: 'app-buyer-account',
@@ -15,7 +16,10 @@ export class BuyerAccountComponent implements OnInit, OnDestroy {
 
   isDesktop = false;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserAuthService,
+    private modalService: ModalService
+  ) {}
 
   ngOnInit(): void {
     this.user = this.userService.currentUser!;
@@ -34,6 +38,10 @@ export class BuyerAccountComponent implements OnInit, OnDestroy {
 
   checkWidth(width: number) {
     this.isDesktop = width > 640;
+  }
+
+  onUpdateData(view: TemplateRef<any>) {
+    this.modalService.open({ view });
   }
 
   ngOnDestroy(): void {

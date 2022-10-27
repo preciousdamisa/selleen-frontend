@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { UserService } from '../../services/user.service';
+import { UserAuthService } from '../../services/user-auth.service';
 
 @Component({
   selector: 'app-user-login',
@@ -19,7 +19,7 @@ export class UserLoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserAuthService
   ) {}
 
   ngOnInit(): void {

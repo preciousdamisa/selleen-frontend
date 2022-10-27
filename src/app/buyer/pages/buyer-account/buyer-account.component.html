@@ -10,7 +10,9 @@
           <h5 class="fw-5 m-0">
             <i class="bi-person-check mr-1"></i> <span>Account Details</span>
           </h5>
-          <i class="bi-pencil-square text-primary"></i>
+          <app-text-button size="1rem" (clicked)="onUpdateData(phoneUpdateView)"
+            ><i class="bi-pencil-square text-primary"></i
+          ></app-text-button>
         </div>
         <hr />
         <p>{{ user.name.first + " " + user.name.last }}</p>
@@ -22,16 +24,26 @@
           <h5 class="fw-5 m-0">
             <i class="bi-geo-alt mr-1"></i> <span>Address</span>
           </h5>
-          <i class="bi-pencil-square text-primary"></i>
+          <app-text-button size="1rem" (clicked)="onUpdateData(addrUpdateView)"
+            ><i class="bi-pencil-square text-primary"></i
+          ></app-text-button>
         </div>
         <hr />
         <h4 class="mb-1 fw-6">Your Default Shipping Address</h4>
         <p class="mt-0">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, est
-          culpa quam voluptate sint blanditiis praesentium eligendi voluptas
-          animi molestiae?
+          {{
+            user.address
+              ? user.address.full
+              : "Provide a default shipping address"
+          }}
         </p>
       </div>
     </div>
   </app-buyer-page-wrapper>
 </div>
+<ng-template #addrUpdateView>
+  <app-edit-user-address></app-edit-user-address>
+</ng-template>
+<ng-template #phoneUpdateView>
+  <app-edit-user-data></app-edit-user-data>
+</ng-template>

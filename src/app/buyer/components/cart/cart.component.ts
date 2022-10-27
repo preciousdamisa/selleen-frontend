@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { CartService } from '../../services/cart.service';
 import { CartProduct } from '../../types/product.types';
 import { ModalService } from 'src/app/services/modal.service';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -21,7 +21,7 @@ export class CartComponent implements OnInit, OnDestroy {
     private router: Router,
     private cartService: CartService,
     private modalService: ModalService,
-    private userService: UserService
+    private userService: UserAuthService
   ) {}
 
   ngOnInit(): void {

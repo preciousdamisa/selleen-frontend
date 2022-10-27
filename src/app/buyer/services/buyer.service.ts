@@ -16,7 +16,7 @@ import {
   Image,
   SimpleReqQuery,
 } from 'src/app/shared/types/shared';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { GetOrdersResBody } from 'src/app/seller/types/order';
 
 @Injectable({
@@ -27,7 +27,7 @@ export class BuyerService {
 
   fetchingProducts = new Subject<string>();
 
-  constructor(private http: HttpClient, private userService: UserService) {}
+  constructor(private http: HttpClient, private userService: UserAuthService) {}
 
   signup(data: BuyerSignupReqBody) {
     return this.http

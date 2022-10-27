@@ -77,12 +77,13 @@
       <label for="full-addr"
         >Full Address <small class="text-danger">*</small></label
       >
-      <input
+      <textarea
         id="full-addr"
         class="form-control"
         placeholder="e.g. 10, Immaculate street..., Edo state, Nigeria."
         formControlName="full"
-      />
+        rows="5"
+      ></textarea>
       <app-input-errors
         [control]="shopInfoForm.get('address.full')"
         label="Full address"

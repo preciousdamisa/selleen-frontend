@@ -5,7 +5,7 @@ import { exhaustMap, take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { SellerSignupReqBody } from '../types/seller-auth';
 import { AuthResBody } from 'src/app/shared/types/shared';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class SellerService {
   private baseUrl = `${environment.apiUrl}`;
 
-  constructor(private http: HttpClient, private userService: UserService) {}
+  constructor(private http: HttpClient, private userService: UserAuthService) {}
 
   signup(data: SellerSignupReqBody) {
     return this.http

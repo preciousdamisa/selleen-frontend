@@ -53,7 +53,6 @@ export class BuyerOrdersComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.subs$))
       .subscribe({
         next: (res) => {
-          console.log(res);
           this.orders = res.data;
           this.loading = false;
         },

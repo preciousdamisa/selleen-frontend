@@ -8,14 +8,14 @@ import { Observable } from 'rxjs';
 
 import { Shop } from '../types/shop';
 import { ShopService } from './shop.service';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShopResolverService implements Resolve<Shop> {
   constructor(
-    private userService: UserService,
+    private userService: UserAuthService,
     private shopService: ShopService
   ) {}
 

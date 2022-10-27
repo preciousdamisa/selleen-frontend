@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 
 import { ModalService } from 'src/app/services/modal.service';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 
 @Component({
   selector: 'app-buyer-side-nav',
@@ -14,7 +14,7 @@ export class BuyerSideNavComponent implements OnInit, OnDestroy {
 
   constructor(
     private modalService: ModalService,
-    private userService: UserService
+    private userService: UserAuthService
   ) {}
 
   ngOnInit(): void {

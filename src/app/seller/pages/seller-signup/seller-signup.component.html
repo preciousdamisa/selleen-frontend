@@ -107,12 +107,13 @@
             <label for="full-addr"
               >Shop's Full Address <small class="text-danger">*</small></label
             >
-            <input
+            <textarea
               id="full-addr"
               class="form-control"
               placeholder="e.g. 10, Immaculate street..., Edo state, Nigeria."
               formControlName="full"
-            />
+              rows="5"
+            ></textarea>
             <app-input-errors
               [control]="signupForm.get('shopAddress.full')"
               label="Shop's full address"

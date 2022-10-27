@@ -1,0 +1,54 @@
+<section class="p-2">
+  <app-modal-header title="Edit"></app-modal-header>
+  <form class="mt-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div formGroupName="name" class="d-flex">
+      <div class="form-group pr-1 col">
+        <label for="f-name">First Name</label>
+        <input
+          id="f-name"
+          class="form-control"
+          placeholder="Enter first name"
+          formControlName="first"
+          readonly
+        />
+      </div>
+      <div class="form-group pl-1 col">
+        <label for="l-name">Last Name</label>
+        <input
+          id="l-name"
+          class="form-control"
+          placeholder="Enter last name"
+          formControlName="last"
+          readonly
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input
+        id="email"
+        class="form-control"
+        placeholder="e.g. mail@abc.com"
+        formControlName="email"
+        readonly
+      />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input
+        id="phone"
+        class="form-control"
+        placeholder="e.g. 09066666666"
+        formControlName="phone"
+      />
+      <app-input-errors
+        [control]="form.get('phone')"
+        label="Phone number"
+      ></app-input-errors>
+    </div>
+    <app-button classes="mt-2" [disabled]="form.invalid">
+      <app-spinner color="#fff" *ngIf="loading"></app-spinner
+      ><span *ngIf="!loading">Save</span>
+    </app-button>
+  </form>
+</section>

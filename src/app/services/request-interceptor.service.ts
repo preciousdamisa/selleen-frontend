@@ -12,13 +12,13 @@ import { exhaustMap, Observable, take, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { AdminAuthService } from 'src/app/admin/services/admin-auth.service';
-import { UserService } from '../shared/services/user.service';
+import { UserAuthService } from '../shared/services/user-auth.service';
 import { ErrorModalService } from './error-modal.service';
 
 @Injectable()
 export class RequestInterceptorService implements HttpInterceptor {
   constructor(
-    private userService: UserService,
+    private userService: UserAuthService,
     private adminService: AdminAuthService,
     private errModalService: ErrorModalService
   ) {}

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
 import { User } from 'src/app/shared/models/user.model';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { Todo } from 'src/app/shared/types/shared';
 import { SellerDashboardService } from '../../services/seller-dashboard.service';
 
@@ -21,7 +21,7 @@ export class SellerDashboardComponent implements OnInit, OnDestroy {
   fetchingTodos = false;
 
   constructor(
-    private userService: UserService,
+    private userService: UserAuthService,
     private dashService: SellerDashboardService
   ) {}
 

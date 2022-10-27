@@ -4,7 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 
 import { User } from 'src/app/shared/models/user.model';
 import { Shop } from 'src/app/seller/models/shop.model';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { ShopService } from 'src/app/seller/services/shop.service';
 import { SelectOption } from 'src/app/shared/types/shared';
 import { NotificationsService } from 'src/app/services/notification.service';
@@ -37,7 +37,7 @@ export class AddEditShopInfoComponent implements OnInit, OnDestroy {
   enteredAlias = '';
 
   constructor(
-    private userService: UserService,
+    private userService: UserAuthService,
     private shopService: ShopService,
     private notifService: NotificationsService
   ) {}

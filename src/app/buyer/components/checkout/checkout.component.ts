@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/services/modal.service';
 import { User } from 'src/app/shared/models/user.model';
 import { LocationService } from 'src/app/shared/services/location.service';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { SelectOption } from 'src/app/shared/types/shared';
 import { CartService } from '../../services/cart.service';
 import { CheckoutService } from '../../services/checkout.service';
@@ -47,7 +47,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ];
 
   constructor(
-    private userService: UserService,
+    private userService: UserAuthService,
     private checkoutService: CheckoutService,
     private cartService: CartService,
     private locService: LocationService,

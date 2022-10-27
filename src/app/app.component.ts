@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { AdminAuthService } from './admin/services/admin-auth.service';
 import { CartService } from './buyer/services/cart.service';
 import { LocationService } from './shared/services/location.service';
-import { UserService } from './shared/services/user.service';
+import { UserAuthService } from './shared/services/user-auth.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private adminAuthService: AdminAuthService,
-    private userService: UserService,
+    private userService: UserAuthService,
     private cartService: CartService,
     private locService: LocationService
   ) {}

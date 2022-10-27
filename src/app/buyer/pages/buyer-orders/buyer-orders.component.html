@@ -6,8 +6,17 @@
       <app-spinner size="1rem"></app-spinner>
       <p>Loading Orders...</p>
     </div>
+    <div class="center mt-5" *ngIf="!loading && !orders.length">
+      <i class="bi-cart fs-8"></i>
+      <p class="text-align-center">
+        Hmmm! Seems you haven't placed any order yet...
+      </p>
+    </div>
     <div class="custom-table mt-5">
-      <app-list-tile *ngFor="let order of orders" classes="shadow rounded-1 mt-2 p-1">
+      <app-list-tile
+        *ngFor="let order of orders"
+        classes="shadow rounded-1 mt-2 p-1"
+      >
         <div top>
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="m-0 mb-1">Order ID: {{ order.shortId }}</h5>

@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { SellerNavService } from '../../services/seller-nav.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class SellerNavComponent implements OnInit {
 
   constructor(
     private sellerNavService: SellerNavService,
-    private userService: UserService
+    private userService: UserAuthService
   ) {}
 
   ngOnInit(): void {

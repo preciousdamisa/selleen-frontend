@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { NotificationsService } from 'src/app/services/notification.service';
 import CustomValidators from 'src/app/shared/utils/custom-validators';
 
@@ -17,7 +17,7 @@ export class ChangeSellerPasswordComponent implements OnInit, OnDestroy {
   loading = false;
 
   constructor(
-    private userService: UserService,
+    private userService: UserAuthService,
     private notifService: NotificationsService
   ) {}
 

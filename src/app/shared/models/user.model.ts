@@ -12,8 +12,8 @@ export class User {
     public shops: UserShop[],
     private _token: string,
     private tokenExpirationDate: Date,
-    public gender?: string,
     public address?: Address,
+    public gender?: string,
     public image?: Image,
     public cart?: CartProduct[],
     public roles?: Role[]
@@ -43,8 +43,8 @@ export class User {
       userData.shops,
       userData._token,
       new Date(userData.tokenExpirationDate),
-      userData?.gender,
       userData?.address,
+      userData?.gender,
       userData?.image,
       userData?.cart,
       userData?.roles

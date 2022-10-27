@@ -23,6 +23,8 @@ import { BuyerSideNavComponent } from './components/buyer-side-nav/buyer-side-na
 import { BuyerOrdersComponent } from './pages/buyer-orders/buyer-orders.component';
 import { BuyerAccountComponent } from './pages/buyer-account/buyer-account.component';
 import { BuyerPageWrapperComponent } from './components/buyer-page-wrapper/buyer-page-wrapper.component';
+import { EditUserDataComponent } from './components/edit-user-data/edit-user-data.component';
+import { EditUserAddressComponent } from './components/edit-user-address/edit-user-address.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { BuyerPageWrapperComponent } from './components/buyer-page-wrapper/buyer
     BuyerOrdersComponent,
     BuyerAccountComponent,
     BuyerPageWrapperComponent,
+    EditUserDataComponent,
+    EditUserAddressComponent,
   ],
   imports: [SharedModule, BuyerRoutingModule, BuyerSellerSharedModule],
 })

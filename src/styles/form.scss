@@ -50,6 +50,10 @@
   display: block;
 }
 
+input:read-only {
+  background: gainsboro;
+}
+
 .btn {
   border: none;
   outline: none;

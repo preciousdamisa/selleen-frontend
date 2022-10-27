@@ -9,13 +9,13 @@ import {
 import { Observable } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 
-import { UserService } from '../../shared/services/user.service';
+import { UserAuthService } from '../../shared/services/user-auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SellerAuthGuard implements CanActivate {
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private router: Router, private userService: UserAuthService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,

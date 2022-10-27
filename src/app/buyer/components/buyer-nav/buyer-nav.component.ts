@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { User } from 'src/app/shared/models/user.model';
 import { CartService } from '../../services/cart.service';
 import { ModalService } from 'src/app/services/modal.service';
@@ -33,7 +33,7 @@ export class BuyerNavComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userService: UserService,
+    private userService: UserAuthService,
     private cartService: CartService,
     private modalService: ModalService
   ) {}

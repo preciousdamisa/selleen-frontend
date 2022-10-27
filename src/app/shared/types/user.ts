@@ -9,7 +9,7 @@ export interface GetUserResBody {
     name: Name;
     phone: string;
     email: string;
-    address: Address;
+    address?: Address;
     cart: CartProduct[];
     hasShop: boolean;
     shops: UserShop[];
