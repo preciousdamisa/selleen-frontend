@@ -10,6 +10,8 @@ import { BuyerSignupComponent } from './pages/buyer-signup/buyer-signup.componen
 import { BuyerStartComponent } from './pages/buyer-start/buyer-start.component';
 import { ShopComponent } from './pages/shop/shop.component';
 
+import { BuyerAuthGuard } from './services/buyer-auth.guard';
+
 const routes: Routes = [
   {
     path: '',
@@ -18,10 +20,12 @@ const routes: Routes = [
       { path: '', component: BuyerStartComponent, pathMatch: 'full' },
       {
         path: 'account',
+        canActivate: [BuyerAuthGuard],
         component: BuyerAccountComponent,
       },
       {
         path: 'orders',
+        canActivate: [BuyerAuthGuard],
         component: BuyerOrdersComponent,
       },
     ],
