@@ -29,7 +29,10 @@ export class UserAuthService {
     );
   }
 
-  handleGetUser(res: AuthResBody) {
+  handleGetUser(
+    res: AuthResBody,
+    opts = { navigate: true, setLogoutTimer: true }
+  ) {
     const authRes = res;
 
     return this.http
@@ -49,16 +52,20 @@ export class UserAuthService {
             res.data.shops,
             authRes.data.token,
             expDate,
-            res.data?.address,
+            res.data?.address
           );
 
           localStorage.setItem('userData', JSON.stringify(user));
 
           this.user$.next(user);
-          this.router.navigate([user.hasShop ? '/seller/shop' : '']);
+          if (opts.navigate) {
+            this.router.navigate([user.hasShop ? '/seller/shop' : '']);
+          }
           this.currentUser = user;
 
-          this.autoLogout(expDate);
+          if (opts.setLogoutTimer) {
+            this.autoLogout(expDate);
+          }
         })
       );
   }
@@ -95,7 +102,7 @@ export class UserAuthService {
 
     localStorage.removeItem('userData');
     localStorage.removeItem('shopData');
-    
+
     if (this.timerRef) {
       clearTimeout(this.timerRef);
       this.timerRef = null;

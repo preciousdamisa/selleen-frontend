@@ -11,7 +11,7 @@ export class User {
     public hasShop: boolean,
     public shops: UserShop[],
     private _token: string,
-    private tokenExpirationDate: Date,
+    private _tokenExpirationDate: Date,
     public address?: Address,
     public gender?: string,
     public image?: Image,
@@ -27,7 +27,7 @@ export class User {
     hasShop: boolean;
     shops: UserShop[];
     _token: string;
-    tokenExpirationDate: string;
+    _tokenExpirationDate: string;
     gender?: string;
     address?: Address;
     image?: Image;
@@ -42,7 +42,7 @@ export class User {
       userData.hasShop,
       userData.shops,
       userData._token,
-      new Date(userData.tokenExpirationDate),
+      new Date(userData._tokenExpirationDate),
       userData?.address,
       userData?.gender,
       userData?.image,
@@ -52,9 +52,13 @@ export class User {
   }
 
   get token() {
-    if (!this.tokenExpirationDate || new Date() > this.tokenExpirationDate) {
+    if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
       return null;
     }
     return this._token;
+  }
+
+  get tokenExpirationDate() {
+    return this._tokenExpirationDate;
   }
 }

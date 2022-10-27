@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
-import { fromEvent, Subscription } from 'rxjs';
+import { fromEvent, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { ModalService } from 'src/app/services/modal.service';
 import { User } from 'src/app/shared/models/user.model';
@@ -11,29 +12,39 @@ import { UserAuthService } from 'src/app/shared/services/user-auth.service';
   styleUrls: ['./buyer-account.component.scss'],
 })
 export class BuyerAccountComponent implements OnInit, OnDestroy {
-  subs?: Subscription;
+  subs$ = new Subject<void>();
   user!: User;
 
   isDesktop = false;
 
   constructor(
-    private userService: UserAuthService,
+    private authService: UserAuthService,
     private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
-    this.user = this.userService.currentUser!;
+    this.getUser();
     this.listenToWindowchange();
+  }
+
+  getUser() {
+    this.authService.user$.pipe(takeUntil(this.subs$)).subscribe({
+      next: (user) => {
+        this.user = user!;
+      },
+    });
   }
 
   listenToWindowchange() {
     this.checkWidth(window.innerWidth);
 
-    this.subs = fromEvent(window, 'resize').subscribe({
-      next: (evt: any) => {
-        this.checkWidth(evt.target.innerWidth);
-      },
-    });
+    fromEvent(window, 'resize')
+      .pipe(takeUntil(this.subs$))
+      .subscribe({
+        next: (evt: any) => {
+          this.checkWidth(evt.target.innerWidth);
+        },
+      });
   }
 
   checkWidth(width: number) {
@@ -45,6 +56,7 @@ export class BuyerAccountComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subs?.unsubscribe();
+    this.subs$.next();
+    this.subs$.complete();
   }
 }
