@@ -112,6 +112,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       })
       .subscribe({
         next: (res) => {
+          console.log(res);
           this.transferAuthorizationData = res.data.meta.authorization;
           this.loading = false;
           this.modalService.close();
