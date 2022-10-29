@@ -155,17 +155,22 @@
         <div class="col-md-6">
           <app-file-picker
             (filesSelected)="onSelectImages($event)"
+            (previewUrls)="onPreviewUrls($event)"
             [multiple]="true"
+            [compress]="true"
             accept="image/x-png,image/jpeg"
             label="Product Image(s)"
           ></app-file-picker>
-          <p class="text-danger text-align-center" *ngIf="productImages.length < 1">
+          <p
+            class="text-danger text-align-center"
+            *ngIf="productImages.length < 1"
+          >
             Include at least one image of the product.
           </p>
-          <div class="mt-2" *ngIf="imagesPreviewURLs.length">
+          <div class="mt-2" *ngIf="productImages.length">
             <div class="w-100 d-flex justify-content-between">
               <img
-                *ngFor="let url of imagesPreviewURLs"
+                *ngFor="let url of previewUrls"
                 class="preview-img"
                 [src]="url"
                 alt="Product Image"

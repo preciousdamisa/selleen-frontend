@@ -21,7 +21,7 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   editMode = false;
   productImages: File[] = [];
-  imagesPreviewURLs: any[] = [];
+  previewUrls: string[] = [];
   product: Product | null = null;
   loading = false;
 
@@ -95,23 +95,23 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
     this.features.removeAt(i);
   }
 
-  onSelectImages(images: FileList) {
+  onSelectImages(images: File[]) {
     this.productImages = [];
-    this.imagesPreviewURLs = [];
+
+    console.log(images.length);
 
     if (images.length > 3) {
       this.errModal.open('Maximum of three (3) images can be provided.');
       return;
     }
 
-    for (let i = 0; i < images.length; i++) {
-      const file = images.item(i)!;
-      this.productImages.push(file);
+    this.productImages = images;
+  }
 
-      const reader = new FileReader();
-      reader.onload = () => (this.imagesPreviewURLs[i] = reader.result);
-      reader.readAsDataURL(file);
-    }
+  onPreviewUrls(urls: string[]) {
+    this.previewUrls = [];
+    if (this.previewUrls.length > 3) return;
+    this.previewUrls = urls;
   }
 
   onSubmit() {

@@ -82,7 +82,7 @@ export class UserAuthService {
     this.user$.next(user);
     this.currentUser = user;
 
-    this.autoLogout(new Date(parsedUser.tokenExpirationDate));
+    this.autoLogout(new Date(parsedUser._tokenExpirationDate));
   }
 
   autoLogout(tokenExpDate: Date) {
