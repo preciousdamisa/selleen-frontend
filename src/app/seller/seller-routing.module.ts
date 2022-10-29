@@ -50,7 +50,8 @@ const routes: Routes = [
                 pathMatch: 'full',
                 component: SellerProductsComponent,
               },
-              { path: 'add-edit-product', component: AddEditProductComponent },
+              { path: 'add', component: AddEditProductComponent },
+              { path: 'edit', component: AddEditProductComponent },
             ],
           },
           {

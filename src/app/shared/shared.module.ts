@@ -21,12 +21,12 @@ import { ViewOrderComponent } from './components/view-order/view-order.component
 import { TabBarComponent } from './components/tab-bar/tab-bar.component';
 import { TabComponent } from './components/tab/tab.component';
 import { PageWrapperComponent } from './components/page-wrapper/page-wrapper.component';
+import { LocationPromptComponent } from './components/location-prompt/location-prompt.component';
 
 import { TooltipDirective } from './directives/tooltip.directive';
 import { OutsideClickDirective } from './directives/outside-click.directive';
 
 import { SpacePipe } from './pipes/space.pipe';
-import { LocationPromptComponent } from './components/location-prompt/location-prompt.component';
 
 @NgModule({
   declarations: [
