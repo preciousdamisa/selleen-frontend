@@ -98,8 +98,6 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
   onSelectImages(images: File[]) {
     this.productImages = [];
 
-    console.log(images.length);
-
     if (images.length > 3) {
       this.errModal.open('Maximum of three (3) images can be provided.');
       return;

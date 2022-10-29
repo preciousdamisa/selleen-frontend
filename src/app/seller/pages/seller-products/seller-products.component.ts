@@ -36,7 +36,7 @@ export class SellerProductsComponent implements OnInit {
   }
 
   onSelectItem(id: string) {
-    if (id === 'edit') this.gotoAddOrEditPage();
+    if (id === 'edit') this.onEditProduct();
   }
 
   onSelectProduct(p: Product) {
@@ -44,7 +44,7 @@ export class SellerProductsComponent implements OnInit {
   }
 
   onActionButtonClicked(id: string) {
-    if (id === 'edit') this.gotoAddOrEditPage();
+    if (id === 'edit') this.onEditProduct();
   }
 
   getProducts() {
@@ -65,11 +65,11 @@ export class SellerProductsComponent implements OnInit {
   }
 
   onAddProduct() {
-    this.gotoAddOrEditPage();
+    this.router.navigate(['./add'], { relativeTo: this.route });
   }
 
-  gotoAddOrEditPage() {
-    this.router.navigate(['./add-edit-product'], { relativeTo: this.route });
+  onEditProduct() {
+    this.router.navigate(['./edit'], { relativeTo: this.route });
   }
 
   ngOnDestroy(): void {

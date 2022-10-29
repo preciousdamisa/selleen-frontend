@@ -24,20 +24,15 @@ export class FilePickerComponent {
 
   constructor(private imageCompress: NgxImageCompressService) {}
 
-  // onSelectFile(e: Event) {
-  //   const inputEl = e.target as HTMLInputElement;
+  onSelectFile(e: Event) {
+    const inputEl = e.target as HTMLInputElement;
+    const files = inputEl.files!;
+    console.log(files);
+    if (this.multiple) {
+    }
+  }
 
-  //   if (this.multiple && this.shouldCompress) {
-  //     this.compressImages(inputEl.files!);
-  //   } else if (this.multiple) {
-  //     const files = this.tranformFileList(inputEl.files!);
-  //     this.filesSelected.emit(files);
-  //   } else if (!this.multiple) {
-  //     this.fileSelected.emit(inputEl.files![0]);
-  //   }
-  // }
-
-  async compressFile() {
+  async compressImages() {
     const files: { image: string; fileName: string; orientation: number }[] =
       await this.imageCompress.uploadMultipleFiles();
 
