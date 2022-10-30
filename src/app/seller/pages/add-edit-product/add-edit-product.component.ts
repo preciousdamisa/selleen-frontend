@@ -133,7 +133,7 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
     if (this.editMode) {
       req = this.prodService.editProduct(data, this.product?._id!, {
         imagesChanged: this.imagesChanged,
-        newImages: this.productImages,
+        newImageFiles: this.productImages,
         oldImages: this.product!.images,
       });
       phrase = 'edited';

@@ -16,6 +16,7 @@ import {
   GetProductsResBody,
   Product,
 } from '../types/product';
+import { ShopService } from './shop.service';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,7 @@ export class SellerProductsService {
   private _selectedProduct: Product | null = null;
   private images: Image[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private shopService: ShopService) {}
 
   get selectedProduct() {
     return this._selectedProduct;
@@ -86,21 +87,45 @@ export class SellerProductsService {
     );
   }
 
+  deleteProductImages(prodId: string) {
+    return this.http.delete(
+      `${this.baseUrl}shop/products/${
+        this.shopService.currentShop!._id
+      }/${prodId}/images`
+    );
+  }
+
   editProduct(
     data: AddOrEditProductReqBody,
     prodId: string,
     imagesUpdate: {
       imagesChanged: boolean;
-      newImages: File[];
+      newImageFiles: File[];
       oldImages: Image[];
     }
   ) {
-    const images = this.getImageKeysForUpdate(imagesUpdate.oldImages);
-
-    return this.http.put<SimpleResBody>(
-      `${this.baseUrl}shop/products/${prodId}`,
-      { ...data, images: [...images] }
-    );
+    if (imagesUpdate.imagesChanged) {
+      return this.deleteProductImages(prodId).pipe(
+        take(1),
+        exhaustMap(() => {
+          return this.uploadProductImages(imagesUpdate.newImageFiles).pipe(
+            take(1),
+            exhaustMap(() => {
+              return this.http.put<SimpleResBody>(
+                `${this.baseUrl}shop/products/${prodId}`,
+                { ...data, images: [...this.images] }
+              );
+            })
+          );
+        })
+      );
+    } else {
+      const images = this.getImageKeysForUpdate(imagesUpdate.oldImages);
+      return this.http.put<SimpleResBody>(
+        `${this.baseUrl}shop/products/${prodId}`,
+        { ...data, images: [...images] }
+      );
+    }
   }
 
   getProducts(data: SimpleReqQuery, shopId: string) {
