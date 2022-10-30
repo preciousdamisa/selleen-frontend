@@ -13,11 +13,11 @@ export class LogoBannerImagesComponent implements OnInit, OnDestroy {
   subs$ = new Subject<void>();
 
   logo?: File | null;
-  logoPreviewUrl: any;
+  logoPreviewUrl?: string | null;
   updatingLogo = false;
 
   banner?: File | null;
-  bannerPreviewUrl: any;
+  bannerPreviewUrl?: string | null;
   updatingBanner = false;
 
   shopId!: string;
@@ -31,26 +31,20 @@ export class LogoBannerImagesComponent implements OnInit, OnDestroy {
     this.shopId = this.shopService.currentShop!._id;
   }
 
-  onSelectLogo(file: File) {
-    this.logoPreviewUrl = null;
-    this.logo = file;
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => (this.logoPreviewUrl = reader.result);
-      reader.readAsDataURL(file);
-    }
+  onSelectLogo(files: File[]) {
+    this.logo = files[0];
   }
 
-  onSelectBanner(file: File) {
-    this.bannerPreviewUrl = null;
-    this.banner = file;
+  onLogoPreviewUrl(urls: string[]) {
+    this.logoPreviewUrl = urls[0];
+  }
 
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => (this.bannerPreviewUrl = reader.result);
-      reader.readAsDataURL(file);
-    }
+  onSelectBanner(files: File[]) {
+    this.banner = files[0];
+  }
+
+  onBannerPreviewUrl(urls: string[]) {
+    this.bannerPreviewUrl = urls[0];
   }
 
   onUpdateLogo() {

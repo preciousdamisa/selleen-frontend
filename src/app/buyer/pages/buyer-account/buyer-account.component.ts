@@ -13,7 +13,7 @@ import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 })
 export class BuyerAccountComponent implements OnInit, OnDestroy {
   subs$ = new Subject<void>();
-  user!: User;
+  user?: User | null;
 
   isDesktop = false;
 
@@ -30,7 +30,7 @@ export class BuyerAccountComponent implements OnInit, OnDestroy {
   getUser() {
     this.authService.user$.pipe(takeUntil(this.subs$)).subscribe({
       next: (user) => {
-        this.user = user!;
+        this.user = user;
       },
     });
   }

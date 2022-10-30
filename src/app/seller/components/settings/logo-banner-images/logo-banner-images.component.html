@@ -11,8 +11,8 @@
       alt="Logo Image"
     />
     <app-file-picker
-      (fileSelected)="onSelectLogo($event)"
-      accept="image/x-png,image/jpeg"
+      (filesSelected)="onSelectLogo($event)"
+      (previewUrls)="onLogoPreviewUrl($event)"
     ></app-file-picker>
     <app-button
       [disabled]="logo == null"
@@ -34,8 +34,8 @@
       alt="Banner Image"
     />
     <app-file-picker
-      (fileSelected)="onSelectBanner($event)"
-      accept="image/x-png,image/jpeg"
+      (filesSelected)="onSelectBanner($event)"
+      (previewUrls)="onBannerPreviewUrl($event)"
     ></app-file-picker>
     <app-button
       [disabled]="banner == null"

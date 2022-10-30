@@ -11,11 +11,7 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 export class FilePickerComponent {
   @Input() label = '';
   @Input() classes = '';
-  @Input() multiple = false;
-  @Input('compress') shouldCompress = false;
-  @Input() accept = 'image/x-png,image/jpeg,application/pdf';
 
-  @Output() fileSelected = new EventEmitter<File>();
   @Output() filesSelected = new EventEmitter<File[]>();
   @Output() previewUrls = new EventEmitter<string[]>();
 
@@ -23,14 +19,6 @@ export class FilePickerComponent {
   urls: string[] = [];
 
   constructor(private imageCompress: NgxImageCompressService) {}
-
-  // onSelectFile(e: Event) {
-  //   const inputEl = e.target as HTMLInputElement;
-  //   const files = inputEl.files!;
-  //   console.log(files);
-  //   if (this.multiple) {
-  //   }
-  // }
 
   async compressImages() {
     const files: { image: string; fileName: string; orientation: number }[] =

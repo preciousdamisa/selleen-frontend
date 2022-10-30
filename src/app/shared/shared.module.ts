@@ -27,6 +27,7 @@ import { TooltipDirective } from './directives/tooltip.directive';
 import { OutsideClickDirective } from './directives/outside-click.directive';
 
 import { SpacePipe } from './pipes/space.pipe';
+import { FilePicker2Component } from './components/file-picker2/file-picker2.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { SpacePipe } from './pipes/space.pipe';
     TabBarComponent,
     TabComponent,
     PageWrapperComponent,
+    FilePicker2Component,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [

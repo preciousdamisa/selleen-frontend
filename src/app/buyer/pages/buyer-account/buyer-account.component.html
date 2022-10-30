@@ -15,9 +15,9 @@
           ></app-text-button>
         </div>
         <hr />
-        <p>{{ user.name.first + " " + user.name.last }}</p>
-        <p>{{ user.email }}</p>
-        <p>{{ user.phone }}</p>
+        <p>{{ user?.name?.first + " " + user?.name?.last }}</p>
+        <p>{{ user?.email }}</p>
+        <p>{{ user?.phone }}</p>
       </div>
       <div class="flex-1 p-2 border rounded-1 mb-2">
         <div class="d-flex align-items-center justify-content-between">
@@ -32,8 +32,8 @@
         <h4 class="mb-1 fw-6">Your Default Shipping Address</h4>
         <p class="mt-0">
           {{
-            user.address
-              ? user.address.full
+            user?.address
+              ? user?.address?.full
               : "Provide a default shipping address"
           }}
         </p>
