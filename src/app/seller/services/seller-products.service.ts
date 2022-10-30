@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, Observable } from 'rxjs';
-import { exhaustMap, take } from 'rxjs/operators';
+import { forkJoin, Observable, of } from 'rxjs';
+import { exhaustMap, map, take } from 'rxjs/operators';
 
 import {
   GetFileUploadURLResBody,
@@ -78,30 +78,64 @@ export class SellerProductsService {
     return this.uploadProductImages(images).pipe(
       take(1),
       exhaustMap(() => {
-        const images = [...this.images];
-        const updatedData = { ...data, images };
-
-        return this.http.post<SimpleResBody>(
-          `${this.baseUrl}shop/products`,
-          updatedData
-        );
+        return this.http.post<SimpleResBody>(`${this.baseUrl}shop/products`, {
+          ...data,
+          images: [...this.images],
+        });
       })
     );
   }
 
-  editProduct(data: AddOrEditProductReqBody, prodId: string) {
+  editProduct(
+    data: AddOrEditProductReqBody,
+    prodId: string,
+    imagesUpdate: {
+      imagesChanged: boolean;
+      newImages: File[];
+      oldImages: Image[];
+    }
+  ) {
+    const images = this.getImageKeysForUpdate(imagesUpdate.oldImages);
+
     return this.http.put<SimpleResBody>(
       `${this.baseUrl}shop/products/${prodId}`,
-      data
+      { ...data, images: [...images] }
     );
   }
 
   getProducts(data: SimpleReqQuery, shopId: string) {
     const params = new HttpParams({ fromObject: { ...data } });
 
-    return this.http.get<GetProductsResBody>(
-      `${this.baseUrl}shop/products/${shopId}`,
-      { params }
-    );
+    return this.http
+      .get<GetProductsResBody>(`${this.baseUrl}shop/products/${shopId}`, {
+        params,
+      })
+      .pipe(
+        map((res) => {
+          const modifiedProds = res.data.map((prod) => {
+            const modifiedImages = this.tranformImageUrls(prod.images);
+            return { ...prod, images: modifiedImages };
+          });
+
+          return modifiedProds;
+        })
+      );
+  }
+
+  getImageKeysForUpdate(images: Image[]): Image[] {
+    return images.map((img) => {
+      const folderName = img.url.split('/')[4];
+      const fileName = img.url.split('/')[5];
+      const key = folderName + '/' + fileName;
+
+      return { url: key };
+    });
+  }
+
+  tranformImageUrls(images: Image[]) {
+    return images.map((img) => ({
+      ...img,
+      url: environment.sellenAwsBucketUrl + img.url,
+    }));
   }
 }

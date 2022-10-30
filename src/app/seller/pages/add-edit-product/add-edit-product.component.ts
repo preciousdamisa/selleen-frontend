@@ -6,6 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 import { ErrorModalService } from 'src/app/services/error-modal.service';
 import { NotificationsService } from 'src/app/services/notification.service';
 import { SimpleResBody } from 'src/app/shared/types/shared';
+import { environment } from 'src/environments/environment';
 import { SellerProductsService } from '../../services/seller-products.service';
 import { ShopService } from '../../services/shop.service';
 import { Product, ProductFeature } from '../../types/product';
@@ -22,7 +23,8 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
   editMode = false;
   productImages: File[] = [];
   previewUrls: string[] = [];
-  product: Product | null = null;
+  product?: Product;
+  imagesChanged = false;
   loading = false;
 
   constructor(
@@ -37,6 +39,7 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (this.prodService.selectedProduct) {
       this.editMode = true;
+
       this.product = this.prodService.selectedProduct;
     }
 
@@ -70,6 +73,12 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
       this.product?.features.forEach((feat) => {
         this.onAddFeature(feat);
       });
+
+      const modifiedUrls = this.product?.images.map(({ url }) => {
+        return url;
+      });
+
+      this.setPreviewUrls(modifiedUrls!);
     }
   }
 
@@ -97,6 +106,7 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
 
   onSelectImages(images: File[]) {
     this.productImages = [];
+    if (this.editMode) this.imagesChanged = true;
 
     if (images.length > 3) {
       this.errModal.open('Maximum of three (3) images can be provided.');
@@ -106,7 +116,7 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
     this.productImages = images;
   }
 
-  onPreviewUrls(urls: string[]) {
+  setPreviewUrls(urls: string[]) {
     this.previewUrls = [];
     if (this.previewUrls.length > 3) return;
     this.previewUrls = urls;
@@ -121,7 +131,11 @@ export class AddEditProductComponent implements OnInit, OnDestroy {
     let phrase: string;
 
     if (this.editMode) {
-      req = this.prodService.editProduct(data, this.product?._id!);
+      req = this.prodService.editProduct(data, this.product?._id!, {
+        imagesChanged: this.imagesChanged,
+        newImages: this.productImages,
+        oldImages: this.product!.images,
+      });
       phrase = 'edited';
     } else {
       req = this.prodService.addProduct(data, this.productImages);

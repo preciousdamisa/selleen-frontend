@@ -1,6 +1,11 @@
 <div [class]="'d-flex align-items-center ' + classes">
   <div *ngIf="imageUrl || iconName" class="mr-1">
-    <img *ngIf="imageUrl" [src]="imageUrl" [alt]="imageAltText" />
+    <img
+      class="left-image"
+      *ngIf="imageUrl"
+      [src]="imageUrl"
+      [alt]="imageAltText"
+    />
     <i [class]="iconName"></i>
   </div>
   <div class="flex-1 d-flex-col">

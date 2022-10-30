@@ -55,15 +55,15 @@
   <div class="custom-table">
     <app-list-tile
       *ngFor="let prod of products"
-      imageUrl="assets/images/profile-img-placeholder.svg"
+      [imageUrl]="prod.images[0].url"
       classes="shadow mt-2 p-1"
     >
       <h5 class="m-0" top>{{ prod.name }}</h5>
       <div middle class="my-1 d-flex justify-content-between">
         <p class="m-0">
-          <span
+          <span 
             *ngIf="prod.price.original"
-            class="line-through text-light mr-2"
+            class="line-through text-light mr-1"
             >{{ prod.price.original | number: "1.2-2" }}</span
           ><span>{{ prod.price.sales | number: "1.2-2" }}</span>
         </p>

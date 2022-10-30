@@ -155,22 +155,22 @@
         <div class="col-md-6">
           <app-file-picker
             (filesSelected)="onSelectImages($event)"
-            (previewUrls)="onPreviewUrls($event)"
+            (previewUrls)="setPreviewUrls($event)"
             [multiple]="true"
             accept="image/x-png,image/jpeg"
             label="Product Image(s)"
           ></app-file-picker>
           <p
             class="text-danger text-align-center"
-            *ngIf="productImages.length < 1"
+            *ngIf="previewUrls.length < 1"
           >
             Include at least one image of the product.
           </p>
-          <div class="mt-2" *ngIf="productImages.length">
-            <div class="w-100 d-flex justify-content-between">
+          <div class="mt-2" *ngIf="previewUrls.length">
+            <div class="w-100 d-flex">
               <img
                 *ngFor="let url of previewUrls"
-                class="preview-img"
+                class="preview-img mr-2"
                 [src]="url"
                 alt="Product Image"
               />
@@ -181,7 +181,7 @@
       <app-button
         classes="mt-5"
         paddingX="3rem"
-        [disabled]="form.invalid || productImages.length < 1"
+        [disabled]="form.invalid || previewUrls.length < 1"
         ><span *ngIf="!loading">{{
           editMode ? "Edit Product" : "Add Product"
         }}</span>

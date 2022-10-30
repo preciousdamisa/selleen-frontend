@@ -54,8 +54,8 @@ export class SellerProductsComponent implements OnInit {
     this.subs = this.prodService
       .getProducts({ pageNumber: 1, pageSize: 10 }, shopId)
       .subscribe({
-        next: (res) => {
-          this.products = res.data;
+        next: (prods) => {
+          this.products = prods;
           this.loading = false;
         },
         error: () => {
