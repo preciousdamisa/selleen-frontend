@@ -112,11 +112,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       })
       .subscribe({
         next: (res) => {
-          console.log(res);
           this.transferAuthorizationData = res.data.meta.authorization;
           this.loading = false;
           this.modalService.close();
           this.modalService.open({ view: this.bankAccDetailsView! });
+          this.cartService.clearCart();
         },
         error: () => {
           this.loading = false;
