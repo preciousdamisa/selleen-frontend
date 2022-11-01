@@ -29,6 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   getLocation() {
+    this.locService.getLoc();
     this.subs = this.locService.getCurrentLocation().subscribe();
   }
 

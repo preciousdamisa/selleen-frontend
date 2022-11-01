@@ -22,12 +22,12 @@ import { TabBarComponent } from './components/tab-bar/tab-bar.component';
 import { TabComponent } from './components/tab/tab.component';
 import { PageWrapperComponent } from './components/page-wrapper/page-wrapper.component';
 import { LocationPromptComponent } from './components/location-prompt/location-prompt.component';
+import { FilePicker2Component } from './components/file-picker2/file-picker2.component';
 
 import { TooltipDirective } from './directives/tooltip.directive';
 import { OutsideClickDirective } from './directives/outside-click.directive';
 
 import { SpacePipe } from './pipes/space.pipe';
-import { FilePicker2Component } from './components/file-picker2/file-picker2.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +80,7 @@ import { FilePicker2Component } from './components/file-picker2/file-picker2.com
     TabBarComponent,
     TabComponent,
     PageWrapperComponent,
+    FilePicker2Component,
   ],
 })
 export class SharedModule {}

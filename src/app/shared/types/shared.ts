@@ -55,6 +55,10 @@ export interface Image {
   url: string;
 }
 
+export interface UploadedFile {
+  url: string;
+}
+
 export interface Coords {
   lng: number;
   lat: number;

@@ -95,6 +95,7 @@ export class SellerSignupComponent implements OnInit, OnDestroy {
     delete this.signupForm.value.agreedToTerms;
 
     const loc = this.locService.currentLocation;
+    console.log(loc);
 
     const data = {
       ...this.signupForm.value,

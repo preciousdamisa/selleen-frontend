@@ -8,6 +8,13 @@ import { retry, tap } from 'rxjs/operators';
 export class LocationService {
   currentLocation?: GeolocationCoordinates;
 
+  getLoc() {
+    window.navigator.geolocation.getCurrentPosition((pos) => {
+      this.currentLocation = pos.coords;
+      localStorage.setItem('allowLocation', JSON.stringify(true));
+    });
+  }
+
   getCurrentLocation() {
     return new Observable<GeolocationCoordinates>((observer) => {
       window.navigator.geolocation.getCurrentPosition(

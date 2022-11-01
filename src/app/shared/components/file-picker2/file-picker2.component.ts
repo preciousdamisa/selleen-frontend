@@ -10,6 +10,7 @@ export class FilePicker2Component {
   @Input() classes = '';
   @Input() multiple = false;
   @Input() accept = 'image/x-png,image/jpeg,application/pdf';
+  @Input() showPDFIcon = false;
   @Output() fileSelected = new EventEmitter<File>();
   @Output() filesSelected = new EventEmitter<FileList>();
 

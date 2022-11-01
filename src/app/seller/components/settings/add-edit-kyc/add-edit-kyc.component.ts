@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 import { Shop } from 'src/app/seller/models/shop.model';
 import { ShopService } from 'src/app/seller/services/shop.service';
 import { NotificationsService } from 'src/app/services/notification.service';
+import { SelectOption } from 'src/app/shared/types/shared';
 
 @Component({
   selector: 'app-add-edit-kyc',
@@ -12,10 +13,21 @@ import { NotificationsService } from 'src/app/services/notification.service';
   styleUrls: ['./add-edit-kyc.component.scss'],
 })
 export class AddEditKycComponent implements OnInit, OnDestroy {
-  subs?: Subscription;
+  subs$ = new Subject<void>();
+
   shop?: Shop;
+  personalIdForm!: FormGroup;
+  idTypes: SelectOption[] = [
+    { label: '~~ Select ID Type ~~', value: '' },
+    { label: 'National ID', value: 'NationalId' },
+    { label: "PVC (Permanent Voter's Card", value: 'PVC' },
+    { label: "Driver's License", value: 'DriverLicense' },
+  ];
+
   linksForm!: FormGroup;
-  loading = false;
+  addingSMLinks = false;
+  addingId = false;
+  selectedId?: File | null;
 
   constructor(
     private shopService: ShopService,
@@ -62,9 +74,13 @@ export class AddEditKycComponent implements OnInit, OnDestroy {
         }
       });
     }
+
+    this.personalIdForm = new FormGroup({
+      type: new FormControl('', Validators.required),
+    });
   }
 
-  get formIsValid() {
+  get linksFormIsValid() {
     return (
       this.linksForm.get('facebook.url')?.value ||
       this.linksForm.get('instagram.url')?.value ||
@@ -72,30 +88,52 @@ export class AddEditKycComponent implements OnInit, OnDestroy {
     );
   }
 
-  onSubmit() {
-    this.loading = true;
+  onSubmitId() {
+    this.addingId = true;
+    this.shopService
+      .saveId(this.personalIdForm.value.type, this.selectedId!, this.shop?._id!)
+      .pipe(takeUntil(this.subs$))
+      .subscribe({
+        next: () => {
+          this.notifService.add(
+            'Personal ID uploaded successfully!',
+            'success'
+          );
+          this.selectedId = null;
+          this.addingId = false;
+        },
+        error: () => {
+          this.addingId = false;
+        },
+      });
+  }
+
+  onSubmitLinks() {
+    this.addingSMLinks = true;
     const { facebook, instagram, twitter } = this.linksForm.value;
     const links = [facebook, instagram, twitter].filter(
       (link) => link.url !== ''
     );
 
-    this.subs = this.shopService
+    this.shopService
       .updateSMLinks({ links }, this.shop?._id!)
+      .pipe(takeUntil(this.subs$))
       .subscribe({
         next: () => {
           this.notifService.add(
             'Social media link(s) updated successfully!',
             'success'
           );
-          this.loading = false;
+          this.addingSMLinks = false;
         },
         error: () => {
-          this.loading = false;
+          this.addingSMLinks = false;
         },
       });
   }
 
   ngOnDestroy(): void {
-    this.subs?.unsubscribe();
+    this.subs$.next();
+    this.subs$.complete();
   }
 }

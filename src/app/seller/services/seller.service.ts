@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment';
 import { SellerSignupReqBody } from '../types/seller-auth';
 import { AuthResBody } from 'src/app/shared/types/shared';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
-
 @Injectable({
   providedIn: 'root',
 })

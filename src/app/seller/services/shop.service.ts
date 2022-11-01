@@ -8,6 +8,7 @@ import {
   GetFileUploadURLResBody,
   Image,
   SimpleResBody,
+  UploadedFile,
 } from 'src/app/shared/types/shared';
 import {
   BankAccountDetails,
@@ -26,8 +27,9 @@ export class ShopService {
   currentShop?: Shop;
   shopUpdated = false;
 
-  private logo?: Image;
-  private banner?: Image;
+  private logo?: UploadedFile;
+  private banner?: UploadedFile;
+  private personalId?: UploadedFile;
 
   constructor(private http: HttpClient) {}
 
@@ -101,7 +103,7 @@ export class ShopService {
   }
 
   updateLogo(img: File, shopId: string) {
-    return this.uploadImage(img, 'logos').pipe(
+    return this.uploadFileToS3(img, 'logos').pipe(
       take(1),
       exhaustMap(() => {
         return this.http.patch(`${this.baseUrl}shops/${shopId}/logo`, {
@@ -112,33 +114,13 @@ export class ShopService {
   }
 
   updateBanner(img: File, shopId: string) {
-    return this.uploadImage(img, 'banners').pipe(
+    return this.uploadFileToS3(img, 'banners').pipe(
       take(1),
       exhaustMap(() => {
         return this.http.patch(`${this.baseUrl}shops/${shopId}/banners`, {
           url: this.banner!.url,
         });
       })
-    );
-  }
-
-  uploadImage(img: File, folderName: 'logos' | 'banners') {
-    return this.getUploadUrl(img, folderName).pipe(
-      take(1),
-      exhaustMap((res) => {
-        if (folderName === 'logos') this.logo = { url: res.data.key };
-        else this.banner = { url: res.data.key };
-
-        return this.http.put(res.data.url, img);
-      })
-    );
-  }
-
-  getUploadUrl(file: File, folderName: 'logos' | 'banners') {
-    return this.http.get<GetFileUploadURLResBody>(
-      `${this.baseUrl}files/upload-url?fileType=${getFileType(
-        file
-      )}&folderName=${folderName}`
     );
   }
 
@@ -162,5 +144,47 @@ export class ShopService {
         tap(() => (this.shopUpdated = true)),
         exhaustMap(() => this.getShop(shopId))
       );
+  }
+
+  saveId(
+    type: 'NationalId' | 'PVC' | 'DriverLicense',
+    file: File,
+    shopId: string
+  ) {
+    return this.uploadFileToS3(file, 'kyc-docs').pipe(
+      take(1),
+      exhaustMap(() => {
+        return this.http.patch<SimpleResBody>(
+          `${this.baseUrl}shops/${shopId}/personal-id`,
+          {
+            type,
+            url: this.personalId?.url,
+          }
+        );
+      })
+    );
+  }
+
+  getUploadUrl(file: File, folderName: 'logos' | 'banners' | 'kyc-docs') {
+    return this.http.get<GetFileUploadURLResBody>(
+      `${this.baseUrl}files/upload-url?fileType=${getFileType(
+        file
+      )}&folderName=${folderName}`
+    );
+  }
+
+  uploadFileToS3(file: File, folderName: 'logos' | 'banners' | 'kyc-docs') {
+    return this.getUploadUrl(file, folderName).pipe(
+      take(1),
+      exhaustMap((res) => {
+        const data: UploadedFile = { url: res.data.key };
+
+        if (folderName === 'logos') this.logo = data;
+        else if (folderName === 'banners') this.banner = data;
+        else if (folderName === 'kyc-docs') this.personalId = data;
+
+        return this.http.put(res.data.url, file);
+      })
+    );
   }
 }

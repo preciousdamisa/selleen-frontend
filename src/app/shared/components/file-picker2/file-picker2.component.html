@@ -13,7 +13,11 @@
     (change)="onSelectFile($event)"
   />
   <div class="p-5 d-flex-col">
-    <i class="mb-1 text-grey bi-image"></i>
+    <div class="d-flex justify-content-center">
+      <i class="mb-1 text-grey bi-image"></i
+      ><span class="mx-1" *ngIf="showPDFIcon">/</span
+      ><i *ngIf="showPDFIcon" class="bi-filetype-pdf"></i>
+    </div>
     <span class="text-primary">Tap to Select</span>
   </div>
 </div>

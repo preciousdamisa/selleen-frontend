@@ -1,17 +1,58 @@
+<section class="mt-5">
+  <div>
+    <h4 class="m-0">Personal ID</h4>
+    <p class="fs-2">
+      Add a means of identification (National ID, Permanent Voter's Card or
+      Driver's License).
+    </p>
+    <p class="fs-2">ID can be in PDF, png or jpeg format.</p>
+  </div>
+  <form [formGroup]="personalIdForm">
+    <div class="form-group mt-3">
+      <label for="id-type"
+        >Select ID Type <small class="text-danger">*</small></label
+      >
+      <select class="form-control" id="id-type" formControlName="type">
+        <option *ngFor="let opt of idTypes" [value]="opt.value">
+          {{ opt.label }}
+        </option>
+      </select>
+      <app-input-errors
+        [control]="personalIdForm.get('type')"
+        label="ID type"
+      ></app-input-errors>
+    </div>
+  </form>
+  <app-file-picker2
+    label="Select an ID"
+    (fileSelected)="selectedId = $event"
+    accept="image/jpeg,application/pdf"
+    [showPDFIcon]="true"
+  ></app-file-picker2>
+  <p *ngIf="selectedId">{{ selectedId.name }}</p>
+  <app-button
+    classes="mt-2"
+    paddingX="3rem"
+    [disabled]="!selectedId || personalIdForm.invalid"
+    (clicked)="onSubmitId()"
+    ><span *ngIf="!addingId">Upload</span>
+    <app-spinner *ngIf="addingId" color="#fff"></app-spinner
+  ></app-button>
+</section>
 <section class="mb-10">
   <div class="mt-5 mb-3">
     <h4 class="m-0">Social Media Account Links</h4>
     <p class="fs-2">
-      Provide a link (or username) to one or more of your social media
-      account(s).
+      Provide a link to one or more of your social media account(s).
     </p>
+    <p class="fs-2">These links would show up in your shop's page.</p>
   </div>
-  <form [formGroup]="linksForm" (submit)="onSubmit()">
+  <form [formGroup]="linksForm" (submit)="onSubmitLinks()">
     <div class="form-group" formGroupName="facebook">
       <label for="fb-link">Facebook</label>
       <input
         id="fb-link"
-        placeholder="e.g. https://facebook.com/name.name.8"
+        placeholder="e.g. https://..."
         class="form-control"
         formControlName="url"
       />
@@ -20,23 +61,23 @@
       <label for="ig-link">Instagram</label>
       <input
         id="ig-link"
-        placeholder="e.g. michelle_jones"
+        placeholder="e.g. https://... "
         class="form-control"
         formControlName="url"
       />
     </div>
     <div class="form-group" formGroupName="twitter">
-      <label for="tw-link">twitter</label>
+      <label for="tw-link">Twitter</label>
       <input
         id="tw-link"
-        placeholder="e.g. @peter_damian"
+        placeholder="e.g. https://..."
         class="form-control"
         formControlName="url"
       />
     </div>
-    <app-button [disabled]="!formIsValid" paddingX="3rem"
-      ><app-spinner color="#fff" *ngIf="loading"></app-spinner
-      ><span *ngIf="!loading">Update</span></app-button
+    <app-button [disabled]="!linksFormIsValid" paddingX="3rem"
+      ><app-spinner color="#fff" *ngIf="addingSMLinks"></app-spinner
+      ><span *ngIf="!addingSMLinks">Update</span></app-button
     >
   </form>
 </section>
