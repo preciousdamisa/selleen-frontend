@@ -1,0 +1,33 @@
+#all-stats-container {
+  display: block;
+}
+
+#single-stat-container {
+  display: none;
+}
+
+.table {
+  display: none;
+}
+
+.custom-table {
+  display: block;
+}
+
+@media (min-width: 40rem) {
+  .table {
+    display: table;
+  }
+
+  .custom-table {
+    display: none;
+  }
+
+  #single-stat-container {
+    display: block;
+  }
+
+  #all-stats-container {
+    display: none;
+  }
+}

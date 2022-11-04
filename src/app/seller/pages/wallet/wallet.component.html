@@ -1,1 +1,115 @@
-<p>wallet works!</p>
+<app-page-wrapper>
+  <app-seller-page-header title="Wallet"></app-seller-page-header>
+  <section id="all-stats-container" class="mt-5">
+    <app-card classes="p-3"
+      ><app-statistic
+        name="Available to Withdraw"
+        text="0"
+        iconName="bi-cash-stack"
+      ></app-statistic>
+      <div class="my-2">
+        <app-statistic
+          name="Total Withdrawal"
+          text="0"
+          iconName="bi-graph-up-arrow"
+        ></app-statistic>
+      </div>
+      <app-statistic
+        name="Total Revenue"
+        text="0"
+        iconName="bi-bar-chart-line"
+      ></app-statistic>
+    </app-card>
+  </section>
+  <section id="single-stat-container">
+    <div class="mt-5 d-flex justify-content-between">
+      <app-card classes="px-6 py-4"
+        ><app-statistic
+          name="Available to Withdraw"
+          text="0"
+          iconName="bi-cash-stack"
+        ></app-statistic>
+      </app-card>
+      <app-card classes="px-6 py-4">
+        <app-statistic
+          name="Total Withdrawal"
+          text="0"
+          iconName="bi-graph-up-arrow"
+        ></app-statistic>
+      </app-card>
+      <app-card classes="px-6 py-4"
+        ><app-statistic
+          name="Total Revenue"
+          text="0"
+          iconName="bi-bar-chart-line"
+        ></app-statistic>
+      </app-card>
+    </div>
+  </section>
+  <div class="d-flex justify-content-between mt-5">
+    <h4 class="m-0">Transactions</h4>
+    <app-button>Withdraw Funds</app-button>
+  </div>
+  <div class="center mt-10" *ngIf="loadingTransactions">
+    <app-spinner size="1rem"></app-spinner>
+    <p>Loading Your Transactions...</p>
+  </div>
+  <table
+    class="table mt-5"
+    *ngIf="!loadingTransactions && transactions.length > 0"
+  >
+    <thead>
+      <tr>
+        <th class="text-align-left">Description</th>
+        <th class="text-align-center">Total Amount (₦)</th>
+        <th class="text-align-center">Type</th>
+        <th class="text-align-center">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transaction of transactions">
+        <td class="text-align-left">{{ transaction.description }}</td>
+        <td class="text-align-center">
+          {{ transaction.amount | number: "1.2-2" }}
+        </td>
+        <td class="text-align-center">
+          <span
+            class="badge"
+            [ngClass]="{
+              'bg-success': transaction.type === 'Credit',
+              'bg-grey': transaction.type === 'Debit'
+            }"
+            >{{ transaction.type }}</span
+          >
+        </td>
+        <td class="text-align-center">
+          {{ transaction.createdAt | date: "medium" }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="custom-table mt-5">
+    <app-list-tile
+      *ngFor="let transaction of transactions"
+      classes="shadow mt-2 p-1"
+    >
+      <div top>
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="m-0 mb-1">{{ transaction.createdAt | date: "medium" }}</h5>
+          <span
+            class="badge"
+            [ngClass]="{
+              'bg-success': transaction.type === 'Credit',
+              'bg-grey': transaction.type === 'Debit'
+            }"
+            >{{ transaction.type }}</span
+          >
+        </div>
+        <p class="m-0">
+          <span class="fw-5">Amount: </span> ₦
+          {{ transaction.amount | number: "1.2-2" }}
+        </p>
+      </div>
+    </app-list-tile>
+  </div>
+</app-page-wrapper>

@@ -38,7 +38,7 @@ export class UserService {
     return this.authService.handleGetUser(
       {
         data: {
-          _id: user._id,
+          id: user._id,
           token: user.token!,
           tokenExpirationDate: user.tokenExpirationDate.getTime() / 1000,
         },

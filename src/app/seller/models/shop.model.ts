@@ -24,11 +24,11 @@ export class Shop {
     public address: Address,
     public rating: number,
     public socialMediaLinks: SocialMediaLink[],
-    public personalIds: PersonalId[],
+    public personalId: PersonalId,
     public approved: boolean,
     public approval: { comment: string },
     public status: ShopStatus,
     public paymentDetails: { bankAccountDetails: BankAccountDetails },
-    public createdAt: string,
+    public createdAt: string
   ) {}
 }

@@ -3,7 +3,7 @@ import { Address, Name } from 'src/app/shared/types/shared';
 export type OrderStatus = 'Processing' | 'Processed' | 'En Route' | 'Delivered';
 
 export interface Shop {
-  _id: string;
+  id: string;
   name: string;
 }
 
@@ -21,7 +21,7 @@ export interface Order {
   shortId: string;
   shop: Shop;
   user: {
-    _id: string;
+    id: string;
     name: Name;
     phone: string;
     address: Address;

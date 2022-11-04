@@ -159,6 +159,7 @@ export class ShopService {
           {
             type,
             url: this.personalId?.url,
+            originalName: file.name,
           }
         );
       })

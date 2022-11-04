@@ -21,7 +21,7 @@ export interface Shop {
   address: Address;
   rating: number;
   socialMediaLinks: SocialMediaLink[];
-  personalIds: PersonalId[];
+  personalId: PersonalId;
   approved: boolean;
   approval: { comment: string };
   status: 'InReview' | 'Approved' | 'Suspended' | 'Disapproved';
@@ -63,9 +63,8 @@ export interface SocialMediaLink {
 
 export interface PersonalId {
   type: 'NationalId' | 'PVC' | 'DriverLicense';
-  image: {
-    url: string;
-  };
+  url: string;
+  originalName: string;
 }
 
 export interface BankAccountDetails {

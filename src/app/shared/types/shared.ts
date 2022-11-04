@@ -33,7 +33,7 @@ export interface AuthReqBody {
 export interface AuthResBody {
   message: string;
   data: {
-    _id: string;
+    id: string;
     token: string;
     tokenExpirationDate: number;
   };
