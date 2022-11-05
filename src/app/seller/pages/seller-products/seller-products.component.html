@@ -17,7 +17,7 @@
       <tr>
         <th class="text-align-left">Name</th>
         <th class="text-align-center">Number In Stock</th>
-        <th class="text-align-center">Sales Price</th>
+        <th class="text-align-center">Sales Price (₦)</th>
         <th class="text-align-center">Created At</th>
         <th class="text-align-center">Status</th>
         <th></th>
@@ -28,7 +28,7 @@
         <td class="text-align-left">{{ prod.name }}</td>
         <td class="text-align-center">{{ prod.numberInStock }}</td>
         <td class="text-align-center">
-          {{ prod.price.sales | number: "1.2-2" }}
+          {{ prod.price.sales | number }}
         </td>
         <td class="text-align-center">{{ prod.createdAt | date }}</td>
         <td class="text-align-center">
@@ -61,11 +61,9 @@
       <h5 class="m-0" top>{{ prod.name }}</h5>
       <div middle class="my-1 d-flex justify-content-between">
         <p class="m-0">
-          <span 
-            *ngIf="prod.price.original"
-            class="line-through text-light mr-1"
-            >{{ prod.price.original | number: "1.2-2" }}</span
-          ><span>{{ prod.price.sales | number: "1.2-2" }}</span>
+          <span *ngIf="prod.price.original" class="line-through text-light mr-1"
+            >₦{{ prod.price.original | number }}</span
+          ><span>₦{{ prod.price.sales | number }}</span>
         </p>
         <span
           class="badge"
