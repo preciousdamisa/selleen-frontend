@@ -27,3 +27,8 @@ export interface GetTransactionsResBody {
   message: string;
   data: Transaction[];
 }
+
+export interface GetBalanceResBody {
+  message: string;
+  data: number;
+}

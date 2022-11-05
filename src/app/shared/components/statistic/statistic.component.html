@@ -5,6 +5,9 @@
   ></i>
   <div class="ml-1">
     <span>{{ name }}</span>
-    <h2 class="m-0">{{ text }}</h2>
+    <h2 *ngIf="text" class="m-0">
+      {{ showCurrencySymbol ? "₦" + text : text }}
+    </h2>
+    <div *ngIf="!text"><app-spinner></app-spinner></div>
   </div>
 </div>

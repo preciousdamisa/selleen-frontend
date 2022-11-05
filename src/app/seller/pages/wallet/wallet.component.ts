@@ -17,6 +17,9 @@ export class WalletComponent implements OnInit, OnDestroy {
   shopId!: string;
   transactions: Transaction[] = [];
   loadingTransactions = false;
+  balance?: string;
+  totalWithdrawal?: string;
+  totalRevenue?: string;
 
   constructor(
     private shopService: ShopService,
@@ -26,6 +29,42 @@ export class WalletComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.shopId = this.shopService.currentShop?._id!;
     this.getTransactions();
+    this.getBalance();
+    this.getTotalWithdrawal();
+    this.getTotalRevenue();
+  }
+
+  getBalance() {
+    this.walletService
+      .getBalance(this.shopId)
+      .pipe(takeUntil(this.subs$))
+      .subscribe({
+        next: (res) => {
+          this.balance = String(res.data);
+        },
+      });
+  }
+
+  getTotalWithdrawal() {
+    this.walletService
+      .getTotalWithdrawal(this.shopId)
+      .pipe(takeUntil(this.subs$))
+      .subscribe({
+        next: (res) => {
+          this.totalWithdrawal = String(res.data);
+        },
+      });
+  }
+
+  getTotalRevenue() {
+    this.walletService
+      .getTotalRevenue(this.shopId)
+      .pipe(takeUntil(this.subs$))
+      .subscribe({
+        next: (res) => {
+          this.totalRevenue = String(res.data);
+        },
+      });
   }
 
   getTransactions() {

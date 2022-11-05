@@ -4,19 +4,19 @@
     <app-card classes="p-3"
       ><app-statistic
         name="Available to Withdraw"
-        text="0"
+        [text]="balance | number"
         iconName="bi-cash-stack"
       ></app-statistic>
       <div class="my-2">
         <app-statistic
           name="Total Withdrawal"
-          text="0"
+          [text]="totalWithdrawal | number"
           iconName="bi-graph-up-arrow"
         ></app-statistic>
       </div>
       <app-statistic
         name="Total Revenue"
-        text="0"
+        [text]="totalRevenue | number"
         iconName="bi-bar-chart-line"
       ></app-statistic>
     </app-card>
@@ -26,21 +26,21 @@
       <app-card classes="px-6 py-4"
         ><app-statistic
           name="Available to Withdraw"
-          text="0"
+          [text]="balance | number"
           iconName="bi-cash-stack"
         ></app-statistic>
       </app-card>
       <app-card classes="px-6 py-4">
         <app-statistic
           name="Total Withdrawal"
-          text="0"
+          [text]="totalWithdrawal | number"
           iconName="bi-graph-up-arrow"
         ></app-statistic>
       </app-card>
       <app-card classes="px-6 py-4"
         ><app-statistic
           name="Total Revenue"
-          text="0"
+          [text]="totalRevenue | number"
           iconName="bi-bar-chart-line"
         ></app-statistic>
       </app-card>

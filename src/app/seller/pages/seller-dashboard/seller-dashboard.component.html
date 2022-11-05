@@ -8,14 +8,15 @@
   <section id="all-stats-container" class="mt-5">
     <app-card classes="p-3"
       ><app-statistic
-        name="Total Sales"
-        text="0"
-        iconName="bi-cash-stack"
+        name="Total Orders"
+        [text]="orderCount | number"
+        iconName="bi-cart-plus"
+        [showCurrencySymbol]="false"
       ></app-statistic>
       <div class="my-2">
         <app-statistic
           name="Total Revenue"
-          text="0"
+          [text]="totalRevenue | number"
           iconName="bi-graph-up-arrow"
         ></app-statistic>
       </div>
@@ -30,15 +31,16 @@
     <div class="mt-5 d-flex justify-content-between">
       <app-card classes="px-6 py-4"
         ><app-statistic
-          name="Total Sales"
-          text="0"
-          iconName="bi-cash-stack"
+          name="Total Orders"
+          [text]="orderCount | number"
+          iconName="bi-cart-plus"
+          [showCurrencySymbol]="false"
         ></app-statistic>
       </app-card>
       <app-card classes="px-6 py-4">
         <app-statistic
           name="Total Revenue"
-          text="0"
+          [text]="totalRevenue | number"
           iconName="bi-graph-up-arrow"
         ></app-statistic>
       </app-card>

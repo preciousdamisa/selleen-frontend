@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
 import { SimpleReqQuery } from '../../shared/types/shared';
-import { GetTransactionsResBody } from '../types/transaction';
+import {
+  GetBalanceResBody,
+  GetTransactionsResBody,
+} from '../types/transaction';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +24,24 @@ export class SellerWalletService {
       {
         params,
       }
+    );
+  }
+
+  getBalance(shopId: string) {
+    return this.http.get<GetBalanceResBody>(
+      `${this.baseUrl}transactions/shop/${shopId}/balance`
+    );
+  }
+
+  getTotalWithdrawal(shopId: string) {
+    return this.http.get<GetBalanceResBody>(
+      `${this.baseUrl}transactions/shop/${shopId}/total-withdrawal`
+    );
+  }
+
+  getTotalRevenue(shopId: string) {
+    return this.http.get<GetBalanceResBody>(
+      `${this.baseUrl}transactions/shop/${shopId}/total-revenue`
     );
   }
 }

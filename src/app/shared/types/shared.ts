@@ -73,6 +73,11 @@ export interface GetTodosResBody {
   data: { todos: Todo[] };
 }
 
+export interface GetOrderCountResBody {
+  message: string;
+  data?: number;
+}
+
 export interface Creator {
   userId: string;
   name: Name;

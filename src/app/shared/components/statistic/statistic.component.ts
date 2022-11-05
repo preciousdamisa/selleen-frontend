@@ -11,8 +11,9 @@ import { ColorTheme } from 'src/app/shared/types/color-theme';
 })
 export class StatisticComponent implements OnInit {
   @Input() name?: string;
-  @Input() text?: string;
+  @Input() text?: string | null;
   @Input() iconName?: string;
+  @Input() showCurrencySymbol = true;
 
   subs?: Subscription;
   colorTheme?: ColorTheme;

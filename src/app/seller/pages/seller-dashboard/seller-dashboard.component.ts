@@ -5,6 +5,8 @@ import { User } from 'src/app/shared/models/user.model';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { Todo } from 'src/app/shared/types/shared';
 import { SellerDashboardService } from '../../services/seller-dashboard.service';
+import { SellerWalletService } from '../../services/seller-wallet.service';
+import { ShopService } from '../../services/shop.service';
 
 @Component({
   selector: 'app-seller-dashboard',
@@ -15,19 +17,26 @@ export class SellerDashboardComponent implements OnInit, OnDestroy {
   subs$ = new Subject<void>();
 
   user?: User | null;
-  buyerCount?: string;
-  sellerCount?: string;
+  shopId!: string;
+  totalRevenue?: string;
+  orderCount?: string;
   todos: Todo[] = [];
   fetchingTodos = false;
 
   constructor(
     private userService: UserAuthService,
-    private dashService: SellerDashboardService
+    private dashService: SellerDashboardService,
+    private walletService: SellerWalletService,
+    private shopService: ShopService
   ) {}
 
   ngOnInit(): void {
+    this.shopId = this.shopService.currentShop?._id!;
+
     this.getUser();
     this.fetchTodos();
+    this.getOrderCount();
+    this.getTotalRevenue();
   }
 
   getUser() {
@@ -36,6 +45,28 @@ export class SellerDashboardComponent implements OnInit, OnDestroy {
         this.user = user;
       },
     });
+  }
+
+  getTotalRevenue() {
+    this.walletService
+      .getTotalRevenue(this.shopId)
+      .pipe(takeUntil(this.subs$))
+      .subscribe({
+        next: (res) => {
+          this.totalRevenue = String(res.data);
+        },
+      });
+  }
+
+  getOrderCount() {
+    this.dashService
+      .getOrderCount(this.shopId)
+      .pipe(takeUntil(this.subs$))
+      .subscribe({
+        next: (res) => {
+          this.orderCount = String(res.data);
+        },
+      });
   }
 
   fetchTodos() {
