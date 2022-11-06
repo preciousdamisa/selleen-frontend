@@ -48,7 +48,9 @@
   </section>
   <div class="d-flex justify-content-between mt-5">
     <h4 class="m-0">Transactions</h4>
-    <app-button>Withdraw Funds</app-button>
+    <app-button (clicked)="onWithdraw(withdrawalView)"
+      >Withdraw Funds</app-button
+    >
   </div>
   <div class="center mt-10" *ngIf="loadingTransactions">
     <app-spinner size="1rem"></app-spinner>
@@ -113,3 +115,8 @@
     </app-list-tile>
   </div>
 </app-page-wrapper>
+<ng-template #withdrawalView>
+  <app-initiate-withdrawal
+    (refetch)="getTransactions(); getBalance(); getTotalWithdrawal()"
+  ></app-initiate-withdrawal>
+</ng-template>

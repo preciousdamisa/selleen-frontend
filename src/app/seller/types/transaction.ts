@@ -32,3 +32,8 @@ export interface GetBalanceResBody {
   message: string;
   data: number;
 }
+
+export interface InitiateWithdrawalReqBody {
+  amount: number;
+  shopId: string;
+}

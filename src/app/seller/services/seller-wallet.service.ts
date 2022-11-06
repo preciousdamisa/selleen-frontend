@@ -6,6 +6,7 @@ import { SimpleReqQuery } from '../../shared/types/shared';
 import {
   GetBalanceResBody,
   GetTransactionsResBody,
+  InitiateWithdrawalReqBody,
 } from '../types/transaction';
 
 @Injectable({
@@ -42,6 +43,13 @@ export class SellerWalletService {
   getTotalRevenue(shopId: string) {
     return this.http.get<GetBalanceResBody>(
       `${this.baseUrl}transactions/shop/${shopId}/total-revenue`
+    );
+  }
+
+  initiateWithdrawal(data: InitiateWithdrawalReqBody) {
+    return this.http.post(
+      `${this.baseUrl}transactions/shop/initiate-withdrawal`,
+      data
     );
   }
 }

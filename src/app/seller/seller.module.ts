@@ -22,6 +22,7 @@ import { SellerPageHeaderComponent } from './components/seller-page-header/selle
 import { SellerProductsComponent } from './pages/seller-products/seller-products.component';
 import { SellerProductsHomeComponent } from './pages/seller-products-home/seller-products-home.component';
 import { SellerOrdersComponent } from './pages/seller-orders/seller-orders.component';
+import { InitiateWithdrawalComponent } from './components/initiate-withdrawal/initiate-withdrawal.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SellerOrdersComponent } from './pages/seller-orders/seller-orders.compo
     SellerProductsComponent,
     SellerProductsHomeComponent,
     SellerOrdersComponent,
+    InitiateWithdrawalComponent,
   ],
   imports: [
     SellerRoutingModule,

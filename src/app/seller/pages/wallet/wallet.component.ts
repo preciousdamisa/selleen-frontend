@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { ModalService } from 'src/app/services/modal.service';
 import { SellerWalletService } from '../../services/seller-wallet.service';
 import { ShopService } from '../../services/shop.service';
 import { Transaction } from '../../types/transaction';
@@ -23,7 +24,8 @@ export class WalletComponent implements OnInit, OnDestroy {
 
   constructor(
     private shopService: ShopService,
-    private walletService: SellerWalletService
+    private walletService: SellerWalletService,
+    private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
@@ -86,6 +88,10 @@ export class WalletComponent implements OnInit, OnDestroy {
           this.loadingTransactions = false;
         },
       });
+  }
+
+  onWithdraw(view: TemplateRef<any>) {
+    this.modalService.open({ view });
   }
 
   ngOnDestroy(): void {

@@ -44,7 +44,7 @@
         <app-button
           classes="mt-2"
           [fullWidth]="true"
-          [disabled]="loginForm.invalid"
+          [disabled]="loginForm.invalid || loading"
         >
           <app-spinner color="#fff" *ngIf="loading"></app-spinner
           ><span *ngIf="!loading">Log In</span>

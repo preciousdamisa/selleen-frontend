@@ -1,0 +1,39 @@
+<section>
+  <div class="pt-1 px-2 pb-2">
+    <div class="mb-5">
+      <app-modal-header title="Withdraw Funds"></app-modal-header>
+    </div>
+    <p>Withdrawal will be paid to: {{ bankAccDetails?.bankName }}</p>
+    <p class="fw-5">
+      {{ bankAccDetails?.accountNumber }} - {{ bankAccDetails?.accountName }}
+    </p>
+    <p class="fw-5 lh-1 mt-4">
+      NB: Withdrawals might take up to 24 hours to reflect in your bank
+      account/mobile money.
+    </p>
+    <form class="mt-5" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="amt">Amount</label>
+            <input
+              id="amt"
+              class="form-control"
+              placeholder="Enter amount to withdraw"
+              formControlName="amount"
+              type="number"
+            />
+            <app-input-errors
+              [control]="form.get('amount')"
+              label="Amount"
+            ></app-input-errors>
+          </div>
+        </div>
+      </div>
+      <app-button classes="mt-2" [disabled]="form.invalid || loading">
+        <app-spinner color="#fff" *ngIf="loading"></app-spinner
+        ><span *ngIf="!loading">Withdraw</span>
+      </app-button>
+    </form>
+  </div>
+</section>
