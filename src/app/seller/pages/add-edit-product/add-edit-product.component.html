@@ -28,11 +28,13 @@
           </div>
           <div class="row" formGroupName="price">
             <div class="col-6 form-group">
-              <label for="original-price (optional)"
-                >Original Price
+              <label for="original-price"
+                >Original Price (optional)
                 <i
                   class="bi-info-circle"
-                  [tooltip]="'The old price of the product.'"
+                  [tooltip]="
+                    'The old price of the product. This is useful when a discount is to be offered for the product.'
+                  "
                 ></i
               ></label>
               <input
