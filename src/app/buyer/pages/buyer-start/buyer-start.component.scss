@@ -1,13 +1,22 @@
-.banner-img {
-  background-color: green;
+.banner-img-container {
   height: 200px;
   position: relative;
-  margin-right: 0;
 }
 
-.banner-img div {
+.banner-img {
+  height: 100%;
+}
+
+.banner-img-container div {
   position: absolute;
-  bottom: 20%;
+  bottom: 0;
+  width: 100%;
+  padding: 1rem;
+  background-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.6)
+  );
 }
 
 .banner-img p {
@@ -16,23 +25,48 @@
   font-weight: bold;
 }
 
-.square-img {
+.square-imgs {
   display: none;
 }
 
 @media (min-width: 40rem) {
+  .banner-img-container {
+    margin-right: 0.5rem;
+    height: 400px;
+    width: 100%;
+  }
+
   .banner-img {
-    margin-right: 1rem;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+
+  .square-imgs {
+    display: block;
+    height: 400px;
+  }
+
+  .square-imgs-divider {
+    height: 5px;
   }
 
   .square-img {
-    background-color: grey;
-    display: block;
-    height: 200px;
+    height: 195px;
+    width: 100%;
+    object-fit: cover;
   }
 
-  .square-img div {
-    height: 100%;
-    padding-bottom: 20%;
+  .bottom-square-img-container {
+    position: relative;
+    height: 195px;
+  }
+
+  .bottom-square-img-container div {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 195px;
+    background: rgba(0, 0, 0, 0.3);
   }
 }

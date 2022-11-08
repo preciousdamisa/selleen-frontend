@@ -13,7 +13,7 @@ export class StatisticComponent implements OnInit {
   @Input() name?: string;
   @Input() text?: string | null;
   @Input() iconName?: string;
-  @Input() showCurrencySymbol = true;
+  @Input() showCurrencySymbol = false;
 
   subs?: Subscription;
   colorTheme?: ColorTheme;

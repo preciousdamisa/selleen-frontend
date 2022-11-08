@@ -14,13 +14,13 @@ export interface ShopByAlias {
   name: string;
   alias: string;
   description: string;
-  logo: Image;
-  banners: Image[];
   contactLines: string[];
   address: Address;
   rating: number;
   socialMediaLinks: SocialMediaLink[];
   createdAt: string;
+  logo?: Image;
+  banners?: Image[];
 }
 
 export interface GetShopByAliasResBody {

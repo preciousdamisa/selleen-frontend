@@ -103,25 +103,42 @@ export class ShopService {
   }
 
   updateLogo(img: File, shopId: string) {
-    return this.uploadFileToS3(img, 'logos').pipe(
+    return this.deleteFileOnS3(shopId, 'logo').pipe(
       take(1),
       exhaustMap(() => {
-        return this.http.patch(`${this.baseUrl}shops/${shopId}/logo`, {
-          url: this.logo!.url,
-        });
+        return this.uploadFileToS3(img, 'logos').pipe(
+          take(1),
+          exhaustMap(() => {
+            return this.http.patch(`${this.baseUrl}shops/${shopId}/logo`, {
+              url: this.logo!.url,
+            });
+          })
+        );
       })
     );
   }
 
   updateBanner(img: File, shopId: string) {
-    return this.uploadFileToS3(img, 'banners').pipe(
+    return this.deleteFileOnS3(shopId, 'banners').pipe(
       take(1),
       exhaustMap(() => {
-        return this.http.patch(`${this.baseUrl}shops/${shopId}/banners`, {
-          url: this.banner!.url,
-        });
+        return this.uploadFileToS3(img, 'banners').pipe(
+          take(1),
+          exhaustMap(() => {
+            return this.http.patch(`${this.baseUrl}shops/${shopId}/banners`, {
+              url: this.banner!.url,
+            });
+          })
+        );
       })
     );
+  }
+
+  deleteFileOnS3(
+    shopId: string,
+    urlSegment: 'logo' | 'banners' | 'personal-id'
+  ) {
+    return this.http.delete(`${this.baseUrl}shops/${shopId}/${urlSegment}`);
   }
 
   updateBankAccDetails(data: BankAccountDetails, shopId: string) {
@@ -151,16 +168,21 @@ export class ShopService {
     file: File,
     shopId: string
   ) {
-    return this.uploadFileToS3(file, 'kyc-docs').pipe(
+    return this.deleteFileOnS3(shopId, 'personal-id').pipe(
       take(1),
       exhaustMap(() => {
-        return this.http.patch<SimpleResBody>(
-          `${this.baseUrl}shops/${shopId}/personal-id`,
-          {
-            type,
-            url: this.personalId?.url,
-            originalName: file.name,
-          }
+        return this.uploadFileToS3(file, 'kyc-docs').pipe(
+          take(1),
+          exhaustMap(() => {
+            return this.http.patch<SimpleResBody>(
+              `${this.baseUrl}shops/${shopId}/personal-id`,
+              {
+                type,
+                url: this.personalId?.url,
+                originalName: file.name,
+              }
+            );
+          })
         );
       })
     );

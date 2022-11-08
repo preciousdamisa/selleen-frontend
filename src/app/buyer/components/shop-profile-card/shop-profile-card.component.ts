@@ -11,9 +11,11 @@ import { ShopByAlias } from '../../types/buyer.types';
 export class ShopProfileCardComponent implements OnInit {
   @Input() shop!: ShopByAlias;
 
-  shopLogo!: string;
+  shopLogo?: string;
 
   ngOnInit(): void {
-    this.shopLogo = environment.sellenAwsBucketUrl + this.shop.logo.url;
+    if (this.shop.logo) {
+      this.shopLogo = environment.sellenAwsBucketUrl + this.shop.logo.url;
+    }
   }
 }

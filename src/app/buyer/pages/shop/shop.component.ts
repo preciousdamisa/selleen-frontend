@@ -54,7 +54,10 @@ export class ShopComponent implements OnInit, OnDestroy {
     this.subs = this.buyerService.getShop(this.alias).subscribe({
       next: (res) => {
         this.shop = res.data;
-        this.banner = environment.sellenAwsBucketUrl + this.shop.banners[0].url;
+        if (this.shop.banners && this.shop.banners.length > 0) {
+          this.banner =
+            environment.sellenAwsBucketUrl + this.shop.banners[0].url;
+        }
         this.loading = false;
       },
       error: () => {

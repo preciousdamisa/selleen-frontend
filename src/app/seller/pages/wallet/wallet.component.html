@@ -6,18 +6,21 @@
         name="Available to Withdraw"
         [text]="balance | number"
         iconName="bi-cash-stack"
+        [showCurrencySymbol]="true"
       ></app-statistic>
       <div class="my-2">
         <app-statistic
           name="Total Withdrawal"
           [text]="totalWithdrawal | number"
           iconName="bi-graph-up-arrow"
+          [showCurrencySymbol]="true"
         ></app-statistic>
       </div>
       <app-statistic
         name="Total Revenue"
         [text]="totalRevenue | number"
         iconName="bi-bar-chart-line"
+        [showCurrencySymbol]="true"
       ></app-statistic>
     </app-card>
   </section>
@@ -28,6 +31,7 @@
           name="Available to Withdraw"
           [text]="balance | number"
           iconName="bi-cash-stack"
+          [showCurrencySymbol]="true"
         ></app-statistic>
       </app-card>
       <app-card classes="px-6 py-4">
@@ -35,6 +39,7 @@
           name="Total Withdrawal"
           [text]="totalWithdrawal | number"
           iconName="bi-graph-up-arrow"
+          [showCurrencySymbol]="true"
         ></app-statistic>
       </app-card>
       <app-card classes="px-6 py-4"
@@ -42,6 +47,7 @@
           name="Total Revenue"
           [text]="totalRevenue | number"
           iconName="bi-bar-chart-line"
+          [showCurrencySymbol]="true"
         ></app-statistic>
       </app-card>
     </div>

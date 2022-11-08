@@ -18,12 +18,14 @@
           name="Total Revenue"
           [text]="totalRevenue | number"
           iconName="bi-graph-up-arrow"
+          [showCurrencySymbol]="true"
         ></app-statistic>
       </div>
       <app-statistic
         name="Total Visitors"
         text="0"
         iconName="bi-people"
+        [showCurrencySymbol]="false"
       ></app-statistic>
     </app-card>
   </section>
@@ -34,7 +36,6 @@
           name="Total Orders"
           [text]="orderCount | number"
           iconName="bi-cart-plus"
-          [showCurrencySymbol]="false"
         ></app-statistic>
       </app-card>
       <app-card classes="px-6 py-4">
@@ -42,6 +43,7 @@
           name="Total Revenue"
           [text]="totalRevenue | number"
           iconName="bi-graph-up-arrow"
+          [showCurrencySymbol]="true"
         ></app-statistic>
       </app-card>
       <app-card classes="px-6 py-4"
